@@ -5,6 +5,72 @@
     <meta charset="UTF-8">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+    </div>
+
+    <!-- Modals -->
+    <div id="form-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-white/90">
+        <div class="bg-white border-4 border-black p-8 max-w-md w-full relative shadow-none font-utility">
+            <div class="absolute top-0 left-0 w-full h-2 bg-black"></div>
+            <button onclick="closeModal('form-modal')"
+                class="absolute top-4 right-4 text-2xl font-bold hover:bg-black hover:text-white w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+
+            <h2 class="text-4xl font-bold uppercase mb-8 leading-none">Input<br>Required.</h2>
+
+            <form class="space-y-6" onsubmit="event.preventDefault(); closeModal('form-modal');">
+                <div>
+                    <label class="block font-bold text-xs uppercase mb-2 bg-black text-white inline-block px-1">Identity
+                        Provider</label>
+                    <input type="email"
+                        class="w-full border-2 border-black p-3 font-bold focus:outline-none focus:bg-gray-100 transition-colors rounded-none"
+                        placeholder="USER@EMAIL.COM">
+                </div>
+                <div>
+                    <label class="block font-bold text-xs uppercase mb-2 bg-black text-white inline-block px-1">Data
+                        Stream</label>
+                    <textarea
+                        class="w-full border-2 border-black p-3 h-32 font-bold focus:outline-none focus:bg-gray-100 transition-colors rounded-none"
+                        placeholder="ENTER MESSAGE..."></textarea>
+                </div>
+                <button
+                    class="w-full bg-black text-white font-bold border-2 border-black py-4 hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-sm">
+                    Submit Data
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirm-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-white/90">
+        <div class="bg-white border-4 border-black p-8 max-w-sm w-full text-center relative font-utility">
+            <div class="w-full h-4 bg-black mb-6"></div>
+            <h2 class="text-2xl font-bold uppercase mb-4">Verification</h2>
+            <p class="font-bold text-gray-500 mb-8 leading-tight">IRREVERSIBLE ACTION DETECTED.<br>PROCEED WITH CAUTION.
+            </p>
+            <div class="grid grid-cols-2 gap-0 border-2 border-black">
+                <button onclick="closeModal('confirm-modal')"
+                    class="font-bold uppercase py-4 hover:bg-gray-200 transition-colors border-r-2 border-black">
+                    Abort
+                </button>
+                <button onclick="closeModal('confirm-modal')"
+                    class="font-bold uppercase py-4 bg-black text-white hover:bg-gray-800 transition-colors">
+                    Commit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+        window.onclick = function (event) {
+            if (event.target.classList.contains('fixed')) {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
     <script>
         tailwind.config = { theme: { extend: { fontFamily: { utility: ['IBM Plex Sans', 'sans-serif'] } } } }
     </script>
@@ -74,16 +140,91 @@
                             <span class="block text-xs text-gray-400 mb-1 group-hover:text-gray-600">MODULE</span>
                             <span class="font-bold text-lg">AI Tools</span>
                         </button>
-                        <button
-                            class="bg-black text-white border-2 border-black p-4 text-left hover:bg-gray-800 transition-colors duration-200">
-                            <span class="block text-xs text-gray-400 mb-1">ACTION</span>
-                            <span class="font-bold text-lg">Start Now</span>
+                        <span class="block text-xs text-gray-400 mb-1">ACTION</span>
+                        <span class="font-bold text-lg">Start Now</span>
+                        </button>
+
+                        <button onclick="openModal('form-modal')"
+                            class="col-span-1 bg-white border-2 border-black p-4 text-left hover:bg-black hover:text-white transition-colors duration-200">
+                            <span class="block text-xs text-gray-400 mb-1 group-hover:text-gray-600">INPUT</span>
+                            <span class="font-bold text-lg">Contact</span>
+                        </button>
+                        <button onclick="openModal('confirm-modal')"
+                            class="col-span-1 bg-white border-2 border-black p-4 text-left hover:bg-red-600 hover:text-white transition-colors duration-200">
+                            <span class="block text-xs text-gray-400 mb-1 group-hover:text-gray-600">SYSTEM</span>
+                            <span class="font-bold text-lg">Reset</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="form-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-white/90">
+        <div class="bg-white border-4 border-black p-8 max-w-md w-full relative shadow-none font-utility">
+            <div class="absolute top-0 left-0 w-full h-2 bg-black"></div>
+            <button onclick="closeModal('form-modal')"
+                class="absolute top-4 right-4 text-2xl font-bold hover:bg-black hover:text-white w-8 h-8 flex items-center justify-center transition-colors">&times;</button>
+
+            <h2 class="text-4xl font-bold uppercase mb-8 leading-none">Input<br>Required.</h2>
+
+            <form class="space-y-6" onsubmit="event.preventDefault(); closeModal('form-modal');">
+                <div>
+                    <label class="block font-bold text-xs uppercase mb-2 bg-black text-white inline-block px-1">Identity
+                        Provider</label>
+                    <input type="email"
+                        class="w-full border-2 border-black p-3 font-bold focus:outline-none focus:bg-gray-100 transition-colors rounded-none"
+                        placeholder="USER@EMAIL.COM">
+                </div>
+                <div>
+                    <label class="block font-bold text-xs uppercase mb-2 bg-black text-white inline-block px-1">Data
+                        Stream</label>
+                    <textarea
+                        class="w-full border-2 border-black p-3 h-32 font-bold focus:outline-none focus:bg-gray-100 transition-colors rounded-none"
+                        placeholder="ENTER MESSAGE..."></textarea>
+                </div>
+                <button
+                    class="w-full bg-black text-white font-bold border-2 border-black py-4 hover:bg-white hover:text-black transition-colors uppercase tracking-widest text-sm">
+                    Submit Data
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirm-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-white/90">
+        <div class="bg-white border-4 border-black p-8 max-w-sm w-full text-center relative font-utility">
+            <div class="w-full h-4 bg-black mb-6"></div>
+            <h2 class="text-2xl font-bold uppercase mb-4">Verification</h2>
+            <p class="font-bold text-gray-500 mb-8 leading-tight">IRREVERSIBLE ACTION DETECTED.<br>PROCEED WITH CAUTION.
+            </p>
+            <div class="grid grid-cols-2 gap-0 border-2 border-black">
+                <button onclick="closeModal('confirm-modal')"
+                    class="font-bold uppercase py-4 hover:bg-gray-200 transition-colors border-r-2 border-black">
+                    Abort
+                </button>
+                <button onclick="closeModal('confirm-modal')"
+                    class="font-bold uppercase py-4 bg-black text-white hover:bg-gray-800 transition-colors">
+                    Commit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+        window.onclick = function (event) {
+            if (event.target.classList.contains('fixed')) {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
     <script>
         function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-h' }, '*'); }
         window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);

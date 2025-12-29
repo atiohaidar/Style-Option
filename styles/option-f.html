@@ -53,6 +53,17 @@
                                 class="bg-[#2D3A30] text-[#F3F6E6] px-8 py-4 rounded-full font-bold shadow-lg hover:bg-[#1A231C] hover:scale-105 transition-all duration-300">
                                 Mulai Petualangan
                             </button>
+
+                            <div class="mt-6 flex gap-4 flex-wrap">
+                                <button onclick="openModal('form-modal')"
+                                    class="bg-[#E3EBCB] text-[#2D3A30] px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#D4E0B1] hover:scale-105 transition-all duration-300">
+                                    Kontak Kami
+                                </button>
+                                <button onclick="openModal('confirm-modal')"
+                                    class="bg-[#F3F6E6] text-[#4A5D23] border-2 border-[#E3EBCB] px-8 py-3 rounded-full font-bold shadow-lg hover:bg-white hover:scale-105 transition-all duration-300">
+                                    Konfirmasi
+                                </button>
+                            </div>
                         </div>
                         <div class="relative">
                             <div
@@ -65,6 +76,74 @@
             </div>
         </div>
     </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="form-modal"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-[#2D3A30]/40 backdrop-blur-sm transition-opacity">
+        <div
+            class="bg-[#FDFCF6] rounded-[2rem] p-10 max-w-md w-full relative shadow-xl overflow-hidden border border-[#E3EBCB]">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#E3EBCB] rounded-bl-[5rem] opacity-40 pointer-events-none">
+            </div>
+
+            <button onclick="closeModal('form-modal')"
+                class="absolute top-6 right-6 text-[#2D3A30] hover:text-[#64853F] text-xl transition">&times;</button>
+            <h2 class="text-3xl font-bold text-[#2D3A30] mb-6 flex items-center gap-2">🌱 Sapa Kami</h2>
+            <form class="space-y-6" onsubmit="event.preventDefault(); closeModal('form-modal');">
+                <div>
+                    <label class="block font-bold text-[#4A5D23] mb-2 pl-2">Email Kamu</label>
+                    <input type="email"
+                        class="w-full bg-[#F3F6E6] border-none rounded-2xl p-4 text-[#2D3A30] focus:ring-2 focus:ring-[#E3EBCB] transition placeholder-[#4A5D23]/50"
+                        placeholder="nama@email.com">
+                </div>
+                <div>
+                    <label class="block font-bold text-[#4A5D23] mb-2 pl-2">Cerita Kamu</label>
+                    <textarea
+                        class="w-full bg-[#F3F6E6] border-none rounded-2xl p-4 h-32 text-[#2D3A30] focus:ring-2 focus:ring-[#E3EBCB] transition placeholder-[#4A5D23]/50"
+                        placeholder="Tulis pesanmu..."></textarea>
+                </div>
+                <button
+                    class="w-full bg-[#2D3A30] text-[#F3F6E6] py-4 rounded-full font-bold shadow hover:bg-[#1A231C] hover:scale-[1.02] transition-all">
+                    Kirim Pesan 🍃
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirm-modal"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-[#2D3A30]/40 backdrop-blur-sm">
+        <div
+            class="bg-[#FDFCF6] rounded-[2rem] p-10 max-w-sm w-full text-center relative shadow-xl border border-[#E3EBCB]">
+            <div class="w-16 h-16 bg-[#E3EBCB] rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">🤔
+            </div>
+            <h2 class="text-2xl font-bold text-[#2D3A30] mb-4">Sudah Yakin?</h2>
+            <p class="text-[#4A5D23] mb-8 text-lg">Langkah ini akan mengubah segalanya secara natural.</p>
+            <div class="flex gap-4 justify-center">
+                <button onclick="closeModal('confirm-modal')"
+                    class="bg-[#F3F6E6] text-[#4A5D23] px-6 py-3 rounded-full font-bold hover:bg-[#E3EBCB] transition">
+                    Batal
+                </button>
+                <button onclick="closeModal('confirm-modal')"
+                    class="bg-[#2D3A30] text-[#F3F6E6] px-6 py-3 rounded-full font-bold hover:bg-[#1A231C] shadow hover:shadow-lg transition">
+                    Lanjutkan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+        window.onclick = function (event) {
+            if (event.target.classList.contains('fixed')) {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
     <script>
         function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-f' }, '*'); }
         window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);

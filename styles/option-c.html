@@ -58,6 +58,17 @@
                                 class="inline-block border-b border-black pb-1 text-sm font-bold uppercase tracking-wider hover:text-green-800 hover:border-green-800 transition-colors">Start
                                 Reading →</a>
                         </div>
+
+                        <div class="mt-8 flex gap-8">
+                            <button onclick="openModal('form-modal')"
+                                class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-black transition-colors">
+                                [ Contact Form ]
+                            </button>
+                            <button onclick="openModal('confirm-modal')"
+                                class="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-black transition-colors">
+                                [ Confirm ]
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -78,9 +89,77 @@
             </div>
         </div>
     </div>
+
+    <!-- Modals -->
+    <div id="form-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-white/90">
+        <div class="bg-[#f4f4f0] p-12 max-w-md w-full border border-gray-200 shadow-2xl relative">
+            <button onclick="closeModal('form-modal')"
+                class="absolute top-6 right-6 font-serif italic text-gray-400 hover:text-black hover:italic transition-colors">close</button>
+            <h2 class="text-3xl font-serif font-bold text-gray-900 mb-8 italic">Get in touch.</h2>
+            <form class="space-y-8" onsubmit="event.preventDefault(); closeModal('form-modal');">
+                <div class="group relative">
+                    <input type="email"
+                        class="w-full bg-transparent border-b border-gray-300 py-2 focus:outline-none focus:border-green-800 transition-colors font-serif text-lg placeholder-transparent"
+                        placeholder="Email" id="c-email">
+                    <label for="c-email"
+                        class="absolute left-0 -top-3.5 text-xs uppercase tracking-widest text-gray-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-xs">Email
+                        Address</label>
+                </div>
+                <div class="group relative">
+                    <textarea
+                        class="w-full bg-transparent border-b border-gray-300 py-2 h-24 focus:outline-none focus:border-green-800 transition-colors font-serif text-lg placeholder-transparent"
+                        placeholder="Message" id="c-msg"></textarea>
+                    <label for="c-msg"
+                        class="absolute left-0 -top-3.5 text-xs uppercase tracking-widest text-gray-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-xs">Your
+                        Message</label>
+                </div>
+                <button type="submit"
+                    class="mt-8 w-full text-xs font-bold uppercase tracking-widest border border-black px-8 py-4 hover:bg-black hover:text-white transition-colors">
+                    Submit Inquiry
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirm-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-white/90">
+        <div class="bg-[#f4f4f0] p-12 max-w-sm w-full border border-gray-200 shadow-xl text-center relative">
+            <h2 class="text-2xl font-serif font-bold text-gray-900 mb-4 italic">Confirmation</h2>
+            <div class="w-12 h-px bg-gray-300 mx-auto mb-6"></div>
+            <p class="text-gray-600 mb-10 font-sans leading-relaxed">Are you absolutely certain about this action? It
+                cannot be reversed.</p>
+            <div class="flex gap-4 justify-center">
+                <button onclick="closeModal('confirm-modal')"
+                    class="text-xs font-bold uppercase tracking-widest border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors">
+                    Cancel
+                </button>
+                <button onclick="closeModal('confirm-modal')"
+                    class="text-xs font-bold uppercase tracking-widest border border-black px-6 py-3 bg-black text-white hover:bg-transparent hover:text-black transition-colors">
+                    Proceed
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-c' }, '*'); }
-        window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+        window.onclick = function (event) {
+            if (event.target.classList.contains('fixed')) {
+                closeModal(event.target.id);
+            }
+        }
+
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            window.parent.postMessage({ type: 'resize', height: height, id: 'option-c' }, '*');
+        }
+        window.addEventListener('load', sendHeight);
+        window.addEventListener('resize', sendHeight);
+        new ResizeObserver(sendHeight).observe(document.body);
     </script>
 </body>
 

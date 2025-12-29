@@ -45,6 +45,14 @@
                     class="px-6 py-4 border border-[#2ECC71] text-[#2ECC71] rounded hover:bg-[#2ECC71]/10 transition-colors">
                     Check my work!
                 </button>
+                <button onclick="openModal('form-modal')"
+                    class="px-6 py-4 border border-[#8892B0] text-[#8892B0] rounded hover:border-[#2ECC71] hover:text-[#2ECC71] transition-colors">
+                    _contact
+                </button>
+                <button onclick="openModal('confirm-modal')"
+                    class="px-6 py-4 border border-[#8892B0] text-[#8892B0] rounded hover:border-red-400 hover:text-red-400 transition-colors">
+                    _confirm
+                </button>
                 <div class="flex gap-4 opacity-70">
                     <div class="w-5 h-5 bg-[#8892B0] rounded-sm hover:bg-[#3BAFDA] transition cursor-pointer"></div>
                     <div class="w-5 h-5 bg-[#8892B0] rounded-sm hover:bg-[#3BAFDA] transition cursor-pointer"></div>
@@ -63,6 +71,75 @@
             Option K: Strict Brand Identity (Matching me.md Values)
         </div>
     </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="form-modal"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-[#0A192F]/90 backdrop-blur-sm">
+        <div
+            class="bg-[#112240] border border-[#233554] p-8 max-w-md w-full relative shadow-xl font-fira text-[#8892B0]">
+            <button onclick="closeModal('form-modal')"
+                class="absolute top-4 right-4 text-[#2ECC71] hover:text-[#64FFDA] transition">&times;</button>
+            <h2 class="text-xl font-bold text-[#ccd6f6] mb-2 flex items-center gap-2">
+                <span class="text-[#2ECC71]">function</span> connect() {
+            </h2>
+
+            <form class="space-y-6 mt-6" onsubmit="event.preventDefault(); closeModal('form-modal');">
+                <div>
+                    <label class="block text-xs font-bold text-[#2ECC71] mb-2">// enter email address</label>
+                    <input type="email"
+                        class="w-full bg-[#0A192F] border border-[#233554] p-3 text-[#ccd6f6] focus:border-[#2ECC71] focus:outline-none transition font-fira text-sm"
+                        placeholder="sender@domain.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-[#2ECC71] mb-2">// enter message body</label>
+                    <textarea
+                        class="w-full bg-[#0A192F] border border-[#233554] p-3 h-32 text-[#ccd6f6] focus:border-[#2ECC71] focus:outline-none transition font-fira text-sm"
+                        placeholder="console.log('Hello world!');"></textarea>
+                </div>
+                <button
+                    class="w-full border border-[#2ECC71] text-[#2ECC71] bg-[#2ECC71]/10 py-3 rounded hover:bg-[#2ECC71]/20 transition-colors font-fira text-sm">
+                    return message;
+                </button>
+            </form>
+            <div class="mt-4 text-[#2ECC71] text-lg font-bold">}</div>
+        </div>
+    </div>
+
+    <div id="confirm-modal"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-[#0A192F]/90 backdrop-blur-sm">
+        <div
+            class="bg-[#112240] border border-[#233554] p-8 max-w-sm w-full text-center relative shadow-xl font-fira text-[#8892B0]">
+            <div class="text-[#2ECC71] text-4xl mb-4">⚠️</div>
+            <h2 class="text-lg font-bold text-[#ccd6f6] mb-2">Warning: Deprecated</h2>
+            <p class="text-sm mb-8 leading-relaxed">This action will permanently delete the selected object. Continue?
+            </p>
+            <div class="flex gap-4 justify-center">
+                <button onclick="closeModal('confirm-modal')"
+                    class="border border-[#8892B0] text-[#8892B0] px-4 py-2 text-xs hover:bg-[#8892B0]/10 transition">
+                    cancel()
+                </button>
+                <button onclick="closeModal('confirm-modal')"
+                    class="border border-red-500 text-red-500 px-4 py-2 text-xs hover:bg-red-500/10 transition">
+                    file_delete()
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+        window.onclick = function (event) {
+            if (event.target.classList.contains('fixed')) {
+                closeModal(event.target.id);
+            }
+        }
+    </script>
     <script>
         function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-k' }, '*'); }
         window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);
