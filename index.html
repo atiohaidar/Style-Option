@@ -20,7 +20,12 @@
 
     <div class="max-w-4xl mx-auto py-10 px-6 text-center">
         <h1 class="text-4xl font-bold mb-4">Design Assessment Gallery</h1>
-        <p class="mb-8 text-gray-600">Total 12 Style Options. Loaded from separate files.</p>
+        <p class="mb-8 text-gray-600">Total 18 Style Options. Loaded from separate files.</p>
+
+        <!-- Table of Contents -->
+        <div id="toc" class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-left">
+            <!-- Links injected here -->
+        </div>
     </div>
 
     <div id="gallery" class="space-y-10">
@@ -50,8 +55,17 @@
         ];
 
         const gallery = document.getElementById('gallery');
+        const toc = document.getElementById('toc');
 
         options.forEach(opt => {
+            // Add to Table of Contents
+            const link = document.createElement('a');
+            link.href = `#frame-${opt.id}`;
+            link.className = "block p-3 bg-white border border-gray-200 rounded hover:border-gray-400 hover:shadow-sm transition-all";
+            link.innerHTML = `<span class="font-bold block text-gray-900">${opt.id.replace('option-', '').toUpperCase()}</span> <span class="text-gray-500 text-xs">${opt.label}</span>`;
+            toc.appendChild(link);
+
+            // Create Gallery Frame
             const wrapper = document.createElement('div');
             // wrapper.className = "border-b border-gray-300 pb-10"; // optional separator
 
