@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { modern: ['DM Sans', 'sans-serif'] } } } }
+    </script>
+    <style>
+        body {
+            overflow: hidden;
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-modern text-gray-900 border-t border-gray-200">
+    <div id="content" class="py-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <div
+                class="mb-6 inline-block bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold tracking-wide">
+                Option D: Modern SaaS</div>
+
+            <div
+                class="bg-white rounded-3xl p-12 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] border border-gray-100 relative overflow-hidden">
+                <!-- Decoration background -->
+                <div
+                    class="absolute -right-20 -top-20 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 pointer-events-none">
+                </div>
+                <div
+                    class="absolute -left-20 -bottom-20 w-80 h-80 bg-pink-50 rounded-full blur-3xl opacity-60 pointer-events-none">
+                </div>
+
+                <div class="relative z-10">
+                    <nav class="flex justify-between items-center mb-16">
+                        <div class="flex items-center gap-2">
+                            <div class="bg-indigo-600 text-white p-1.5 rounded-lg font-bold">EG</div>
+                            <h2 class="text-xl font-bold tracking-tight text-gray-900">EduGreen</h2>
+                        </div>
+                        <div class="hidden md:flex gap-1 text-sm font-medium bg-gray-100 p-1 rounded-full">
+                            <a href="#" class="px-4 py-1.5 bg-white text-gray-900 shadow-sm rounded-full">Home</a>
+                            <a href="#" class="px-4 py-1.5 text-gray-500 hover:text-gray-900">Pricing</a>
+                        </div>
+                    </nav>
+
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h1 class="text-5xl font-bold tracking-tight leading-tighter mb-6">
+                                Learning made <br>
+                                <span class="text-indigo-600">effortless.</span>
+                            </h1>
+                            <p class="text-lg text-gray-500 mb-8 leading-relaxed">
+                                Platform modern untuk mempercepat pemahamanmu. Desain bersih, fitur lengkap, dan
+                                menyenangkan.
+                            </p>
+                            <div class="flex gap-4">
+                                <button
+                                    class="bg-[#111827] text-white px-6 py-3 rounded-xl font-semibold hover:bg-black transition shadow-lg shadow-gray-200">Get
+                                    Started</button>
+                                <button
+                                    class="bg-white text-gray-700 border border-gray-200 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition">View
+                                    Demo</button>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div
+                                class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 transform rotate-2 hover:rotate-0 transition duration-500">
+                                <div class="flex gap-3 mb-4">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="h-4 bg-gray-100 rounded w-3/4"></div>
+                                    <div class="h-4 bg-gray-100 rounded w-1/2"></div>
+                                    <div
+                                        class="h-20 bg-indigo-50 rounded-xl mt-4 border border-indigo-100 flex items-center justify-center text-indigo-300">
+                                        Chart Visualization
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-d' }, '*'); }
+        window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);
+    </script>
+</body>
+
+</html>

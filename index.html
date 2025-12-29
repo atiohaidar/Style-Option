@@ -1,123 +1,76 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Personal Style Guide Demo</title>
-
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Custom theme (personal style) -->
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#22c55e', // hijau kalem
-            primarySoft: '#dcfce7',
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-          },
-        },
-      },
-    }
-  </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Style Assessment - Gallery Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        iframe {
+            width: 100%;
+            border: none;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+    </style>
 </head>
 
-<body class="bg-white text-gray-700 font-sans">
+<body class="bg-gray-100 text-gray-800 pb-40">
 
-  <!-- Navbar -->
-  <header class="max-w-6xl mx-auto px-6 py-6 flex justify-between items-center">
-    <h1 class="text-xl font-semibold text-primary">
-      EduGreen
-    </h1>
-    <nav class="space-x-6 text-sm">
-      <a href="#" class="hover:text-primary transition">Home</a>
-      <a href="#" class="hover:text-primary transition">Materi</a>
-      <a href="#" class="hover:text-primary transition">Tentang</a>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
-    <div>
-      <h2 class="text-4xl font-semibold text-gray-800 leading-tight">
-        Belajar dengan Cara  
-        <span class="text-primary">Sederhana & Inovatif</span>
-      </h2>
-
-      <p class="mt-6 text-lg leading-relaxed">
-        Platform edukasi yang fokus pada kejelasan informasi,
-        tampilan bersih, dan pengalaman belajar yang membuat
-        orang kagum tanpa terasa rumit.
-      </p>
-
-      <div class="mt-10 flex gap-4">
-        <button class="px-6 py-3 rounded-lg bg-primary text-white shadow-sm hover:bg-green-600 transition">
-          Mulai Belajar
-        </button>
-        <button class="px-6 py-3 rounded-lg bg-primarySoft text-primary hover:bg-green-100 transition">
-          Pelajari Konsep
-        </button>
-      </div>
+    <div class="max-w-4xl mx-auto py-10 px-6 text-center">
+        <h1 class="text-4xl font-bold mb-4">Design Assessment Gallery</h1>
+        <p class="mb-8 text-gray-600">Total 12 Style Options. Loaded from separate files.</p>
     </div>
 
-    <!-- Visual Card -->
-    <div class="bg-primarySoft rounded-xl p-10 shadow-sm">
-      <h3 class="text-xl font-semibold text-gray-800">
-        Fokus Utama
-      </h3>
-      <ul class="mt-6 space-y-4">
-        <li class="flex gap-3">
-          <span class="text-primary">●</span>
-          Mudah dibaca & dipahami
-        </li>
-        <li class="flex gap-3">
-          <span class="text-primary">●</span>
-          Informasi tersampaikan jelas
-        </li>
-        <li class="flex gap-3">
-          <span class="text-primary">●</span>
-          Desain kalem & modern
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Info Cards -->
-  <section class="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-3 gap-10">
-    <div class="rounded-xl p-8 shadow-sm border border-gray-100">
-      <h4 class="font-semibold text-gray-800">Edukatif</h4>
-      <p class="mt-4 text-sm leading-relaxed">
-        Setiap elemen dirancang untuk membantu pemahaman,
-        bukan sekadar hiasan visual.
-      </p>
+    <div id="gallery" class="space-y-10">
+        <!-- IFrames will be injected here -->
     </div>
 
-    <div class="rounded-xl p-8 shadow-sm border border-gray-100">
-      <h4 class="font-semibold text-gray-800">Sederhana</h4>
-      <p class="mt-4 text-sm leading-relaxed">
-        Tidak ada elemen berlebihan.
-        Ruang kosong digunakan untuk fokus.
-      </p>
-    </div>
+    <script>
+        const options = [
+            { id: 'option-a', label: 'Neo-Pop' },
+            { id: 'option-b', label: 'Tech Glass' },
+            { id: 'option-c', label: 'Swiss Editorial' },
+            { id: 'option-d', label: 'Modern SaaS' },
+            { id: 'option-e', label: 'Retro Terminal' },
+            { id: 'option-f', label: 'Organic' },
+            { id: 'option-g', label: 'Engineer Blueprint' },
+            { id: 'option-h', label: 'Utility' },
+            { id: 'option-i', label: 'AI Innovator' },
+            { id: 'option-j', label: 'Research Focused' },
+            { id: 'option-k', label: 'Brand Identity' },
+            { id: 'option-l', label: 'Dashboard' },
+        ];
 
-    <div class="rounded-xl p-8 shadow-sm border border-gray-100">
-      <h4 class="font-semibold text-gray-800">Inovatif</h4>
-      <p class="mt-4 text-sm leading-relaxed">
-        Interaksi halus dan cepat memberi kesan modern
-        tanpa mengganggu.
-      </p>
-    </div>
-  </section>
+        const gallery = document.getElementById('gallery');
 
-  <!-- Footer -->
-  <footer class="border-t border-gray-100 py-10">
-    <p class="text-center text-sm text-gray-400">
-      © 2025 · Personal Style Guide Demo
-    </p>
-  </footer>
+        options.forEach(opt => {
+            const wrapper = document.createElement('div');
+            // wrapper.className = "border-b border-gray-300 pb-10"; // optional separator
+
+            const frame = document.createElement('iframe');
+            frame.src = `styles/${opt.id}.html`;
+            frame.id = `frame-${opt.id}`;
+            // Set initial height conservatively
+            frame.style.height = '600px';
+
+            wrapper.appendChild(frame);
+            gallery.appendChild(wrapper);
+        });
+
+        // Listen for resize messages from iframes
+        window.addEventListener('message', (e) => {
+            if (e.data.type === 'resize' && e.data.id) {
+                const frame = document.getElementById(`frame-${e.data.id}`);
+                if (frame) {
+                    // Add a little buffer to avoid scrollbars
+                    frame.style.height = (e.data.height + 20) + 'px';
+                }
+            }
+        });
+    </script>
 
 </body>
+
 </html>

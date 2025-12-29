@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
+    </script>
+    <style>
+        body {
+            overflow: hidden;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans text-gray-800">
+    <div id="content" class="p-8 md:p-16">
+        <div
+            class="max-w-6xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200 grid md:grid-cols-12 gap-8">
+            <!-- Sidebar -->
+            <div class="col-span-12 md:col-span-3 bg-[#0A192F] text-white p-8 flex flex-col justify-between">
+                <div>
+                    <div class="font-bold text-2xl tracking-tight mb-10 flex items-center gap-2">
+                        <div class="w-8 h-8 bg-[#3BAFDA] rounded-lg"></div> Tio.Dev
+                    </div>
+                    <nav class="space-y-4 text-gray-400 text-sm font-medium">
+                        <a href="#" class="block text-white bg-white/10 px-4 py-2 rounded-lg">Dashboard</a>
+                        <a href="#" class="block hover:text-white px-4 py-2 transition">Monolith</a>
+                        <a href="#" class="block hover:text-white px-4 py-2 transition">Microservices</a>
+                        <a href="#" class="block hover:text-white px-4 py-2 transition">Automation</a>
+                    </nav>
+                </div>
+                <div class="text-xs text-gray-500 font-mono">v2.4.0-stable</div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-span-12 md:col-span-9 p-8 md:p-12">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <div class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">Status Overview</div>
+                        <h2 class="text-3xl font-bold text-[#0A192F]">System Automation</h2>
+                    </div>
+                    <button
+                        class="bg-[#2ECC71] text-white px-5 py-2 rounded-lg font-bold shadow-lg shadow-green-200 hover:brightness-105 transition">
+                        + New Project
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                        <div class="text-gray-400 text-xs font-bold uppercase mb-2">Projects</div>
+                        <div class="text-3xl font-bold text-[#3BAFDA]">12</div>
+                        <div class="text-xs text-gray-400 mt-2">Active Development</div>
+                    </div>
+                    <div class="p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                        <div class="text-gray-400 text-xs font-bold uppercase mb-2">Research</div>
+                        <div class="text-3xl font-bold text-purple-500">5</div>
+                        <div class="text-xs text-gray-400 mt-2">Published Papers</div>
+                    </div>
+                    <div class="p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                        <div class="text-gray-400 text-xs font-bold uppercase mb-2">Uptime</div>
+                        <div class="text-3xl font-bold text-[#2ECC71]">99.9%</div>
+                        <div class="text-xs text-gray-400 mt-2">Reliability Rate</div>
+                    </div>
+                </div>
+
+                <div class="rounded-xl bg-gray-50 p-6 border border-gray-100">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-[#0A192F]">Recent Activities</h3>
+                        <a href="#" class="text-sm text-[#3BAFDA] font-medium hover:underline">View All</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 text-sm">
+                            <div class="w-2 h-2 rounded-full bg-[#2ECC71]"></div>
+                            <span class="font-mono text-gray-500">10:42 AM</span>
+                            <span class="font-medium">Deployed Helpdesk System v1.0</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-sm">
+                            <div class="w-2 h-2 rounded-full bg-[#3BAFDA]"></div>
+                            <span class="font-mono text-gray-500">09:15 AM</span>
+                            <span class="font-medium">Updated QR Attendance Module</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-6 text-sm text-gray-500 font-medium">Option L: The Dashboard (SaaS Product Interface)
+        </div>
+    </div>
+    <script>
+        function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-l' }, '*'); }
+        window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);
+    </script>
+</body>
+
+</html>

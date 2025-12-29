@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { rounded: ['Nunito', 'sans-serif'] } } } }
+    </script>
+    <style>
+        body {
+            overflow: hidden;
+            background-color: #FDFCF6;
+        }
+    </style>
+</head>
+
+<body class="bg-[#FDFCF6] font-rounded text-[#2D3A30]">
+    <div id="content" class="py-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <div
+                class="mb-6 inline-block bg-[#E3EBCB] text-[#4A5D23] px-3 py-1 rounded-full text-xs font-bold tracking-wide">
+                Option F: Organic & Soft</div>
+
+            <div class="bg-[#F3F6E6] rounded-[2rem] p-12 relative overflow-hidden">
+                <!-- Organic shapes -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-[#E3EBCB] rounded-bl-[10rem] opacity-60"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-[#D4E0B1] rounded-tr-[5rem] opacity-60"></div>
+
+                <div class="relative z-10">
+                    <nav class="flex justify-between items-center mb-12">
+                        <h2 class="text-2xl font-bold tracking-tight text-[#2D3A30] flex items-center gap-2">
+                            <span class="text-2xl">🌱</span> EduGreen
+                        </h2>
+                        <div class="space-x-8 font-semibold text-[#4A5D23]">
+                            <a href="#" class="hover:text-[#2D3A30] transition">Beranda</a>
+                            <a href="#" class="hover:text-[#2D3A30] transition">Kelas</a>
+                        </div>
+                    </nav>
+
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h1 class="text-5xl font-extrabold leading-tight mb-6 text-[#1A231C]">
+                                Tumbuh Bersama <br>
+                                <span class="text-[#64853F]">Pengetahuan Alam.</span>
+                            </h1>
+                            <p class="text-lg text-[#4A5D23] mb-8 leading-relaxed">
+                                Belajar dengan suasana yang tenang, natural, dan menyegarkan pikiran. Fokus tanpa
+                                tekanan.
+                            </p>
+                            <button
+                                class="bg-[#2D3A30] text-[#F3F6E6] px-8 py-4 rounded-full font-bold shadow-lg hover:bg-[#1A231C] hover:scale-105 transition-all duration-300">
+                                Mulai Petualangan
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="aspect-square bg-[#D4E0B1] rounded-[3rem] rotate-3 flex items-center justify-center shadow-inner">
+                                <span class="text-9xl opacity-20">🍃</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-f' }, '*'); }
+        window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);
+    </script>
+</body>
+
+</html>

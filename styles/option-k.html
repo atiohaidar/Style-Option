@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { poppins: ['Poppins', 'sans-serif'], fira: ['Fira Code', 'monospace'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            overflow: hidden;
+            background-color: #0A192F;
+        }
+    </style>
+</head>
+
+<body class="bg-[#0A192F] font-poppins text-[#8892B0] relative">
+    <div id="content" class="py-24 relative">
+        <div class="absolute top-0 right-0 w-1/3 h-full border-l border-[#8892B0]/10 pointer-events-none"></div>
+        <div class="absolute bottom-20 right-20 w-32 h-32 border-2 border-[#2ECC71]/20 rounded-full blur-xl"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="mb-6 font-fira text-[#2ECC71] text-sm md:text-base">Hello, my name is</div>
+            <h1 class="text-5xl md:text-7xl font-bold text-[#e6f1ff] mb-4">Tio Haidar Hanif.</h1>
+            <h2 class="text-4xl md:text-6xl font-bold text-[#8892B0] mb-8">I build scalable backends.</h2>
+
+            <p class="max-w-xl text-lg leading-relaxed mb-10">
+                Backend Engineer dan Researcher yang menjembatani dunia <span class="text-[#3BAFDA]">engineering</span>
+                dengan <span class="text-[#3BAFDA]">telekomunikasi</span>. Fokus pada membangun sistem yang accessible
+                dan highly performant.
+            </p>
+
+            <div class="flex items-center gap-6 font-fira text-sm">
+                <button
+                    class="px-6 py-4 border border-[#2ECC71] text-[#2ECC71] rounded hover:bg-[#2ECC71]/10 transition-colors">
+                    Check my work!
+                </button>
+                <div class="flex gap-4 opacity-70">
+                    <div class="w-5 h-5 bg-[#8892B0] rounded-sm hover:bg-[#3BAFDA] transition cursor-pointer"></div>
+                    <div class="w-5 h-5 bg-[#8892B0] rounded-sm hover:bg-[#3BAFDA] transition cursor-pointer"></div>
+                </div>
+            </div>
+
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 font-fira text-xs">
+                <div class="flex items-center gap-2"><span class="text-[#2ECC71]">▹</span> Laravel</div>
+                <div class="flex items-center gap-2"><span class="text-[#2ECC71]">▹</span> Express.js</div>
+                <div class="flex items-center gap-2"><span class="text-[#2ECC71]">▹</span> Docker</div>
+                <div class="flex items-center gap-2"><span class="text-[#2ECC71]">▹</span> Python/VBA</div>
+            </div>
+        </div>
+
+        <div class="text-center py-4 bg-[#0A192F] text-[#8892B0] text-xs font-fira border-t border-[#8892B0]/10 mt-10">
+            Option K: Strict Brand Identity (Matching me.md Values)
+        </div>
+    </div>
+    <script>
+        function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-k' }, '*'); }
+        window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);
+    </script>
+</body>
+
+</html>

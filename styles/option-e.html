@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { mono: ['VT323', 'monospace'] } } } }
+    </script>
+    <style>
+        body {
+            overflow: hidden;
+            background-color: #1a1a1a;
+        }
+
+        .scanlines {
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.2) 50%, rgba(0, 0, 0, 0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="bg-[#1a1a1a] font-mono text-green-500 relative">
+    <div id="content" class="py-20 relative">
+        <div class="absolute inset-0 scanlines opacity-20 pointer-events-none z-10"></div>
+        <div class="max-w-5xl mx-auto px-6 relative z-0">
+            <div class="mb-6 text-green-500 text-sm">>> Option E: Retro Terminal_</div>
+
+            <div class="bg-[#0c0c0c] border-[2px] border-green-700/50 p-6 shadow-2xl rounded-sm">
+                <div class="flex justify-between items-center border-b border-green-800 pb-2 mb-8 opacity-80">
+                    <h2 class="text-xl text-green-500">user@edugreen:~$ ./init.sh</h2>
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 bg-red-900 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-900 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-900 rounded-full"></div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h1 class="text-4xl md:text-5xl text-gray-200 leading-tight mb-6">
+                            <span class="text-green-500">></span> BELAJAR.<br>
+                            <span class="text-green-500">></span> KODE.<br>
+                            <span class="text-green-500 flex items-center gap-2">> MASA DEPAN.<span
+                                    class="w-3 h-8 bg-green-500 animate-pulse inline-block"></span></span>
+                        </h1>
+                        <p class="text-green-400/80 mb-8 text-lg font-light leading-relaxed">
+                            System initialized. Loading modules...<br>
+                            [OK] Data Science<br>
+                            [OK] Web Development<br>
+                            [OK] Artificial Intelligence
+                        </p>
+                        <button
+                            class="group relative inline-flex items-center justify-center px-6 py-3 text-lg font-bold tracking-tighter text-black bg-green-500 hover:bg-green-400 transition-all">
+                            <span class="absolute inset-0 w-full h-full -mt-1 rounded opacity-30 bg-green-400"></span>
+                            <span class="relative">EXECUTE PROGRAM</span>
+                        </button>
+                    </div>
+                    <div
+                        class="hidden md:block border border-green-900 p-4 bg-[#0a0a0a] text-xs text-green-600/70 overflow-hidden font-mono leading-tight">
+                        <p>import tensorflow as tf</p>
+                        <p>model = tf.keras.models.Sequential([</p>
+                        <p>&nbsp;&nbsp;tf.keras.layers.Flatten(input_shape=(28, 28)),</p>
+                        <p>&nbsp;&nbsp;tf.keras.layers.Dense(128, activation='relu'),</p>
+                        <p>&nbsp;&nbsp;tf.keras.layers.Dropout(0.2),</p>
+                        <p>&nbsp;&nbsp;tf.keras.layers.Dense(10)</p>
+                        <p>])</p>
+                        <p class="mt-4 text-green-400">Compiling... Done.</p>
+                        <p>Training... 98% Accuracy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-e' }, '*'); }
+        window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);
+    </script>
+</body>
+
+</html>

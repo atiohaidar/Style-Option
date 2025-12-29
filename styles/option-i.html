@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            overflow: hidden;
+            background-color: #050505;
+        }
+    </style>
+</head>
+
+<body class="bg-[#050505] font-sans text-white relative overflow-hidden">
+    <div id="content" class="py-24 relative z-10">
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-indigo-600/20 blur-[120px] rounded-full pointer-events-none">
+        </div>
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="flex justify-between items-center mb-20">
+                <div
+                    class="bg-white/10 backdrop-blur-md px-4 py-1 rounded-full text-xs font-medium border border-white/10 text-indigo-300">
+                    Option I: AI Innovator</div>
+                <h2 class="font-bold text-2xl tracking-tight">EduGreen<span class="text-indigo-500">.ai</span></h2>
+            </div>
+
+            <div class="text-center max-w-3xl mx-auto">
+                <h1
+                    class="text-5xl md:text-7xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
+                    Unlock Your <br> Potential.
+                </h1>
+                <p class="text-xl text-gray-400 mb-10 font-light">
+                    An intelligent platform for the curious mind. Stop repeating, start innovating. Powered by advanced
+                    learning algorithms.
+                </p>
+
+                <div class="relative inline-block group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt">
+                    </div>
+                    <button
+                        class="relative px-8 py-4 bg-black rounded-lg leading-none flex items-center divide-x divide-gray-600">
+                        <span class="flex items-center space-x-5">
+                            <span class="pr-6 text-gray-100 font-bold">Launch Dashboard</span>
+                        </span>
+                        <span class="pl-6 text-indigo-400 group-hover:text-gray-100 transition duration-200">→</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-20 grid grid-cols-3 border-t border-white/10 pt-8 gap-8 text-center text-sm text-gray-500">
+                <div>
+                    <span class="block text-white font-bold text-lg mb-1">Automated</span>
+                    Workflows
+                </div>
+                <div>
+                    <span class="block text-white font-bold text-lg mb-1">Deep Dive</span>
+                    Research
+                </div>
+                <div>
+                    <span class="block text-white font-bold text-lg mb-1">AI Powered</span>
+                    Analysis
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function sendHeight() { window.parent.postMessage({ type: 'resize', height: document.getElementById('content').offsetHeight, id: 'option-i' }, '*'); }
+        window.addEventListener('load', sendHeight); new ResizeObserver(sendHeight).observe(document.body);
+    </script>
+</body>
+
+</html>
