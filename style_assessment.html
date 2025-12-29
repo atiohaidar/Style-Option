@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Style Assessment - Full Restoration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Playfair+Display:wght@600&family=Space+Grotesk:wght@500;700&family=VT323&family=Nunito:wght@400;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans:wght@400;600&family=Poppins:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        mono: ['VT323', 'monospace'],
+                        code: ['JetBrains Mono', 'monospace'],
+                        utility: ['IBM Plex Sans', 'sans-serif'],
+                        rounded: ['Nunito', 'sans-serif'],
+                        modern: ['DM Sans', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                        fira: ['Fira Code', 'monospace'],
+                    },
+                    boxShadow: {
+                        'clay': '8px 8px 16px #d1d5db, -8px -8px 16px #ffffff',
+                        'clay-inset': 'inset 4px 4px 8px #d1d5db, inset -4px -4px 8px #ffffff',
+                    },
+                    colors: {
+                        blueprint: '#0044cc',
+                        brand: {
+                            navy: '#0A192F',
+                            blue: '#3BAFDA',
+                            gray: '#8892B0',
+                            green: '#2ECC71',
+                            white: '#FFFFFF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Scanline effect for Option E */
+        .scanlines {
+            background: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 0) 50%,
+                    rgba(0, 0, 0, 0.2) 50%,
+                    rgba(0, 0, 0, 0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+
+        /* Blueprint Grid for Option G */
+        .blueprint-grid {
+            background-color: #f0f4f8;
+            background-image:
+                linear-gradient(#cad2e0 1px, transparent 1px),
+                linear-gradient(90deg, #cad2e0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 text-gray-800 pb-40">
+
+    <div class="max-w-4xl mx-auto py-10 px-6 text-center">
+        <h1 class="text-4xl font-bold mb-4">Design Style Assessment</h1>
+        <p class="mb-2 text-gray-600">Berikut adalah 12 Variasi Design Lengkap.</p>
+    </div>
+
+    <!-- OPTION A: Neo-Brutalist / Pop -->
+    <section class="border-y-4 border-black bg-[#FFDEE9] py-20 relative overflow-hidden">
+        <div
+            class="absolute top-0 left-0 bg-[#B5FFFC] w-full h-full -z-10 opacity-50 bg-[linear-gradient(0deg,#FFDEE9_0%,#B5FFFC_100%)]">
+        </div>
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-4 inline-block bg-black text-white px-4 py-1 text-sm font-bold uppercase tracking-widest">
+                Option A: Neo-Pop</div>
+            <div class="bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-10">
+                <nav class="flex justify-between items-center mb-12 border-b-4 border-black pb-4">
+                    <h2 class="text-3xl font-display font-bold uppercase tracking-tighter">EduGreen.</h2>
+                    <div class="space-x-4 font-bold text-sm">
+                        <a href="#" class="hover:bg-yellow-300 px-2 py-1 transition-colors">HOME</a>
+                        <a href="#" class="hover:bg-yellow-300 px-2 py-1 transition-colors">MATERI</a>
+                    </div>
+                </nav>
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h1 class="text-5xl font-display font-bold leading-none mb-6">
+                            BELAJAR LEBIH <br>
+                            <span class="bg-yellow-300 px-2 box-decoration-clone">SIMPLE & SERU</span>
+                        </h1>
+                        <p class="text-lg font-medium mb-8">Platform edukasi tanpa basa-basi. Langsung ke inti, desain
+                            berani.</p>
+                        <button
+                            class="bg-pink-500 text-white font-bold border-2 border-black px-8 py-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all">
+                            MULAI SEKARANG
+                        </button>
+                    </div>
+                    <div
+                        class="bg-blue-100 border-2 border-black p-6 rotate-2 hover:rotate-0 transition-transform duration-300">
+                        <h3 class="font-bold text-xl mb-4 border-b-2 border-black pb-2">Kenapa Kami?</h3>
+                        <ul class="space-y-3 font-medium">
+                            <li class="flex items-center gap-2">✅ <span
+                                    class="underline decoration-pink-500 decoration-2">To the point</span></li>
+                            <li class="flex items-center gap-2">✅ <span
+                                    class="underline decoration-blue-500 decoration-2">Visual catch-eye</span></li>
+                            <li class="flex items-center gap-2">✅ <span
+                                    class="underline decoration-yellow-500 decoration-2">Materi daging</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION B: Tech / Glassmorphism -->
+    <section class="bg-[#0f172a] py-20 relative overflow-hidden text-white font-sans">
+        <div class="absolute top-10 left-1/4 w-96 h-96 bg-purple-600/30 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-10 right-1/4 w-96 h-96 bg-blue-600/30 rounded-full blur-[100px]"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div
+                class="mb-4 inline-block bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1 text-xs font-semibold uppercase tracking-widest rounded-full text-blue-200">
+                Option B: Tech Glass</div>
+
+            <div class="bg-slate-900/50 backdrop-blur-xl border border-white/10 rounded-2xl p-10 shadow-2xl">
+                <nav class="flex justify-between items-center mb-12">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-500 to-purple-500"></div>
+                        <h2 class="text-xl font-semibold tracking-wide">EduGreen</h2>
+                    </div>
+                    <div class="space-x-6 text-sm text-slate-300">
+                        <a href="#"
+                            class="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Home</a>
+                        <a href="#"
+                            class="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Materi</a>
+                    </div>
+                </nav>
+
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h1
+                            class="text-5xl font-bold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-purple-300 to-white">
+                            Innovation in <br> Learning
+                        </h1>
+                        <p class="text-slate-400 text-lg mb-8 leading-relaxed">
+                            Experience the future of education with a sleek, immersive interface designed for deep
+                            focus.
+                        </p>
+                        <div class="flex gap-4">
+                            <button
+                                class="px-8 py-3 rounded-full bg-blue-600 hover:bg-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.5)] transition-all font-medium">Get
+                                Started</button>
+                            <button
+                                class="px-8 py-3 rounded-full border border-white/20 hover:bg-white/5 transition-all">Learn
+                                More</button>
+                        </div>
+                    </div>
+
+                    <div class="relative group">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-500">
+                        </div>
+                        <div class="relative bg-slate-800/50 border border-white/10 p-8 rounded-xl backdrop-blur-sm">
+                            <h3 class="text-lg font-medium text-white mb-4">Core Focus</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 p-3 rounded-lg bg-white/5 border border-white/5">
+                                    <div class="w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,1)]">
+                                    </div>
+                                    <span class="text-slate-300 text-sm">Immersive Experience</span>
+                                </div>
+                                <div class="flex items-center gap-4 p-3 rounded-lg bg-white/5 border border-white/5">
+                                    <div
+                                        class="w-2 h-2 rounded-full bg-purple-400 shadow-[0_0_10px_rgba(192,132,252,1)]">
+                                    </div>
+                                    <span class="text-slate-300 text-sm">Data Driven Path</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION C: Minimal / Swiss -->
+    <section class="bg-[#f4f4f0] py-20 text-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-8 font-serif italic text-gray-500">Option C: Clean Editorial</div>
+
+            <div class="bg-transparent">
+                <nav class="flex justify-between items-baseline mb-20 border-b border-gray-300 pb-4">
+                    <h2 class="text-2xl font-serif font-bold text-green-900">EduGreen.</h2>
+                    <div class="space-x-8 text-xs font-bold uppercase tracking-widest text-gray-500">
+                        <a href="#" class="hover:text-black transition">Index</a>
+                        <a href="#" class="hover:text-black transition">Journal</a>
+                        <a href="#" class="hover:text-black transition">About</a>
+                    </div>
+                </nav>
+
+                <div class="grid md:grid-cols-12 gap-10">
+                    <div class="col-span-12 md:col-span-7">
+                        <h1 class="text-6xl font-serif leading-[1.1] mb-8 text-gray-900">
+                            Simplify your <br> <span class="text-green-800 italic">learning curve.</span>
+                        </h1>
+                    </div>
+                    <div class="col-span-12 md:col-span-5 flex flex-col justify-end">
+                        <p class="text-gray-600 mb-8 font-sans leading-7">
+                            A carefully curated platform focusing on clarity, whitespace, and typography. No
+                            distractions, just pure knowledge transfer.
+                        </p>
+                        <div>
+                            <a href="#"
+                                class="inline-block border-b border-black pb-1 text-sm font-bold uppercase tracking-wider hover:text-green-800 hover:border-green-800 transition-colors">Start
+                                Reading →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 grid grid-cols-3 gap-0 border-t border-gray-300">
+                    <div class="py-6 pr-6 border-r border-gray-300">
+                        <span class="block text-xs text-gray-400 mb-2 uppercase tracking-widest">01</span>
+                        <p class="font-serif text-lg">Legibility First</p>
+                    </div>
+                    <div class="py-6 px-6 border-r border-gray-300">
+                        <span class="block text-xs text-gray-400 mb-2 uppercase tracking-widest">02</span>
+                        <p class="font-serif text-lg">Structured Data</p>
+                    </div>
+                    <div class="py-6 pl-6">
+                        <span class="block text-xs text-gray-400 mb-2 uppercase tracking-widest">03</span>
+                        <p class="font-serif text-lg">Timeless Design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION D: Modern SaaS (Soft UI) -->
+    <section class="bg-gray-50 py-20 font-modern text-gray-900 border-t border-gray-200">
+        <div class="max-w-5xl mx-auto px-6">
+            <div
+                class="mb-6 inline-block bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold tracking-wide">
+                Option D: Modern SaaS</div>
+
+            <div
+                class="bg-white rounded-3xl p-12 shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] border border-gray-100 relative overflow-hidden">
+                <!-- Decoration background -->
+                <div
+                    class="absolute -right-20 -top-20 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 pointer-events-none">
+                </div>
+                <div
+                    class="absolute -left-20 -bottom-20 w-80 h-80 bg-pink-50 rounded-full blur-3xl opacity-60 pointer-events-none">
+                </div>
+
+                <div class="relative z-10">
+                    <nav class="flex justify-between items-center mb-16">
+                        <div class="flex items-center gap-2">
+                            <div class="bg-indigo-600 text-white p-1.5 rounded-lg font-bold">EG</div>
+                            <h2 class="text-xl font-bold tracking-tight text-gray-900">EduGreen</h2>
+                        </div>
+                        <div class="hidden md:flex gap-1 text-sm font-medium bg-gray-100 p-1 rounded-full">
+                            <a href="#" class="px-4 py-1.5 bg-white text-gray-900 shadow-sm rounded-full">Home</a>
+                            <a href="#" class="px-4 py-1.5 text-gray-500 hover:text-gray-900">Pricing</a>
+                        </div>
+                    </nav>
+
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h1 class="text-5xl font-bold tracking-tight leading-tighter mb-6">
+                                Learning made <br>
+                                <span class="text-indigo-600">effortless.</span>
+                            </h1>
+                            <p class="text-lg text-gray-500 mb-8 leading-relaxed">
+                                Platform modern untuk mempercepat pemahamanmu. Desain bersih, fitur lengkap, dan
+                                menyenangkan.
+                            </p>
+                            <div class="flex gap-4">
+                                <button
+                                    class="bg-[#111827] text-white px-6 py-3 rounded-xl font-semibold hover:bg-black transition shadow-lg shadow-gray-200">Get
+                                    Started</button>
+                                <button
+                                    class="bg-white text-gray-700 border border-gray-200 px-6 py-3 rounded-xl font-semibold hover:bg-gray-50 transition">View
+                                    Demo</button>
+                            </div>
+                        </div>
+
+                        <div class="relative">
+                            <div
+                                class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 transform rotate-2 hover:rotate-0 transition duration-500">
+                                <div class="flex gap-3 mb-4">
+                                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="h-4 bg-gray-100 rounded w-3/4"></div>
+                                    <div class="h-4 bg-gray-100 rounded w-1/2"></div>
+                                    <div
+                                        class="h-20 bg-indigo-50 rounded-xl mt-4 border border-indigo-100 flex items-center justify-center text-indigo-300">
+                                        Chart Visualization
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION E: Retro Terminal (Hacker) -->
+    <section class="bg-[#1a1a1a] py-20 font-mono relative">
+        <div class="absolute inset-0 scanlines opacity-20 pointer-events-none z-10"></div>
+        <div class="max-w-5xl mx-auto px-6 relative z-0">
+            <div class="mb-6 text-green-500 text-sm">>> Option E: Retro Terminal_</div>
+
+            <div class="bg-[#0c0c0c] border-[2px] border-green-700/50 p-6 shadow-2xl rounded-sm">
+                <div class="flex justify-between items-center border-b border-green-800 pb-2 mb-8 opacity-80">
+                    <h2 class="text-xl text-green-500">user@edugreen:~$ ./init.sh</h2>
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 bg-red-900 rounded-full"></div>
+                        <div class="w-3 h-3 bg-yellow-900 rounded-full"></div>
+                        <div class="w-3 h-3 bg-green-900 rounded-full"></div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h1 class="text-4xl md:text-5xl text-gray-200 leading-tight mb-6">
+                            <span class="text-green-500">></span> BELAJAR.<br>
+                            <span class="text-green-500">></span> KODE.<br>
+                            <span class="text-green-500 flex items-center gap-2">> MASA DEPAN.<span
+                                    class="w-3 h-8 bg-green-500 animate-pulse inline-block"></span></span>
+                        </h1>
+                        <p class="text-green-400/80 mb-8 text-lg font-light leading-relaxed">
+                            System initialized. Loading modules...<br>
+                            [OK] Data Science<br>
+                            [OK] Web Development<br>
+                            [OK] Artificial Intelligence
+                        </p>
+                        <button
+                            class="group relative inline-flex items-center justify-center px-6 py-3 text-lg font-bold tracking-tighter text-black bg-green-500 hover:bg-green-400 transition-all">
+                            <span class="absolute inset-0 w-full h-full -mt-1 rounded opacity-30 bg-green-400"></span>
+                            <span class="relative">EXECUTE PROGRAM</span>
+                        </button>
+                    </div>
+                    <div
+                        class="hidden md:block border border-green-900 p-4 bg-[#0a0a0a] text-xs text-green-600/70 overflow-hidden font-mono leading-tight">
+                        <p>import tensorflow as tf</p>
+                        <p>model = tf.keras.models.Sequential([</p>
+                        <p>&nbsp;&nbsp;tf.keras.layers.Flatten(input_shape=(28, 28)),</p>
+                        <p>&nbsp;&nbsp;tf.keras.layers.Dense(128, activation='relu'),</p>
+                        <p>&nbsp;&nbsp;tf.keras.layers.Dropout(0.2),</p>
+                        <p>&nbsp;&nbsp;tf.keras.layers.Dense(10)</p>
+                        <p>])</p>
+                        <p class="mt-4 text-green-400">Compiling... Done.</p>
+                        <p>Training... 98% Accuracy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION F: Organic / Eco (Nature) -->
+    <section class="bg-[#FDFCF6] py-20 font-rounded text-[#2D3A30]">
+        <div class="max-w-5xl mx-auto px-6">
+            <div
+                class="mb-6 inline-block bg-[#E3EBCB] text-[#4A5D23] px-3 py-1 rounded-full text-xs font-bold tracking-wide">
+                Option F: Organic & Soft</div>
+
+            <div class="bg-[#F3F6E6] rounded-[2rem] p-12 relative overflow-hidden">
+                <!-- Organic shapes -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-[#E3EBCB] rounded-bl-[10rem] opacity-60"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-[#D4E0B1] rounded-tr-[5rem] opacity-60"></div>
+
+                <div class="relative z-10">
+                    <nav class="flex justify-between items-center mb-12">
+                        <h2 class="text-2xl font-bold tracking-tight text-[#2D3A30] flex items-center gap-2">
+                            <span class="text-2xl">🌱</span> EduGreen
+                        </h2>
+                        <div class="space-x-8 font-semibold text-[#4A5D23]">
+                            <a href="#" class="hover:text-[#2D3A30] transition">Beranda</a>
+                            <a href="#" class="hover:text-[#2D3A30] transition">Kelas</a>
+                        </div>
+                    </nav>
+
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h1 class="text-5xl font-extrabold leading-tight mb-6 text-[#1A231C]">
+                                Tumbuh Bersama <br>
+                                <span class="text-[#64853F]">Pengetahuan Alam.</span>
+                            </h1>
+                            <p class="text-lg text-[#4A5D23] mb-8 leading-relaxed">
+                                Belajar dengan suasana yang tenang, natural, dan menyegarkan pikiran. Fokus tanpa
+                                tekanan.
+                            </p>
+                            <button
+                                class="bg-[#2D3A30] text-[#F3F6E6] px-8 py-4 rounded-full font-bold shadow-lg hover:bg-[#1A231C] hover:scale-105 transition-all duration-300">
+                                Mulai Petualangan
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="aspect-square bg-[#D4E0B1] rounded-[3rem] rotate-3 flex items-center justify-center shadow-inner">
+                                <span class="text-9xl opacity-20">🍃</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION G: The "Engineer's Blueprint" (Suka Ngulik & Structured) -->
+    <section class="blueprint-grid py-24 font-code text-slate-700 border-y border-slate-300">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-8 flex items-center gap-2">
+                <div class="bg-blue-600 text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Option G</div>
+                <span class="text-xs uppercase tracking-widest text-slate-500">System_Architecture_v1.0</span>
+            </div>
+
+            <div
+                class="border-2 border-slate-400 bg-white/80 backdrop-blur-sm p-8 relative shadow-[4px_4px_0_0_#94a3b8]">
+                <!-- Technical markers -->
+                <div class="absolute -top-3 -left-3 w-6 h-6 border-l-2 border-t-2 border-blue-600"></div>
+                <div class="absolute -bottom-3 -right-3 w-6 h-6 border-r-2 border-b-2 border-blue-600"></div>
+
+                <nav class="flex justify-between items-center mb-16 border-b border-dashed border-slate-300 pb-4">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                            </path>
+                        </svg>
+                        <h2 class="text-lg font-bold tracking-tight">EduGreen<span class="text-blue-600">.io</span></h2>
+                    </div>
+                    <div class="text-xs font-medium space-x-6 text-slate-500">
+                        <a href="#" class="hover:text-blue-600">[ROUTE:HOME]</a>
+                        <a href="#" class="hover:text-blue-600">[ROUTE:DOCS]</a>
+                    </div>
+                </nav>
+
+                <div class="grid md:grid-cols-12 gap-10">
+                    <div class="col-span-8">
+                        <div
+                            class="inline-block border border-blue-200 bg-blue-50 text-blue-700 px-2 py-1 text-[10px] mb-4 font-bold">
+                            STATUS: OPTIMIZED
+                        </div>
+                        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6 text-slate-900">
+                            Engineered for <br>
+                            <span class="bg-slate-200 px-1">Maximum Efficiency.</span>
+                        </h1>
+                        <p
+                            class="text-sm md:text-base leading-relaxed text-slate-600 mb-8 max-w-lg border-l-2 border-blue-400 pl-4">
+                            // Suka ngide? Kami sediakan toolset-nya.<br>
+                            Platform belajar yang didesain untuk problem solver. Tanpa basa-basi, langsung eksekusi.
+                        </p>
+                        <div class="flex gap-4">
+                            <button
+                                class="bg-slate-900 text-white px-6 py-3 text-sm font-bold hover:bg-blue-700 transition-colors flex items-center gap-2">
+                                <span>INITIALIZE_LEARNING</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </button>
+                            <button
+                                class="border border-slate-900 text-slate-900 px-6 py-3 text-sm font-bold hover:bg-slate-100 transition-colors">
+                                VIEW_LOGS
+                            </button>
+                        </div>
+                    </div>
+                    <div
+                        class="col-span-4 flex flex-col justify-center border border-dashed border-slate-300 p-4 bg-slate-50">
+                        <div class="text-[10px] text-slate-400 mb-2">METRICS</div>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1">
+                                    <span>Efficiency</span>
+                                    <span>98%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2">
+                                    <div class="bg-blue-600 h-2 w-[98%]"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1">
+                                    <span>Repetition</span>
+                                    <span>0%</span>
+                                </div>
+                                <div class="w-full bg-slate-200 h-2">
+                                    <div class="bg-red-500 h-2 w-[5%]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION H: The "Utility / No Nonsense" (Ga Suka Drama & Praktis) -->
+    <section class="bg-white py-24 font-utility text-black border-y-8 border-black">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-8 border-b-2 border-black pb-2 flex justify-between items-end">
+                <div class="text-sm font-bold uppercase tracking-widest bg-black text-white px-2 py-1">Option H: Pure
+                    Utility</div>
+                <div class="text-xs font-medium text-gray-500">NO CLUTTER. JUST CONTENT.</div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-6xl font-semibold tracking-tighter leading-none mb-6">
+                        DO THE <br> WORK.
+                    </h2>
+                    <div class="w-16 h-2 bg-black mb-8"></div>
+                    <p class="text-xl font-medium leading-normal mb-8 text-neutral-600">
+                        Stop wasting time on repetitive tasks. We automate the learning process so you can focus on
+                        innovation.
+                    </p>
+                    <ul class="space-y-4 text-sm font-bold border-t-2 border-black pt-6">
+                        <li
+                            class="flex items-center justify-between group cursor-pointer hover:bg-gray-100 p-2 border-b border-gray-200">
+                            <span>01. FAST LEARNING CURVE</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </li>
+                        <li
+                            class="flex items-center justify-between group cursor-pointer hover:bg-gray-100 p-2 border-b border-gray-200">
+                            <span>02. AUTOMATED TRACKING</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </li>
+                        <li
+                            class="flex items-center justify-between group cursor-pointer hover:bg-gray-100 p-2 border-b border-gray-200">
+                            <span>03. DIRECT IMPLEMENTATION</span>
+                            <span class="group-hover:translate-x-1 transition-transform">→</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-neutral-100 p-8 border border-neutral-200">
+                    <h3 class="font-bold text-lg mb-6 flex items-center gap-2">
+                        <span class="w-3 h-3 bg-black rounded-full"></span> QUICK ACCESS
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button
+                            class="bg-white border-2 border-black p-4 text-left hover:bg-black hover:text-white transition-colors duration-200">
+                            <span class="block text-xs text-gray-400 mb-1 group-hover:text-gray-600">MODULE</span>
+                            <span class="font-bold text-lg">Backend API</span>
+                        </button>
+                        <button
+                            class="bg-white border-2 border-black p-4 text-left hover:bg-black hover:text-white transition-colors duration-200">
+                            <span class="block text-xs text-gray-400 mb-1 group-hover:text-gray-600">MODULE</span>
+                            <span class="font-bold text-lg">Automation</span>
+                        </button>
+                        <button
+                            class="bg-white border-2 border-black p-4 text-left hover:bg-black hover:text-white transition-colors duration-200">
+                            <span class="block text-xs text-gray-400 mb-1 group-hover:text-gray-600">MODULE</span>
+                            <span class="font-bold text-lg">AI Tools</span>
+                        </button>
+                        <button
+                            class="bg-black text-white border-2 border-black p-4 text-left hover:bg-gray-800 transition-colors duration-200">
+                            <span class="block text-xs text-gray-400 mb-1">ACTION</span>
+                            <span class="font-bold text-lg">Start Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION I: The "AI Innovator" (Pengguna AI & Modern) -->
+    <section class="bg-[#050505] py-24 font-sans text-white relative overflow-hidden">
+        <!-- Abstract Glow -->
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-indigo-600/20 blur-[120px] rounded-full pointer-events-none">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="flex justify-between items-center mb-20">
+                <div
+                    class="bg-white/10 backdrop-blur-md px-4 py-1 rounded-full text-xs font-medium border border-white/10 text-indigo-300">
+                    Option I: AI Innovator
+                </div>
+                <h2 class="font-bold text-2xl tracking-tight">EduGreen<span class="text-indigo-500">.ai</span></h2>
+            </div>
+
+            <div class="text-center max-w-3xl mx-auto">
+                <h1
+                    class="text-5xl md:text-7xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
+                    Unlock Your <br> Potential.
+                </h1>
+                <p class="text-xl text-gray-400 mb-10 font-light">
+                    An intelligent platform for the curious mind. Stop repeating, start innovating. Powered by advanced
+                    learning algorithms.
+                </p>
+
+                <div class="relative inline-block group">
+                    <div
+                        class="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt">
+                    </div>
+                    <button
+                        class="relative px-8 py-4 bg-black rounded-lg leading-none flex items-center divide-x divide-gray-600">
+                        <span class="flex items-center space-x-5">
+                            <span class="pr-6 text-gray-100 font-bold">Launch Dashboard</span>
+                        </span>
+                        <span class="pl-6 text-indigo-400 group-hover:text-gray-100 transition duration-200">→</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-20 grid grid-cols-3 border-t border-white/10 pt-8 gap-8 text-center text-sm text-gray-500">
+                <div>
+                    <span class="block text-white font-bold text-lg mb-1">Automated</span>
+                    Workflows
+                </div>
+                <div>
+                    <span class="block text-white font-bold text-lg mb-1">Deep Dive</span>
+                    Research
+                </div>
+                <div>
+                    <span class="block text-white font-bold text-lg mb-1">AI Powered</span>
+                    Analysis
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION J: Research Focused (Academic & Clean) -->
+    <section class="bg-white py-24 font-sans text-slate-800 border-t border-slate-200">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="h-px w-8 bg-slate-400"></div>
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-500">Option J: Research Labs</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-16">
+                <div>
+                    <h1 class="text-4xl font-bold mb-6 text-slate-900 tracking-tight">
+                        Research-Driven <br> Backend Solutions.
+                    </h1>
+                    <p class="text-slate-600 text-lg leading-relaxed mb-8">
+                        Mengutamakan <span
+                            class="bg-yellow-100 px-1 font-medium text-slate-900 border-b border-yellow-300">validitas
+                            data</span> dan struktur yang solid. Pendekatan akademis yang diterapkan pada rekayasa
+                        perangkat lunak modern.
+                    </p>
+                    <div class="flex flex-col gap-3 text-sm text-slate-600 font-medium">
+                        <div class="flex items-center gap-3 border-l-2 border-slate-200 pl-3">
+                            <span class="text-slate-400">01</span> Software Product Line Engineering
+                        </div>
+                        <div class="flex items-center gap-3 border-l-2 border-slate-200 pl-3">
+                            <span class="text-slate-400">02</span> Computer Vision & AI Integration
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-100 p-8 rounded-sm">
+                    <div class="font-mono text-xs text-slate-400 mb-4">ABSTRACT_VIEW.JS</div>
+                    <div class="space-y-4">
+                        <div class="h-2 w-1/3 bg-slate-200"></div>
+                        <div class="h-2 w-full bg-slate-200"></div>
+                        <div class="h-2 w-5/6 bg-slate-200"></div>
+                        <div class="h-2 w-4/6 bg-slate-200"></div>
+
+                        <div class="mt-8 pt-8 border-t border-slate-200 flex gap-4">
+                            <button
+                                class="text-sm font-bold text-slate-900 border border-slate-300 px-4 py-2 hover:bg-slate-900 hover:text-white transition-colors">Read
+                                Paper</button>
+                            <button
+                                class="text-sm font-bold text-slate-900 px-4 py-2 hover:underline">Documentation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTION K: Brand Identity (Specific Color Match) -->
+    <section class="bg-[#0A192F] py-24 font-poppins text-[#8892B0] relative">
+        <div class="max-w-5xl mx-auto px-6">
+            <!-- Decoration Lines matches custom visual style -->
+            <div class="absolute top-0 right-0 w-1/3 h-full border-l border-[#8892B0]/10 pointer-events-none"></div>
+            <div class="absolute bottom-20 right-20 w-32 h-32 border-2 border-[#2ECC71]/20 rounded-full blur-xl"></div>
+
+            <div class="relative z-10">
+                <div class="mb-6 font-fira text-[#2ECC71] text-sm md:text-base">Hello, my name is</div>
+                <h1 class="text-5xl md:text-7xl font-bold text-[#e6f1ff] mb-4">Tio Haidar Hanif.</h1>
+                <h2 class="text-4xl md:text-6xl font-bold text-[#8892B0] mb-8">I build scalable backends.</h2>
+
+                <p class="max-w-xl text-lg leading-relaxed mb-10">
+                    Backend Engineer dan Researcher yang menjembatani dunia <span
+                        class="text-[#3BAFDA]">engineering</span> dengan <span
+                        class="text-[#3BAFDA]">telekomunikasi</span>. Fokus pada membangun sistem yang accessible dan
+                    highly performant.
+                </p>
+
+                <div class="flex items-center gap-6 font-fira text-sm">
+                    <button
+                        class="px-6 py-4 border border-[#2ECC71] text-[#2ECC71] rounded hover:bg-[#2ECC71]/10 transition-colors">
+                        Check my work!
+                    </button>
+                    <div class="flex gap-4 opacity-70">
+                        <!-- Placeholder icons -->
+                        <div class="w-5 h-5 bg-[#8892B0] rounded-sm hover:bg-[#3BAFDA] transition cursor-pointer"></div>
+                        <div class="w-5 h-5 bg-[#8892B0] rounded-sm hover:bg-[#3BAFDA] transition cursor-pointer"></div>
+                    </div>
+                </div>
+
+                <!-- Tech Stack grid mini -->
+                <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 font-fira text-xs">
+                    <div class="flex items-center gap-2"><span class="text-[#2ECC71]">▹</span> Laravel</div>
+                    <div class="flex items-center gap-2"><span class="text-[#2ECC71]">▹</span> Express.js</div>
+                    <div class="flex items-center gap-2"><span class="text-[#2ECC71]">▹</span> Docker</div>
+                    <div class="flex items-center gap-2"><span class="text-[#2ECC71]">▹</span> Python/VBA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center py-4 bg-[#0A192F] text-[#8892B0] text-xs font-fira border-t border-[#8892B0]/10">
+        Option K: Strict Brand Identity (Matching me.md Values)
+    </div>
+
+    <!-- OPTION L: Dashboard / Monitor (Automation Focus) -->
+    <section class="bg-gray-100 p-8 md:p-16 font-inter text-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div
+                class="grid md:grid-cols-12 gap-8 h-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
+
+                <!-- Sidebar -->
+                <div class="col-span-12 md:col-span-3 bg-[#0A192F] text-white p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="font-bold text-2xl tracking-tight mb-10 flex items-center gap-2">
+                            <div class="w-8 h-8 bg-[#3BAFDA] rounded-lg"></div> Tio.Dev
+                        </div>
+                        <nav class="space-y-4 text-gray-400 text-sm font-medium">
+                            <a href="#" class="block text-white bg-white/10 px-4 py-2 rounded-lg">Dashboard</a>
+                            <a href="#" class="block hover:text-white px-4 py-2 transition">Monolith</a>
+                            <a href="#" class="block hover:text-white px-4 py-2 transition">Microservices</a>
+                            <a href="#" class="block hover:text-white px-4 py-2 transition">Automation</a>
+                        </nav>
+                    </div>
+                    <div class="text-xs text-gray-500 font-mono">v2.4.0-stable</div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-span-12 md:col-span-9 p-8 md:p-12">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <div class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">Status Overview
+                            </div>
+                            <h2 class="text-3xl font-bold text-[#0A192F]">System Automation</h2>
+                        </div>
+                        <button
+                            class="bg-[#2ECC71] text-white px-5 py-2 rounded-lg font-bold shadow-lg shadow-green-200 hover:brightness-105 transition">
+                            + New Project
+                        </button>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div class="text-gray-400 text-xs font-bold uppercase mb-2">Projects</div>
+                            <div class="text-3xl font-bold text-[#3BAFDA]">12</div>
+                            <div class="text-xs text-gray-400 mt-2">Active Development</div>
+                        </div>
+                        <div class="p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div class="text-gray-400 text-xs font-bold uppercase mb-2">Research</div>
+                            <div class="text-3xl font-bold text-purple-500">5</div>
+                            <div class="text-xs text-gray-400 mt-2">Published Papers</div>
+                        </div>
+                        <div class="p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition">
+                            <div class="text-gray-400 text-xs font-bold uppercase mb-2">Uptime</div>
+                            <div class="text-3xl font-bold text-[#2ECC71]">99.9%</div>
+                            <div class="text-xs text-gray-400 mt-2">Reliability Rate</div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-xl bg-gray-50 p-6 border border-gray-100">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-[#0A192F]">Recent Activities</h3>
+                            <a href="#" class="text-sm text-[#3BAFDA] font-medium hover:underline">View All</a>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 text-sm">
+                                <div class="w-2 h-2 rounded-full bg-[#2ECC71]"></div>
+                                <span class="font-mono text-gray-500">10:42 AM</span>
+                                <span class="font-medium">Deployed Helpdesk System v1.0</span>
+                            </div>
+                            <div class="flex items-center gap-4 text-sm">
+                                <div class="w-2 h-2 rounded-full bg-[#3BAFDA]"></div>
+                                <span class="font-mono text-gray-500">09:15 AM</span>
+                                <span class="font-medium">Updated QR Attendance Module</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-6 text-sm text-gray-500 font-medium">Option L: The Dashboard (SaaS Product
+                Interface)</div>
+        </div>
+    </section>
+
+    <div class="max-w-4xl mx-auto py-10 px-6 text-center">
+        <p class="text-gray-600 font-medium text-lg">✨ Total 12 Variasi Lengkap.</p>
+    </div>
+</body>
+
+</html>
