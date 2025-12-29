@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Just+Me+Again+Down+Here&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        grunge: ['Just Me Again Down Here', 'cursive'],
+                        marker: ['Reenie Beanie', 'cursive'],
+                    },
+                    colors: {
+                        'dirt-1': '#e3dac9',
+                        'dirt-2': '#d4c5b0',
+                        'stain': '#8c7b6c',
+                        'tape': '#efeeb4',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            /* SVG Noise for crumpled effect */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+        }
+
+        /* Overlay to make it look deeper */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .tape {
+            background-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transform: rotate(-2deg);
+            position: relative;
+        }
+
+        .tape::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            right: -5px;
+            top: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-left: 1px dashed rgba(0, 0, 0, 0.1);
+            border-right: 1px dashed rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+        }
+
+        .stained-paper {
+            background-color: #fcf5e5;
+            /* Same SVG Noise */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+            position: relative;
+            /* Bikin pinggiran sobek/ngasal */
+            clip-path: polygon(1% 2%, 99% 0%, 98% 98%, 2% 99%);
+            transition: all 0.3s ease;
+        }
+
+        .stained-paper:hover {
+            clip-path: polygon(0% 0%, 100% 2%, 98% 100%, 0% 98%);
+        }
+
+        .stained-paper::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(92, 64, 51, 0.2) 0%, transparent 60%);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            /* Noda bentuk aneh */
+            pointer-events: none;
+            filter: blur(5px);
+        }
+
+        .kusut {
+            /* Same SVG Noise */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+            border: none !important;
+            clip-path: polygon(2% 5%, 98% 1%, 95% 95%, 4% 98%);
+        }
+
+        /* Scrollbar kumuh */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #d4c5b0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #8c7b6c;
+            border: 2px dashed #e3dac9;
+        }
+    </style>
+</head>
+
+<body class="text-[#2a2a2a] p-4 overflow-x-hidden font-grunge select-none">
+
+    <div id="content" class="max-w-4xl mx-auto mt-10 mb-20 relative">
+
+        <!-- Header miring -->
+        <div class="relative transform -rotate-1 ml-4 sm:ml-10 mb-16 max-w-lg z-10">
+            <div class="absolute -top-10 left-0 font-marker text-gray-500 text-sm rotate-1 opacity-70">
+                Option P: The Slum
+            </div>
+            <div class="absolute -top-6 -left-6 w-full h-full bg-black/10 transform rotate-2"></div>
+            <div class="stained-paper p-8 border-2 border-dashed border-[#8c7b6c]">
+                <h1 class="text-5xl md:text-7xl font-marker text-[#3d3d3d] leading-[0.8]">
+                    Halaman <br> <span
+                        class="text-stain text-4xl block pl-2 mt-2 decoration-wavy underline decoration-red-400">Belum
+                        Jadi.</span>
+                </h1>
+                <p class="mt-4 text-sm text-gray-600 font-grunge transform rotate-1">
+                    *maaf berantakan, lagi males beres-beres.
+                </p>
+            </div>
+            <!-- Sticker -->
+            <div
+                class="absolute -right-12 -top-10 bg-yellow-300 text-red-600 px-4 py-2 transform rotate-12 shadow-md border border-yellow-500 font-bold font-sans text-xs uppercase rounded-sm">
+                BETA v0.0.1
+            </div>
+        </div>
+
+        <!-- Navigasi 'Lakban' -->
+        <nav class="absolute top-0 right-0 flex gap-4 transform rotate-2 md:pr-10">
+            <a href="#" class="tape px-4 py-2 text-sm hover:text-red-700 transition-colors bg-[#efeeb4]/80">Home?</a>
+            <a href="#"
+                class="tape px-4 py-2 text-sm hover:text-red-700 transition-colors bg-[#efeeb4]/80 transform rotate-3">About?</a>
+            <a href="#"
+                class="tape px-4 py-2 text-sm hover:text-red-700 transition-colors bg-[#efeeb4]/80 transform -rotate-2">Kontak</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-10">
+
+            <!-- Kolom 1: Teks males -->
+            <div class="kusut bg-white/80 p-6 transform rotate-1 relative">
+                <div
+                    class="absolute -top-3 left-1/2 w-20 h-8 bg-[#efeeb4] opacity-80 transform -translate-x-1/2 rotate-1 shadow-md border-l border-r border-white/50">
+                </div>
+
+                <h2 class="text-2xl font-bold mb-4 border-b-2 border-gray-300 inline-block pb-1">Intro</h2>
+                <p class="mb-4 leading-relaxed text-lg">
+                    Saya <span class="bg-yellow-200 px-1 transform -skew-x-12 inline-block">Developer</span>.
+                    Kadang coding, kadang tidur. Lebih sering tidur sih.
+                </p>
+                <p class="mb-4 text-sm text-gray-500">
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem...
+                    <span class="text-red-400 decoration-line-through line-through">[lupa lanjutin lpsum-nya]</span>
+                </p>
+
+                <button
+                    class="mt-4 px-6 py-3 bg-gray-200 border-2 border-gray-400 border-dashed text-gray-500 hover:bg-gray-300 hover:text-gray-700 hover:border-solid transition-all transform hover:-rotate-1 active:scale-95">
+                    Download CV (Mungkin)
+                </button>
+            </div>
+
+            <!-- Kolom 2: Project list kotor -->
+            <div class="relative mt-8 md:mt-0">
+                <div class="absolute inset-0 bg-black/10 transform rotate-2 blur-sm rounded-sm"></div>
+                <div class="relative kusut bg-[#d4c5b0] p-6 shadow-xl">
+                    <h3 class="font-marker text-2xl mb-6 text-white drop-shadow-md transform -rotate-2">Project
+                        Terbengkalai:</h3>
+
+                    <ul class="space-y-4">
+                        <li
+                            class="p-3 bg-[#f0f0f0] bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.1\'/%3E%3C/svg%3E')] shadow-md transform -rotate-1 hover:rotate-0 transition-transform cursor-pointer clippath-polygon">
+                            <span class="font-bold text-red-500 text-xl font-marker">X</span>
+                            E-Commerce <span class="text-xs text-gray-500">(Buggy)</span>
+                        </li>
+                        <li
+                            class="p-3 bg-[#f0f0f0] bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.1\'/%3E%3C/svg%3E')] shadow-md transform rotate-1 hover:rotate-0 transition-transform cursor-pointer">
+                            <span class="font-bold text-red-500 text-xl font-marker">X</span>
+                            Personal Blog <span class="text-xs text-gray-500">(Hosting mati)</span>
+                        </li>
+                        <li
+                            class="p-3 bg-[#f0f0f0] bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.1\'/%3E%3C/svg%3E')] shadow-md transform -rotate-1 hover:rotate-0 transition-transform cursor-pointer opacity-70">
+                            <span class="font-bold text-gray-400 text-xl font-marker">?</span>
+                            To-Do App <span class="text-xs text-gray-500">(Wacana)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-20 text-center border-t border-dashed border-gray-400 pt-8 pb-4 opacity-60">
+            <p class="text-xs font-mono">
+                &copy; 2024. Hak Cipta Diabaikan. <br>
+                Dibuat dengan keringat & air mata (dikit).
+            </p>
+        </footer>
+
+        <!-- Buttons for triggers -->
+        <div class="fixed bottom-6 right-6 flex flex-col gap-3 font-marker">
+            <button onclick="openModal('modal-malas')"
+                class="bg-red-500 text-white px-6 py-2 transform -rotate-3 hover:rotate-0 shadow-lg border-2 border-white hover:bg-red-600 transition-all">
+                JANGAN KLIK!
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Modal Malas -->
+    <div id="modal-malas"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/80 backdrop-grayscale backdrop-blur-sm p-4">
+        <div class="bg-white p-2 transform rotate-2 max-w-md w-full shadow-2xl">
+            <div
+                class="border-4 border-dashed border-red-500 p-8 text-center relative bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.1\'/%3E%3C/svg%3E')]">
+
+                <div
+                    class="absolute -top-5 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-[#efeeb4] shadow-sm flex items-center justify-center border border-gray-200">
+                    <span class="font-grunge text-xs">PENGUMUMAN PENTING</span>
+                </div>
+
+                <h2 class="text-4xl font-marker text-red-600 mt-4 mb-4">ERROR 404</h2>
+                <p class="font-grunge text-lg mb-6">Motivasi tidak ditemukan.</p>
+                <p class="text-sm text-gray-500 mb-8 font-sans italic">Silahkan coba lagi besok (kalau ingat).</p>
+
+                <div class="flex justify-center gap-4">
+                    <button onclick="closeModal('modal-malas')"
+                        class="px-4 py-2 bg-gray-800 text-white font-bold hover:bg-gray-700 transform hover:-rotate-1 transition-transform">
+                        Ya Sudahlah
+                    </button>
+                    <button onclick="closeModal('modal-malas')"
+                        class="px-4 py-2 border-2 border-black font-bold hover:bg-gray-100 transform hover:rotate-1 transition-transform">
+                        Bodo Amat
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Script males, gak pake framework aneh2
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Auto resize iframe - copy paste dari stackoverflow pasti
+        // Auto resize iframe
+        function sendHeight() {
+            // Gunakan body.scrollHeight karena lebih akurat untuk konten di dalam iframe
+            // documentElement.scrollHeight bisa memicu infinite loop jika iframe membesar > viewport
+            const height = document.body.scrollHeight;
+            window.parent.postMessage({ type: 'resize', height: height, id: 'option-p' }, '*');
+        }
+
+        window.addEventListener('load', sendHeight);
+        window.addEventListener('resize', sendHeight);
+
+        // Observer untuk konten
+        const observer = new ResizeObserver(sendHeight);
+        observer.observe(document.getElementById('content')); // Observe wrapper content, bukan body langsung biar aman
+    </script>
+</body>
+
+</html>

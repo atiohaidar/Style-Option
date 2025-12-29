@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&family=Patrick+Hand&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        hand: ['Kalam', 'cursive'],
+                        neat: ['Patrick Hand', 'cursive'],
+                    },
+                    colors: {
+                        'paper': '#ffffff',
+                        'line': '#a2d2ff',
+                        'margin': '#ffb7b2',
+                        'ink-blue': '#1a73e8',
+                        'ink-red': '#d93025',
+                        'pencil': '#5f6368',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+        }
+
+        .notebook-paper {
+            background-color: #fff;
+            background-image:
+                linear-gradient(#a2d2ff 0.1em, transparent 0.1em),
+                linear-gradient(90deg, #ffb7b2 2px, transparent 2px);
+            background-size: 100% 1.5em, 100% 100%;
+            background-position: 0 1.5em, 3em 0;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Lubang kertas binder */
+        .binder-holes::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            bottom: 20px;
+            width: 15px;
+            background-image: radial-gradient(circle, #f0f0f0 40%, transparent 45%);
+            background-size: 100% 3em;
+            z-index: 10;
+        }
+
+        .doodle {
+            filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.1));
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(255, 235, 59, 0.5) 0%, rgba(255, 235, 59, 1) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+            display: inline;
+        }
+
+        /* Animasi nulis */
+        @keyframes draw {
+            from {
+                stroke-dashoffset: 1000;
+            }
+
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-10 font-hand text-pencil">
+    <div id="content" class="max-w-3xl mx-auto relative transform rotate-1">
+
+        <!-- Buku Tulis -->
+        <div class="notebook-paper p-8 pl-20 min-h-[800px] binder-holes">
+
+            <!-- Tanggal di pojok -->
+            <div class="flex justify-end mb-4 text-xs font-neat text-ink-blue opacity-70">
+                <span class="font-bold mr-4">[Option Q]</span>
+                <span>Hari: Senin</span>
+                <span class="mx-2">|</span>
+                <span>Tgl: Sekarang</span>
+            </div>
+
+            <!-- Header -->
+            <div class="mb-10 relative">
+                <h1 class="text-5xl font-bold text-ink-blue mb-2 transform -rotate-2">
+                    Catatan <span class="highlight">Tio Haidar</span>
+                </h1>
+                <div
+                    class="absolute -top-6 -right-4 w-16 h-16 border-2 border-red-500 rounded-full flex items-center justify-center transform rotate-12 opacity-80">
+                    <span class="text-red-500 font-bold text-lg">A+</span>
+                </div>
+                <!-- Doodle bintang -->
+                <svg class="absolute -left-10 top-0 w-10 h-10 text-yellow-400 doodle transform -rotate-12"
+                    fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                </svg>
+
+                <p class="text-xl mt-4 font-neat border-b border-dashed border-gray-400 inline-block">
+                    Backend Engineer / Rajin Menabung / Tidak Sombong
+                </p>
+            </div>
+
+            <!-- Konten Utama -->
+            <div class="space-y-6 text-lg leading-[1.5em]">
+
+                <!-- Section 1 -->
+                <div>
+                    <h2 class="text-2xl font-bold text-ink-blue underline decoration-wavy decoration-ink-red mb-2">
+                        Tujuan Belajar:</h2>
+                    <ul class="list-disc pl-6 space-y-1 marker:text-ink-red">
+                        <li>Bikin sistem yang <span class="font-bold underline">kenceng</span> banget.</li>
+                        <li>Automasi semua hal (biar bisa main game).</li>
+                        <li>Riset teknologi baru (AI, Blockchain, dll).</li>
+                        <li><span class="line-through decoration-red-500 text-gray-400">Tidur seharian</span> (jangan
+                            dicoret!)</li>
+                    </ul>
+                </div>
+
+                <!-- Section 2: Sticky Note -->
+                <div class="transform rotate-2 float-right ml-4 mb-4 w-48 bg-yellow-200 p-4 shadow-lg sticky-note">
+                    <div class="w-8 h-2 bg-yellow-600/20 mx-auto mb-2 opacity-50"></div> <!-- Selotip -->
+                    <h3 class="font-bold text-sm mb-2 text-ink-red uppercase text-center">PR HARI INI:</h3>
+                    <ul class="text-sm font-neat list-decimal pl-4">
+                        <li>Deploy Deploy</li>
+                        <li>Fix Bug di Prod</li>
+                        <li>Makan Siang</li>
+                    </ul>
+                </div>
+
+                <!-- Section 3 -->
+                <div>
+                    <h2 class="text-2xl font-bold text-ink-blue underline decoration-wavy decoration-ink-red mb-2">Tech
+                        Stack:</h2>
+                    <!-- Gambar doodle kotak-kotak -->
+                    <div class="grid grid-cols-2 gap-4 mt-2">
+                        <div class="border-2 border-pencil rounded-lg p-2 text-center hover:bg-gray-50 transition-colors cursor-pointer"
+                            onclick="alert('PHP is dead? No way!')">
+                            <span class="block text-3xl mb-1">🐘</span>
+                            <span class="font-bold">Laravel</span>
+                        </div>
+                        <div class="border-2 border-pencil rounded-lg p-2 text-center hover:bg-gray-50 transition-colors cursor-pointer"
+                            onclick="alert('Python goes brrr')">
+                            <span class="block text-3xl mb-1">🐍</span>
+                            <span class="font-bold">Python</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Pesan Guru -->
+                <div class="mt-8 border-2 border-ink-red p-4 rounded-xl transform -rotate-1 relative">
+                    <span class="absolute -top-3 left-4 bg-white px-2 text-ink-red font-bold text-sm">Komen Guru:</span>
+                    <p class="text-ink-red italic">
+                        "Kodingannya rapi, tapi tolong jangan kebanyakan komentar lucu di production code ya Tio!" - Pak
+                        Lead
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Footer Buttons (Doodle style) -->
+            <div class="mt-12 flex justify-center gap-6 pb-8">
+                <button onclick="openModal('modal-absen')" class="group relative px-6 py-2">
+                    <!-- SVG Border Handrawn -->
+                    <svg class="absolute inset-0 w-full h-full text-ink-blue group-hover:text-ink-red transition-colors"
+                        viewBox="0 0 100 40" preserveAspectRatio="none">
+                        <path d="M5,5 Q50,0 95,5 Q100,20 95,35 Q50,40 5,35 Q0,20 5,5 Z" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-dasharray="200" stroke-dashoffset="0" />
+                    </svg>
+                    <span class="relative font-bold group-hover:text-ink-red transition-colors">Isi Absen</span>
+                </button>
+
+                <button onclick="openModal('modal-contek')" class="group relative px-6 py-2">
+                    <svg class="absolute inset-0 w-full h-full text-pencil group-hover:text-green-600 transition-colors"
+                        viewBox="0 0 100 40" preserveAspectRatio="none">
+                        <path d="M5,5 L95,5 L95,35 L5,35 Z" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span class="relative font-bold group-hover:text-green-600 transition-colors">Nyontek Jawaban</span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Pena/Pensil decoration -->
+        <div
+            class="absolute -right-16 top-1/4 w-8 h-64 bg-yellow-400 rounded-b-full shadow-xl transform rotate-12 hidden md:block border border-yellow-600">
+            <div class="w-full h-4 bg-pink-400 rounded-t-sm border-b border-gray-400"></div> <!-- Penghapus -->
+            <div class="w-full h-8 bg-gray-300 border-b border-yellow-600"></div> <!-- Besi -->
+            <div
+                class="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[16px] border-r-[16px] border-t-[30px] border-l-transparent border-r-transparent border-t-[#d4a373]">
+            </div> <!-- Kayu runcing -->
+            <div
+                class="absolute -bottom-7 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[10px] border-l-transparent border-r-transparent border-t-black">
+            </div> <!-- Isi pensil -->
+        </div>
+
+    </div>
+
+    <!-- Modal Absen -->
+    <div id="modal-absen"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50 backdrop-blur-sm">
+        <div class="bg-white p-1 rounded transform rotate-1 max-w-sm w-full shadow-2xl">
+            <div class="border-2 border-ink-blue p-6 rounded-lg border-dashed">
+                <h2 class="text-3xl font-bold text-center text-ink-blue mb-4">Formulir Pendaftaran</h2>
+                <form onsubmit="event.preventDefault(); closeModal('modal-absen');" class="space-y-4">
+                    <div>
+                        <label class="block font-bold mb-1">Nama Lengkap:</label>
+                        <input type="text"
+                            class="w-full border-b-2 border-pencil outline-none font-neat text-xl bg-transparent focus:border-ink-blue transition-colors"
+                            placeholder="Tulis disini...">
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1">Pesan Rahasia:</label>
+                        <textarea
+                            class="w-full border-2 border-pencil rounded p-2 outline-none font-neat text-lg h-24 focus:border-ink-blue transition-colors"
+                            placeholder="Jangan bilang siapa-siapa..."></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-ink-blue text-white font-bold py-2 rounded-lg hover:bg-blue-600 transform hover:scale-105 transition-all">
+                        Kumpulkan
+                    </button>
+                </form>
+                <button onclick="closeModal('modal-absen')"
+                    class="absolute top-2 right-2 text-red-500 font-bold text-xl hover:scale-110">X</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Contek (Confirm) -->
+    <div id="modal-contek"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50 backdrop-blur-sm">
+        <div class="bg-yellow-100 p-6 rounded-sm shadow-xl max-w-xs w-full transform -rotate-2 relative">
+            <!-- Pin -->
+            <div
+                class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 shadow-sm border border-red-700">
+            </div>
+
+            <h2 class="text-xl font-bold text-red-600 text-center mb-4 uppercase underline">Peringatan Keras!</h2>
+            <p class="text-center font-neat text-lg mb-6">Yakin mau nyontek? Nanti dimarahin guru lho!</p>
+
+            <div class="flex justify-around">
+                <button onclick="closeModal('modal-contek')"
+                    class="border-2 border-green-600 text-green-700 font-bold px-4 py-1 rounded hover:bg-green-100">
+                    Gak Jadi
+                </button>
+                <button onclick="closeModal('modal-contek')"
+                    class="bg-red-500 text-white font-bold px-4 py-1 rounded hover:bg-red-600">
+                    Gaspol
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Iframe resizer logic
+        function sendHeight() {
+            const height = document.body.scrollHeight;
+            window.parent.postMessage({ type: 'resize', height: height, id: 'option-q' }, '*');
+        }
+        window.addEventListener('load', sendHeight);
+        new ResizeObserver(sendHeight).observe(document.body);
+    </script>
+</body>
+
+</html>
