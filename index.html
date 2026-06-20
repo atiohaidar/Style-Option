@@ -6,12 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Design Style Assessment - Gallery Mode</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PptxGenJS CDN -->
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
     <style>
         iframe {
             width: 100%;
             border: none;
             overflow: hidden;
             transition: height 0.3s ease;
+        }
+        #btn-download-ppt {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #A855F7 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            letter-spacing: 0.02em;
+        }
+        #btn-download-ppt:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #9333EA 100%);
+        }
+        #btn-download-ppt:active {
+            transform: translateY(0);
+        }
+        #btn-download-ppt:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
         }
     </style>
 </head>
@@ -20,7 +51,15 @@
 
     <div class="max-w-4xl mx-auto py-10 px-6 text-center">
         <h1 class="text-4xl font-bold mb-4">Design Assessment Gallery</h1>
-        <p class="mb-8 text-gray-600">Total 18 Style Options. Loaded from separate files.</p>
+        <p class="mb-6 text-gray-600">Total 18 Style Options. Loaded from separate files.</p>
+
+        <!-- Download PPT Button -->
+        <div class="mb-8">
+            <button id="btn-download-ppt" onclick="generateStylePPT()">
+                📥 Download PPT
+            </button>
+            <p class="mt-2 text-xs text-gray-400">Generate a .pptx showcasing all 18 style guides</p>
+        </div>
 
         <!-- Table of Contents -->
         <div id="toc" class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-left">
@@ -90,6 +129,9 @@
             }
         });
     </script>
+
+    <!-- PPT Generator -->
+    <script src="js/ppt-generator.js"></script>
 
 </body>
 
