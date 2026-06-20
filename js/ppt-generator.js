@@ -7,6 +7,15 @@
 
 const STYLES = [
     {
+        id: 'Default', label: 'Default Showcase',
+        bg: '222222',
+        colors: ['222222', '494949', '525252', '656565', 'BFFF00'],
+        font: 'Calibri', fontLabel: 'Poppins + Inter + Fira Code',
+        heading: 'STYLE GUIDE SHOWCASE',
+        subtitle: '18 design system options playground. Modern neon-brutalist styling.',
+        vibe: 'Dark slate background, neon lime highlights, engineering grid lines, and smooth animations.',
+    },
+    {
         id: 'A', label: 'Neo-Pop',
         bg: 'FFDEE9',
         colors: ['FFDEE9', 'B5FFFC', 'FFEB3B', 'FF69B4', '000000'],
@@ -176,7 +185,7 @@ const STYLES = [
 const SW = 13.33; // slide width
 const SH = 7.5;   // slide height
 const MARGIN = 1.0; // standard margin
-const DARK_BG_LIST = ['050505', '0F172A', '1A1A1A', '0A192F', '2B2B2B', '111827'];
+const DARK_BG_LIST = ['050505', '0F172A', '1A1A1A', '0A192F', '2B2B2B', '111827', '222222'];
 
 // ==========================================
 // TITLE SLIDE
@@ -254,6 +263,37 @@ function createTitleSlide(pptx) {
     });
 }
 
+// Helper to draw blueprint grid (Style G)
+function addBlueprintGrid(pptx, slide) {
+    const gridColor = 'C7D7F5';
+    for (let h = 0.25; h < SH; h += 0.25) {
+        slide.addShape(pptx.ShapeType.line, {
+            x: 0, y: h, w: SW, h: 0,
+            line: { color: gridColor, width: 0.5 },
+        });
+    }
+    for (let v = 0.25; v < SW; v += 0.25) {
+        slide.addShape(pptx.ShapeType.line, {
+            x: v, y: 0, w: 0, h: SH,
+            line: { color: gridColor, width: 0.5 },
+        });
+    }
+}
+
+// Helper to draw notebook background (Style Q)
+function addNotebookBackground(pptx, slide) {
+    slide.addShape(pptx.ShapeType.line, {
+        x: 0.8, y: 0, w: 0, h: SH,
+        line: { color: 'FFB7B2', width: 1.5 },
+    });
+    for (let h = 0.4; h < SH; h += 0.3) {
+        slide.addShape(pptx.ShapeType.line, {
+            x: 0, y: h, w: SW, h: 0,
+            line: { color: 'A2D2FF', width: 0.5 },
+        });
+    }
+}
+
 // ==========================================
 // STYLE CARD SLIDE
 // ==========================================
@@ -274,6 +314,12 @@ function createStyleSlide(pptx, style, index) {
     const decoW = 3.33;
 
     slide.background = { color: style.bg };
+
+    if (style.id === 'G') {
+        addBlueprintGrid(pptx, slide);
+    } else if (style.id === 'Q') {
+        addNotebookBackground(pptx, slide);
+    }
 
     // ── Top accent bar ──
     slide.addShape(pptx.ShapeType.rect, {
@@ -374,14 +420,51 @@ function createStyleSlide(pptx, style, index) {
 // ==========================================
 // DECORATIVE ELEMENTS (right panel)
 // ==========================================
-function addDecorativeElement(pptx, slide, style, isDark, decoX, decoW) {
+function addDecorativeElement(pptx, slide, style, isDark, decoX, decoW, cy = 0.8, ph = 4.2) {
     // Centered panel position
     const cx = decoX + 0.2;  // inner x
-    const cy = 0.8;          // inner y
     const pw = decoW - 0.4;  // panel width (~2.93)
-    const ph = 4.2;          // panel height
 
     switch (style.id) {
+        case 'Default': { // Default Showcase
+            // Card wrapper
+            slide.addShape(pptx.ShapeType.roundRect, {
+                x: cx, y: cy, w: pw, h: ph,
+                rectRadius: 0.1,
+                fill: { type: 'solid', color: '494949' },
+                line: { color: '656565', width: 0.5 },
+            });
+            // Lime border line
+            slide.addShape(pptx.ShapeType.rect, {
+                x: cx, y: cy, w: pw, h: 0.05,
+                fill: { type: 'solid', color: 'BFFF00' },
+            });
+            // Tech grid dots
+            for (let row = 0; row < 6; row++) {
+                for (let col = 0; col < 5; col++) {
+                    slide.addShape(pptx.ShapeType.ellipse, {
+                        x: cx + 0.4 + col * 0.5, y: cy + 0.6 + row * 0.5, w: 0.04, h: 0.04,
+                        fill: { type: 'solid', color: '656565' },
+                    });
+                }
+            }
+            // Central rotating-like rings
+            slide.addShape(pptx.ShapeType.ellipse, {
+                x: cx + pw/2 - 0.7, y: cy + ph/2 - 0.7, w: 1.4, h: 1.4,
+                fill: { type: 'none' },
+                line: { color: 'BFFF00', width: 2, dashType: 'dash' },
+            });
+            slide.addShape(pptx.ShapeType.ellipse, {
+                x: cx + pw/2 - 0.4, y: cy + ph/2 - 0.4, w: 0.8, h: 0.8,
+                fill: { type: 'solid', color: 'BFFF00' },
+            });
+            slide.addText('SHOWCASE', {
+                x: cx + pw/2 - 0.5, y: cy + ph/2 - 0.15, w: 1.0, h: 0.3,
+                fontSize: 8, fontFace: 'Courier New', color: '000000',
+                bold: true, align: 'center',
+            });
+            break;
+        }
         case 'A': { // Neo-Pop
             // Shadow
             slide.addShape(pptx.ShapeType.rect, {
@@ -1145,4 +1228,285 @@ function generateStylePPT() {
             setTimeout(() => { btn.innerHTML = '\uD83D\uDCE5 Download PPT'; }, 3000);
         }
     }
+}
+
+// ==========================================
+// PORTFOLIO / USER SLIDES GENERATION
+// ==========================================
+function generatePresentation(slidesData, styleId) {
+    const style = STYLES.find(s => s.id === styleId) || STYLES.find(s => s.id === 'Default');
+    const isDark = DARK_BG_LIST.includes(style.bg);
+    const textColor = isDark ? 'FFFFFF' : '111827';
+    const mutedColor = isDark ? '94A3B8' : '6B7280';
+    const borderColor = isDark ? '334155' : 'D1D5DB';
+    const cardBg = isDark ? '1E293B' : 'F3F4F6';
+    const accentColor = style.id === 'Default' ? 'BFFF00' : (style.colors[2] || style.colors[1]);
+
+    const pptx = new PptxGenJS();
+    pptx.defineLayout({ name: 'WIDESCREEN_16x9', width: 13.33, height: 7.5 });
+    pptx.layout = 'WIDESCREEN_16x9';
+    pptx.author = 'Tio Haidar Hanif';
+    pptx.title = 'Slides-as-Code Presentation';
+
+    slidesData.forEach((slide, index) => {
+        const sObj = pptx.addSlide();
+        sObj.background = { color: style.bg };
+        
+        // Add Speaker Notes
+        if (slide.notes) {
+            sObj.notes = slide.notes;
+        }
+
+        // 1. Top accent bar
+        sObj.addShape(pptx.ShapeType.rect, {
+            x: 0, y: 0, w: SW, h: 0.06,
+            fill: { type: 'solid', color: accentColor },
+        });
+
+        // Add visual grid background for G, Q and Default styles
+        if (style.id === 'G') {
+            addBlueprintGrid(pptx, sObj);
+        } else if (style.id === 'Q') {
+            addNotebookBackground(pptx, sObj);
+        }
+
+        // Add visual grid background for default style
+        if (style.id === 'Default') {
+            sObj.addShape(pptx.ShapeType.rect, {
+                x: 0.3, y: 0.3, w: SW - 0.6, h: SH - 0.6,
+                fill: { type: 'none' },
+                line: { color: '333333', width: 1 },
+            });
+        }
+
+        if (slide.type === 'title') {
+            // Slide Cover Layout
+            // Badge
+            if (slide.badge) {
+                sObj.addShape(pptx.ShapeType.roundRect, {
+                    x: SW / 2 - 2.5, y: 1.0, w: 5.0, h: 0.42,
+                    rectRadius: 0.05,
+                    fill: { type: 'solid', color: cardBg },
+                    line: { color: borderColor, width: 0.5 },
+                });
+                sObj.addText(slide.badge, {
+                    x: SW / 2 - 2.5, y: 1.02, w: 5.0, h: 0.38,
+                    fontSize: 11, fontFace: style.font,
+                    color: accentColor, bold: true, align: 'center', valign: 'middle',
+                });
+            }
+
+            // Title
+            sObj.addText(slide.title || 'Presentation Title', {
+                x: 1.5, y: 1.8, w: SW - 3.0, h: 2.2,
+                fontSize: 44, fontFace: style.font,
+                color: textColor, bold: true, align: 'center', valign: 'middle',
+            });
+
+            // Subtitle
+            if (slide.subtitle) {
+                sObj.addText(slide.subtitle, {
+                    x: 1.5, y: 4.1, w: SW - 3.0, h: 0.8,
+                    fontSize: 18, fontFace: style.font,
+                    color: mutedColor, align: 'center', valign: 'top',
+                });
+            }
+
+            // Divider Line
+            sObj.addShape(pptx.ShapeType.line, {
+                x: SW / 2 - 1.5, y: 5.1, w: 3.0, h: 0,
+                line: { color: borderColor, width: 1 },
+            });
+
+            // Authors
+            if (slide.authors) {
+                sObj.addText(slide.authors, {
+                    x: 2.0, y: 5.3, w: SW - 4.0, h: 1.2,
+                    fontSize: 12, fontFace: 'Courier New',
+                    color: mutedColor, align: 'center', valign: 'top',
+                });
+            }
+
+        } else {
+            // Content & Split Slide layouts
+            const leftX = 0.8;
+            const contentW = 7.2;
+
+            // Slide Number Badge
+            if (slide.badge) {
+                sObj.addShape(pptx.ShapeType.roundRect, {
+                    x: leftX, y: 0.5, w: 2.8, h: 0.42,
+                    rectRadius: 0.05,
+                    fill: { type: 'solid', color: cardBg },
+                    line: { color: borderColor, width: 0.5 },
+                });
+                sObj.addText(slide.badge, {
+                    x: leftX + 0.15, y: 0.52, w: 2.5, h: 0.38,
+                    fontSize: 10, fontFace: style.font,
+                    color: accentColor, bold: true, valign: 'middle',
+                });
+            }
+
+            // Heading
+            sObj.addText(slide.title || 'Slide Title', {
+                x: leftX, y: 1.1, w: contentW, h: 0.8,
+                fontSize: 28, fontFace: style.font,
+                color: textColor, bold: true, valign: 'top',
+            });
+
+            // Left Column Bullets (Custom style matching browser preview bullets)
+            if (slide.bullets && slide.bullets.length > 0) {
+                const textObjects = slide.bullets.map(b => {
+                    const isSubBullet = b.startsWith('  ▪') || b.startsWith('  -') || b.startsWith('  *') || b.match(/^[\s\t]*[▪\-*]/);
+                    const isNumbered = b.match(/^[\s\t]*\d+\./);
+                    
+                    if (isNumbered) {
+                        return {
+                            text: b.trim(),
+                            options: {
+                                color: textColor,
+                                fontSize: 13,
+                                indentLevel: 1,
+                                fontFace: style.font,
+                                paraSpaceBefore: 4,
+                                breakLine: true
+                            }
+                        };
+                    } else {
+                        const cleanText = b.trim().replace(/^[▪\-\*\s]+/, '');
+                        return {
+                            text: cleanText,
+                            options: {
+                                bullet: { 
+                                    code: isSubBullet ? '25AA' : '25B8', 
+                                    color: accentColor 
+                                },
+                                color: textColor,
+                                fontSize: isSubBullet ? 13 : 15,
+                                indentLevel: isSubBullet ? 1 : 0,
+                                fontFace: style.font,
+                                paraSpaceBefore: isSubBullet ? 4 : 8,
+                                breakLine: true
+                            }
+                        };
+                    }
+                });
+                sObj.addText(textObjects, {
+                    x: leftX, y: 2.0, w: contentW, h: 4.5,
+                    fontFace: style.font, valign: 'top'
+                });
+            }
+
+            // Right Column visual content
+            const rightX = 8.6;
+            const rightW = 3.93;
+            const cy = 1.4;
+            const ph = 4.6;
+            
+            if (slide.type === 'split' && slide.rightType) {
+                if (slide.rightType === 'table' && slide.table) {
+                    // Table rendering
+                    const tableRows = [];
+                    // Header row
+                    if (slide.table.headers) {
+                        const headerRow = slide.table.headers.map(h => ({
+                            text: h,
+                            options: {
+                                fill: cardBg,
+                                color: accentColor,
+                                bold: true,
+                                fontSize: 10,
+                                fontFace: style.font,
+                                align: 'center'
+                            }
+                        }));
+                        tableRows.push(headerRow);
+                    }
+                    // Data rows
+                    if (slide.table.rows) {
+                        slide.table.rows.forEach(row => {
+                            const dataRow = row.map(cell => ({
+                                text: cell,
+                                options: {
+                                    color: textColor,
+                                    fontSize: 9,
+                                    fontFace: style.font,
+                                    valign: 'middle'
+                                }
+                            }));
+                            tableRows.push(dataRow);
+                        });
+                    }
+
+                    sObj.addTable(tableRows, {
+                        x: rightX, y: cy, w: rightW,
+                        border: { type: 'solid', color: borderColor, width: 0.5 }
+                    });
+
+                } else if (slide.rightType === 'chart' && slide.chart) {
+                    // Chart rendering
+                    const chartData = [
+                        {
+                            name: 'Data Values',
+                            labels: slide.chart.labels || [],
+                            values: slide.chart.values || []
+                        }
+                    ];
+                    let chartType = pptx.ChartType.bar;
+                    if (slide.chart.type === 'line') chartType = pptx.ChartType.line;
+                    if (slide.chart.type === 'pie') chartType = pptx.ChartType.pie;
+
+                    sObj.addChart(chartType, chartData, {
+                        x: rightX, y: cy, w: rightW, h: ph,
+                        showLegend: (slide.chart.type === 'pie'),
+                        chartColors: [accentColor, '3B82F6', '10B981', '8B5CF6'],
+                        titleColor: textColor,
+                        titleFontSize: 9,
+                        legendColor: textColor,
+                        legendFontSize: 8,
+                        valAxisLabelColor: textColor,
+                        valAxisLabelFontSize: 8,
+                        catAxisLabelColor: textColor,
+                        catAxisLabelFontSize: 8
+                    });
+
+                } else if (slide.rightType === 'metric' && slide.metric) {
+                    // Metric Callout Card
+                    sObj.addShape(pptx.ShapeType.roundRect, {
+                        x: rightX, y: cy, w: rightW, h: ph,
+                        rectRadius: 0.1,
+                        fill: { type: 'solid', color: cardBg },
+                        line: { color: borderColor, width: 1 },
+                    });
+                    
+                    // Large metric value
+                    sObj.addText(slide.metric.value || '0%', {
+                        x: rightX + 0.2, y: cy + 0.8, w: rightW - 0.4, h: 1.2,
+                        fontSize: 54, fontFace: style.font,
+                        color: accentColor, bold: true, align: 'center', valign: 'middle',
+                    });
+                    
+                    // Label
+                    sObj.addText(slide.metric.label || 'Indicator', {
+                        x: rightX + 0.2, y: cy + 2.3, w: rightW - 0.4, h: 1.2,
+                        fontSize: 13, fontFace: style.font,
+                        color: textColor, align: 'center', valign: 'top',
+                    });
+                }
+            } else {
+                // Fallback: draw decorative element on the right
+                addDecorativeElement(pptx, sObj, style, isDark, rightX, rightW, cy, ph);
+            }
+        }
+    });
+
+    // Filename timestamp
+    const now = new Date();
+    const ts = now.getFullYear().toString() +
+        String(now.getMonth() + 1).padStart(2, '0') +
+        String(now.getDate()).padStart(2, '0') +
+        String(now.getHours()).padStart(2, '0') +
+        String(now.getMinutes()).padStart(2, '0');
+
+    return pptx.writeFile({ fileName: `Slides_As_Code_${ts}.pptx` });
 }
