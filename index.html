@@ -53,13 +53,16 @@
         <h1 class="text-4xl font-bold mb-4">Design Assessment Gallery</h1>
         <p class="mb-6 text-gray-600">Total 18 Style Options. Loaded from separate files.</p>
 
-        <!-- Download PPT Button -->
-        <div class="mb-8">
+        <!-- Actions -->
+        <div class="mb-8 flex flex-col sm:flex-row justify-center items-center gap-4">
             <button id="btn-download-ppt" onclick="generateStylePPT()">
                 📥 Download PPT
             </button>
-            <p class="mt-2 text-xs text-gray-400">Generate a .pptx showcasing all 18 style guides</p>
+            <a href="video-showcase.html" class="inline-flex items-center gap-2" style="padding: 12px 28px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; font-weight: 700; font-size: 14px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);">
+                🎬 Play Video Showcase
+            </a>
         </div>
+        <p class="mt-2 text-xs text-gray-400">Generate a .pptx showcasing all 18 styles, or experience the interactive Motion Canvas-style video showcase</p>
 
         <!-- Table of Contents -->
         <div id="toc" class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-left">

@@ -102,7 +102,7 @@ const STYLES = [
         colors: ['0A192F', '112240', '2ECC71', '3BAFDA', '8892B0'],
         font: 'Calibri', fontLabel: 'Poppins + Fira Code',
         heading: 'Tio Haidar Hanif.\nI build scalable backends.',
-        subtitle: 'Backend Engineer & Researcher. Fokus pada sistem yang highly performant.',
+        subtitle: 'Vibe coder & Tukang Penasaran. Fokus pada sistem yang highly performant.',
         vibe: 'Developer portfolio classic, navy bg, green accent, code-like elements',
     },
     {
@@ -156,7 +156,7 @@ const STYLES = [
         colors: ['FFFFFF', 'A2D2FF', 'FFB7B2', '1A73E8', '5F6368'],
         font: 'Comic Sans MS', fontLabel: 'Kalam + Patrick Hand',
         heading: 'Catatan\nTio Haidar',
-        subtitle: 'Backend Engineer / Rajin Menabung / Tidak Sombong',
+        subtitle: 'Vibe coder / Rajin Menabung / Tidak Sombong',
         vibe: 'School notebook, lined paper, binder holes, doodles, highlighter marks, pencil',
     },
     {
@@ -164,7 +164,7 @@ const STYLES = [
         bg: '2B2B2B',
         colors: ['2B2B2B', 'FDF6E3', '8B0000', 'EAB308', '000000'],
         font: 'Courier New', fontLabel: 'Special Elite',
-        heading: 'TIO HAIDAR\nBACKEND ENGINEER',
+        heading: 'TIO HAIDAR\nVIBE CODER',
         subtitle: '// FULL STACK CAPABLE — File #882-BIO',
         vibe: 'Typewriter on aged paper, ink bleed, stamp effect, dossier/classified document feel',
     },
@@ -230,7 +230,7 @@ function createTitleSlide(pptx) {
         fontSize: 16, fontFace: 'Calibri',
         color: 'C7D2FE', bold: true,
     });
-    slide.addText('Backend Engineer  •  Researcher  •  Automation & AI Enthusiast', {
+    slide.addText('Vibe coder  •  Tukang Penasaran  •  Automation & AI Enthusiast', {
         x: MARGIN + 0.3, y: 5.8, w: 7, h: 0.4,
         fontSize: 12, fontFace: 'Calibri',
         color: '64748B',

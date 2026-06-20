@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motion Canvas Simulator - Style Guides Showcase</title>
+  
+  <!-- SEO Tags -->
+  <meta name="description" content="Simulasi video Motion Canvas berbasis kode. Jelajahi 18 opsi panduan desain Tio Haidar Hanif secara interaktif, render dan unduh video WebM langsung di browser.">
+  <meta name="keywords" content="Motion Canvas, Canvas Animation, Video Code, UI Design, Style Guides">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Poppins', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --bg-dark: #222222;
+      --bg-ui: #494949;
+      --ui-element: #525252;
+      --border-accent: #656565;
+      --text-muted: #AAAAAA;
+      --highlight: #BFFF00;
+    }
+    
+    body {
+      background-color: var(--bg-dark);
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Glassmorphism panels */
+    .glass-panel {
+      background: rgba(73, 73, 73, 0.4);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(101, 101, 101, 0.3);
+      border-radius: 16px;
+    }
+    
+    /* Blinking recording indicator */
+    .blinking-rec {
+      width: 10px;
+      height: 10px;
+      background-color: #EF4444;
+      border-radius: 50%;
+      animation: blink 1.2s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    
+    /* Range Scrubber Custom Styling */
+    input[type=range].timeline-scrubber {
+      height: 6px;
+      -webkit-appearance: none;
+      width: 100%;
+      background: var(--ui-element);
+      border-radius: 3px;
+      outline: none;
+    }
+    
+    input[type=range].timeline-scrubber::-webkit-slider-thumb {
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: var(--highlight);
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: 0px;
+      box-shadow: 0 0 8px var(--highlight);
+      transition: transform 0.1s ease;
+    }
+    
+    input[type=range].timeline-scrubber::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    
+    /* Code Highlighting Styles */
+    .token.keyword { color: #F472B6; font-weight: bold; }
+    .token.function { color: #60A5FA; }
+    .token.string { color: #34D399; }
+    .token.comment { color: #9CA3AF; font-style: italic; }
+    .token.number { color: #F59E0B; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="border-b border-[rgba(101,101,101,0.3)] bg-[rgba(34,34,34,0.8)] backdrop-blur-md sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="text-xs font-mono px-3 py-1 bg-neutral-800 text-[var(--highlight)] border border-neutral-700 rounded hover:bg-neutral-700 transition">
+          &larr; BACK TO GALLERY
+        </a>
+        <div>
+          <h1 class="text-xl font-display font-bold tracking-tight text-white flex items-center gap-2">
+            🎬 Motion Canvas Showcase
+          </h1>
+          <p class="text-xs text-[var(--text-muted)] font-mono">Vanilla JS Client-Side Render Engine</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <button id="btn-export" class="flex items-center gap-2 px-5 py-2.5 bg-[var(--highlight)] text-[#000] font-bold text-sm rounded-lg hover:bg-opacity-90 shadow-[0_0_15px_rgba(191,255,0,0.3)] transition active:scale-95">
+          📥 Render & Download WebM
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Body Content -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-6 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- LEFT COLUMN: The player and timelines (8 cols) -->
+    <div class="lg:col-span-8 flex flex-col gap-6">
+      
+      <!-- Video Player Card -->
+      <div class="glass-panel p-5 flex flex-col gap-4 relative overflow-hidden">
+        
+        <!-- Canvas wrapper with 16:9 ratio and custom neon shadow -->
+        <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-[#111] border border-[rgba(101,101,101,0.5)] shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+          <canvas id="showcase-canvas" class="w-full h-full block"></canvas>
+          
+          <!-- REC blinking indicator -->
+          <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-md flex items-center gap-2 text-xs font-mono text-white pointer-events-none border border-white/10">
+            <div class="blinking-rec"></div>
+            <span id="player-fps">60 FPS</span>
+          </div>
+          
+          <!-- Loading Overlay -->
+          <div id="loading-overlay" class="absolute inset-0 bg-black/80 flex flex-col items-center justify-center gap-4 hidden z-20">
+            <div class="w-12 h-12 border-4 border-[var(--highlight)] border-t-transparent rounded-full animate-spin"></div>
+            <div class="text-center">
+              <h4 class="font-display font-bold text-lg text-white">Rendering WebM Video...</h4>
+              <p class="text-xs text-[var(--text-muted)] font-mono mt-1">Slowing down to capture every single frame accurately.</p>
+              <div class="w-48 bg-neutral-800 h-2 rounded-full mt-3 overflow-hidden border border-neutral-700">
+                <div id="render-progress" class="bg-[var(--highlight)] h-full w-0 transition-all"></div>
+              </div>
+              <p id="render-percent" class="text-xs text-[var(--highlight)] font-mono mt-1">0% Completed</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Controls Timeline Panel -->
+        <div class="flex flex-col gap-3">
+          <!-- Timeline scrubber -->
+          <div class="flex items-center gap-4">
+            <input type="range" id="timeline-scrubber" class="timeline-scrubber flex-grow" min="0" max="2399" value="0">
+          </div>
+          
+          <!-- Timing details & Playback buttons -->
+          <div class="flex justify-between items-center text-sm font-mono mt-1">
+            <div class="flex items-center gap-3">
+              <button id="btn-play" class="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-md text-[var(--highlight)] border border-neutral-700 transition flex items-center gap-2">
+                <span id="play-icon">▶</span> <span id="play-text">Play</span>
+              </button>
+              <button id="btn-reset" class="px-3 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-md text-white border border-neutral-700 transition" title="Rewind to frame 0">
+                ⏮ Reset
+              </button>
+            </div>
+            
+            <div class="text-right text-xs">
+              <span id="time-readout" class="text-white font-bold">F 0000 / 2400</span>
+              <span class="text-[var(--text-muted)] ml-2" id="sec-readout">(0.00s)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Slide Quick Jumper Grid (A-R) -->
+      <div class="glass-panel p-5 flex flex-col gap-4">
+        <h3 class="font-display font-bold text-sm text-[var(--text-muted)] font-mono tracking-wider uppercase">JUMP TO DESIGN STYLE SLIDE</h3>
+        <div class="grid grid-cols-5 sm:grid-cols-10 gap-2" id="jump-grid">
+          <!-- Generated dynamically -->
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- RIGHT COLUMN: Active Slide info & Code Preview (4 cols) -->
+    <div class="lg:col-span-4 flex flex-col gap-6">
+      
+      <!-- Current Slide Specs Panel -->
+      <div class="glass-panel p-5 flex flex-col gap-4">
+        <div class="border-b border-[rgba(101,101,101,0.3)] pb-3">
+          <h2 class="font-display font-bold text-lg text-white" id="info-title">Intro Title</h2>
+          <p class="text-xs text-[var(--highlight)] font-mono uppercase mt-0.5" id="info-subtitle">Presentation Opener</p>
+        </div>
+        
+        <div class="flex flex-col gap-3 text-sm">
+          <div>
+            <h4 class="text-xs font-mono text-[var(--text-muted)] uppercase mb-1">Visual Vibe & Aesthetic</h4>
+            <p id="info-vibe" class="text-neutral-200 leading-relaxed font-light">Style Guide Presentation Opener with technology particles grid.</p>
+          </div>
+          
+          <div id="info-palette-container" class="hidden">
+            <h4 class="text-xs font-mono text-[var(--text-muted)] uppercase mb-2">Palette Swatches</h4>
+            <div class="flex gap-2" id="info-swatches">
+              <!-- Swatches list -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Motion Canvas Generator Code View -->
+      <div class="glass-panel p-5 flex flex-col gap-3 flex-grow flex flex-col">
+        <div class="flex justify-between items-center border-b border-[rgba(101,101,101,0.3)] pb-3">
+          <h3 class="font-display font-bold text-sm text-[var(--text-muted)] font-mono">MOTION CANVAS TIMELINE CODE</h3>
+          <span class="text-[10px] bg-neutral-800 text-[var(--highlight)] border border-neutral-700 px-2 py-0.5 rounded font-mono">TypeScript</span>
+        </div>
+        
+        <div class="bg-neutral-900 border border-neutral-800 rounded-lg p-4 font-mono text-xs overflow-x-auto flex-grow flex flex-col">
+          <pre class="whitespace-pre flex-grow"><code id="code-box" class="text-neutral-300"></code></pre>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- Script Modules -->
+  <script src="js/video-renderer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const engine = new VideoShowcaseEngine('showcase-canvas');
+      
+      // Elements
+      const btnPlay = document.getElementById('btn-play');
+      const btnReset = document.getElementById('btn-reset');
+      const playIcon = document.getElementById('play-icon');
+      const playText = document.getElementById('play-text');
+      const scrubber = document.getElementById('timeline-scrubber');
+      const timeReadout = document.getElementById('time-readout');
+      const secReadout = document.getElementById('sec-readout');
+      const jumpGrid = document.getElementById('jump-grid');
+      
+      const infoTitle = document.getElementById('info-title');
+      const infoSubtitle = document.getElementById('info-subtitle');
+      const infoVibe = document.getElementById('info-vibe');
+      const infoPaletteContainer = document.getElementById('info-palette-container');
+      const infoSwatches = document.getElementById('info-swatches');
+      const codeBox = document.getElementById('code-box');
+      
+      const btnExport = document.getElementById('btn-export');
+      const loadingOverlay = document.getElementById('loading-overlay');
+      const renderProgress = document.getElementById('render-progress');
+      const renderPercent = document.getElementById('render-percent');
+      
+      // Configure scrubber maximum bound based on engine slides count
+      scrubber.max = engine.totalFrames - 1;
+      
+      // Dynamic Jump Grid creation (Intro, options A-R, Outro)
+      const jumpOptions = [
+        { label: 'INTRO', frame: 0 }
+      ];
+      STYLES.forEach((s, idx) => {
+        jumpOptions.push({
+          label: s.id,
+          frame: (idx + 1) * engine.framesPerSlide
+        });
+      });
+      jumpOptions.push({
+        label: 'OUTRO',
+        frame: (STYLES.length + 1) * engine.framesPerSlide
+      });
+      
+      jumpOptions.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.textContent = opt.label;
+        btn.className = "px-2 py-2 bg-neutral-800 hover:bg-neutral-700 text-xs font-mono font-bold border border-neutral-700 rounded transition duration-200 focus:outline-none hover:border-[var(--highlight)] text-white";
+        btn.addEventListener('click', () => {
+          engine.pause();
+          syncPlayButton();
+          engine.setFrame(opt.frame);
+        });
+        jumpGrid.appendChild(btn);
+      });
+      
+      // Timeline change callback
+      engine.registerFrameCallback((frame, slideIdx) => {
+        scrubber.value = frame;
+        timeReadout.textContent = `F ${String(frame).padStart(4, '0')} / ${engine.totalFrames}`;
+        secReadout.textContent = `(${(frame / 60).toFixed(2)}s)`;
+        
+        // Highlight active jump button
+        const buttons = jumpGrid.children;
+        for (let i = 0; i < buttons.length; i++) {
+          if (i === slideIdx) {
+            buttons[i].classList.add('border-[var(--highlight)]', 'text-[var(--highlight)]');
+            buttons[i].classList.remove('border-neutral-700', 'text-white');
+          } else {
+            buttons[i].classList.remove('border-[var(--highlight)]', 'text-[var(--highlight)]');
+            buttons[i].classList.add('border-neutral-700', 'text-white');
+          }
+        }
+        
+        // Update Details Card Info
+        if (slideIdx === 0) {
+          infoTitle.textContent = "Style Guide Opener";
+          infoSubtitle.textContent = "Presentation Intro";
+          infoVibe.textContent = "Custom styled title slider built with canvas typography and floating vectors, styled in the #222222 monochromatic guide.";
+          infoPaletteContainer.classList.add('hidden');
+          codeBox.innerHTML = highlightSyntax(`export default makeScene2D(function* (view) {
+  yield* all(
+    title().scale(1.0, 1.2, easeOutBack),
+    particles().float()
+  );
+});`);
+        } else if (slideIdx === engine.totalSlides - 1) {
+          infoTitle.textContent = "Presentation Closing";
+          infoSubtitle.textContent = "Presentation Outro";
+          infoVibe.textContent = "Elegantly fade out the slides, returning to the core brand colors and directing the viewer to review Gallery Mode.";
+          infoPaletteContainer.classList.add('hidden');
+          codeBox.innerHTML = highlightSyntax(`export default makeScene2D(function* (view) {
+  yield* outroPanel().opacity(1.0, 1.5);
+  yield* outroBorder().stroke("#BFFF00", 0.5);
+});`);
+        } else {
+          const style = STYLES[slideIdx - 1];
+          infoTitle.textContent = `Option ${style.id}: ${style.label}`;
+          infoSubtitle.textContent = `${style.vibe.split(',')[0]}`;
+          infoVibe.textContent = style.vibe;
+          
+          // Render swatches
+          infoPaletteContainer.classList.remove('hidden');
+          infoSwatches.innerHTML = '';
+          style.colors.forEach(c => {
+            const wrap = document.createElement('div');
+            wrap.className = "flex flex-col items-center gap-1";
+            wrap.innerHTML = `
+              <div class="w-8 h-8 rounded border border-white/10" style="background-color: ${c}"></div>
+              <span class="text-[9px] font-mono">${c}</span>
+            `;
+            infoSwatches.appendChild(wrap);
+          });
+          
+          codeBox.innerHTML = highlightSyntax(style.code);
+        }
+      });
+      
+      // Play Button Controls
+      function syncPlayButton() {
+        if (engine.isPlaying) {
+          playIcon.textContent = "⏸";
+          playText.textContent = "Pause";
+        } else {
+          playIcon.textContent = "▶";
+          playText.textContent = "Play";
+        }
+      }
+      
+      btnPlay.addEventListener('click', () => {
+        if (engine.isPlaying) {
+          engine.pause();
+        } else {
+          engine.play();
+        }
+        syncPlayButton();
+      });
+      
+      btnReset.addEventListener('click', () => {
+        engine.pause();
+        syncPlayButton();
+        engine.setFrame(0);
+      });
+      
+      scrubber.addEventListener('input', (e) => {
+        engine.pause();
+        syncPlayButton();
+        engine.setFrame(parseInt(e.target.value));
+      });
+      
+      // Exporter triggering
+      btnExport.addEventListener('click', () => {
+        loadingOverlay.classList.remove('hidden');
+        renderProgress.style.width = '0%';
+        renderPercent.textContent = '0%';
+        
+        engine.exportVideo(
+          (percent) => {
+            renderProgress.style.width = `${percent}%`;
+            renderPercent.textContent = `${percent}% Completed`;
+          },
+          (blobUrl) => {
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = `style-option-showcase.webm`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            
+            setTimeout(() => {
+              loadingOverlay.classList.add('hidden');
+              engine.setFrame(0);
+            }, 500);
+          }
+        );
+      });
+      
+      // Syntax Highlighting parser
+      function highlightSyntax(code) {
+        return code
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/(["'`])(.*?)\1/g, '<span class="token string">$&</span>')
+          .replace(/(\/\/.*)/g, '<span class="token comment">$1</span>')
+          .replace(/\b(import|export|default|const|let|var|return|function|yield|all|createRef|from)\b/g, '<span class="token keyword">$1</span>')
+          .replace(/\b(\d+)\b/g, '<span class="token number">$1</span>')
+          .replace(/\b(makeScene2D|scale|opacity|radius|lineWidth|stroke|fill|y|end|rotate|spacing|shadowBlur|translation|opacity|float|strokeRect|fleur|Star|Path)\b/g, '<span class="token function">$1</span>');
+      }
+      
+      // Initial trigger to render frame 0 after fonts are fully loaded to prevent defaults bleeding
+      document.fonts.ready.then(() => {
+        engine.setFrame(0);
+      });
+    });
+  </script>
+</body>
+</html>

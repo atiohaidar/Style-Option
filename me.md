@@ -2,7 +2,7 @@
 
 ## 👤 Personal Profile
 **Tio Haidar Hanif**  
-_Backend Engineer • Researcher • Automation & AI Enthusiast_  
+_Vibe coder • Tukang Penasaran • Automation & AI Enthusiast_  
 
 Membangun sistem backend, alat otomasi, dan software berbasis riset yang menjembatani dunia engineering dengan telekomunikasi & research.
 
@@ -25,7 +25,7 @@ Membangun sistem backend, alat otomasi, dan software berbasis riset yang menjemb
 ---
 
 ## 🛠️ Expertise
-- **Backend Engineering**: Laravel, Express.js, SQLite/MySQL.  
+- **Vibe codering**: Laravel, Express.js, SQLite/MySQL.  
 - **Infrastructure**: Docker, deployment monolith & scalable systems.  
 - **Automation**: VBA, bot Telegram (Python & SQLite).  
 - **Research**: Software Product Line, Machine Learning, NLP, Computer Vision.  
@@ -48,7 +48,7 @@ Membangun sistem backend, alat otomasi, dan software berbasis riset yang menjemb
 ---
 
 ## 📌 Value Proposition
-_Menggabungkan backend engineering dengan pendekatan research-driven, menciptakan sistem yang **scalable, maintainable, dan insightful**._  
+_Menggabungkan vibe codering dengan pendekatan research-driven, menciptakan sistem yang **scalable, maintainable, dan insightful**._  
 
 ---
 
@@ -66,4 +66,4 @@ _Menggabungkan backend engineering dengan pendekatan research-driven, menciptaka
 
 ---
 
-© **Tio Haidar Hanif** — Backend Engineer & Researcher
+© **Tio Haidar Hanif** — Vibe coder & Tukang Penasaran
