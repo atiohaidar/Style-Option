@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slides-as-Code Engine - Workspace Editor</title>
-  
+
   <!-- SEO Tags -->
-  <meta name="description" content="Workspace Slides-as-Code interaktif. Ketik kode JSON presentasi Anda, pilih dari 19 visual style, lihat pratinjau real-time, dan unduh presentasi PowerPoint (.pptx).">
+  <meta name="description"
+    content="Workspace Slides-as-Code interaktif. Ketik kode JSON presentasi Anda, pilih dari 19 visual style, lihat pratinjau real-time, dan unduh presentasi PowerPoint (.pptx).">
   <meta name="keywords" content="Slides as Code, PowerPoint Generator, Live Mockup, PPTXGenJS, UI design">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -38,54 +42,66 @@
       --border-accent: #2e2e2e;
       --highlight: #BFFF00;
     }
+
     body {
       background-color: var(--bg-dark);
       color: #E2E8F0;
       font-family: 'Inter', sans-serif;
     }
+
     .custom-scrollbar::-webkit-scrollbar {
       width: 8px;
       height: 8px;
     }
+
     .custom-scrollbar::-webkit-scrollbar-track {
       background: #181818;
     }
+
     .custom-scrollbar::-webkit-scrollbar-thumb {
       background: #333333;
       border-radius: 4px;
     }
+
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
       background: #444444;
     }
+
     /* Simple glass panel effect */
     .glass-panel {
       background: rgba(30, 30, 30, 0.6);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.05);
     }
+
     /* Fixed 16:9 ratio preview container */
     .mockup-outer {
       position: relative;
       width: 100%;
       height: 0;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      padding-bottom: 56.25%;
+      /* 16:9 Aspect Ratio */
     }
+
     .mockup-inner {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col overflow-y-auto lg:overflow-hidden">
 
   <!-- Header Section -->
-  <header class="border-b border-[#2e2e2e] bg-[#1a1a1a]/90 backdrop-blur-md z-40 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+  <header
+    class="border-b border-[#2e2e2e] bg-[#1a1a1a]/90 backdrop-blur-md z-40 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
     <div class="flex items-center gap-3">
-      <a href="index.html" class="text-xs font-mono px-3 py-1.5 bg-neutral-800 text-[var(--highlight)] border border-neutral-700 rounded hover:bg-neutral-700 transition">
+      <a href="index.html"
+        class="text-xs font-mono px-3 py-1.5 bg-neutral-800 text-[var(--highlight)] border border-neutral-700 rounded hover:bg-neutral-700 transition">
         &larr; BACK TO GALLERY
       </a>
       <div>
@@ -95,13 +111,14 @@
         <p class="text-xs text-neutral-400 font-mono">Compile JSON layouts to fully editable PowerPoint decks</p>
       </div>
     </div>
-    
+
     <!-- Controls (Style Selector & Action Buttons) -->
     <div class="flex flex-wrap items-center gap-3">
       <!-- Style Selector -->
       <div class="flex items-center gap-2">
         <label for="style-select" class="text-xs font-mono text-neutral-400 uppercase">Theme Style:</label>
-        <select id="style-select" class="bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-sm font-semibold text-white focus:outline-none focus:border-[var(--highlight)] cursor-pointer transition">
+        <select id="style-select"
+          class="bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-sm font-semibold text-white focus:outline-none focus:border-[var(--highlight)] cursor-pointer transition">
           <option value="Default">★ Default Style (Showcase Theme)</option>
           <optgroup label="Style Options (Option A - R)">
             <option value="A">Option A: Neo-Pop</option>
@@ -127,13 +144,16 @@
       </div>
 
       <!-- Export Button -->
-      <a href="motion-generator.html" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-neutral-800 text-[var(--highlight)] border border-neutral-700 font-bold text-sm rounded-lg hover:bg-neutral-700 transition active:scale-95">
+      <a href="motion-generator.html" target="_blank"
+        class="flex items-center gap-2 px-4 py-2.5 bg-neutral-800 text-[var(--highlight)] border border-neutral-700 font-bold text-sm rounded-lg hover:bg-neutral-700 transition active:scale-95">
         🎬 Animate to Video
       </a>
-      <a href="free-motion.html" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-neutral-800 text-purple-400 border border-neutral-700 font-bold text-sm rounded-lg hover:bg-neutral-700 transition active:scale-95">
+      <a href="free-motion.html" target="_blank"
+        class="flex items-center gap-2 px-4 py-2.5 bg-neutral-800 text-purple-400 border border-neutral-700 font-bold text-sm rounded-lg hover:bg-neutral-700 transition active:scale-95">
         🎨 Free Motion Studio
       </a>
-      <button id="btn-export-ppt" class="flex items-center gap-2 px-5 py-2.5 bg-[var(--highlight)] text-black font-bold text-sm rounded-lg hover:bg-opacity-90 shadow-[0_0_15px_rgba(191,255,0,0.3)] transition active:scale-95">
+      <button id="btn-export-ppt"
+        class="flex items-center gap-2 px-5 py-2.5 bg-[var(--highlight)] text-black font-bold text-sm rounded-lg hover:bg-opacity-90 shadow-[0_0_15px_rgba(191,255,0,0.3)] transition active:scale-95">
         📥 Export Slide (.pptx)
       </button>
     </div>
@@ -141,29 +161,82 @@
 
   <!-- Workspace Container -->
   <main class="flex-grow flex flex-col lg:flex-row min-h-0">
-    
+
     <!-- LEFT PANEL: JSON Code Input (5 cols on grid-like split) -->
-    <div class="w-full lg:w-[45%] h-[450px] lg:h-auto flex flex-col border-b lg:border-b-0 lg:border-r border-[#2e2e2e] bg-[#161616] p-5">
+    <div
+      class="w-full lg:w-[45%] h-[450px] lg:h-auto flex flex-col border-b lg:border-b-0 lg:border-r border-[#2e2e2e] bg-[#161616] p-5">
       <div class="flex justify-between items-center mb-3">
-        <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase">JSON CODE EDITOR</h3>
-        
+        <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase">JSON CODE
+          EDITOR</h3>
+
         <!-- Status Indicator -->
-        <span id="editor-status" class="text-xs font-mono px-2 py-0.5 rounded border border-green-500/20 bg-green-500/10 text-green-400 flex items-center gap-1.5">
+        <span id="editor-status"
+          class="text-xs font-mono px-2 py-0.5 rounded border border-green-500/20 bg-green-500/10 text-green-400 flex items-center gap-1.5">
           <span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span> JSON Valid
         </span>
       </div>
-      
+
       <!-- Textarea Code Input -->
       <div class="flex-grow relative flex flex-col min-h-0">
-        <textarea id="code-editor" class="w-full flex-grow bg-neutral-900 border border-neutral-800 rounded-lg p-4 font-mono text-xs text-blue-300 focus:outline-none focus:border-neutral-700 resize-none custom-scrollbar" spellcheck="false"></textarea>
+        <textarea id="code-editor"
+          class="w-full flex-grow bg-neutral-900 border border-neutral-800 rounded-lg p-4 font-mono text-xs text-blue-300 focus:outline-none focus:border-neutral-700 resize-none custom-scrollbar"
+          spellcheck="false"></textarea>
       </div>
-      
+
+      <!-- AI Generator Section -->
+      <div class="mt-4 p-4 bg-[#1a1a1a] border border-[#2e2e2e] rounded-xl shadow-inner mb-4">
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="text-xs font-mono font-bold text-[var(--highlight)] flex items-center gap-2">
+            ✨ AI SLIDES GENERATOR
+          </h4>
+          <button id="btn-toggle-ai-settings" class="text-[10px] text-neutral-500 hover:text-white transition">
+            ⚙️ SETTINGS
+          </button>
+        </div>
+
+        <div id="ai-settings-panel"
+          class="hidden mb-3 grid grid-cols-2 gap-2 p-3 bg-black/40 rounded-lg border border-white/5">
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-mono text-neutral-400">API KEY:</label>
+            <input type="password" id="ai-api-key"
+              class="bg-neutral-900 border border-white/10 rounded px-2 py-1 text-[10px] text-white focus:outline-none focus:border-[var(--highlight)]"
+              placeholder="x-api-key...">
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-mono text-neutral-400">MODEL:</label>
+            <input type="text" id="ai-model"
+              class="bg-neutral-900 border border-white/10 rounded px-2 py-1 text-[10px] text-white focus:outline-none focus:border-[var(--highlight)]"
+              placeholder="deepseek-v4-flash">
+          </div>
+          <div class="col-span-2 flex items-center gap-2 mt-1">
+            <input type="checkbox" id="ai-use-proxy"
+              class="w-3 h-3 rounded bg-neutral-900 border-white/10 text-[var(--highlight)] focus:ring-0">
+            <label for="ai-use-proxy" class="text-[10px] font-mono text-neutral-400 cursor-pointer">Use CORS Proxy
+              (Bypass CORS Error)</label>
+          </div>
+          <p class="col-span-2 text-[9px] text-neutral-500 font-mono">Note: If you get "Failed to fetch", enable the
+            proxy above.</p>
+        </div>
+
+        <div class="relative">
+          <textarea id="ai-prompt"
+            class="w-full bg-neutral-900 border border-[#2e2e2e] rounded-lg p-3 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-[var(--highlight)] min-h-[80px] custom-scrollbar"
+            placeholder="Describe your slides (e.g., 'Make a 3-slide presentation about AI in 2024')..."></textarea>
+          <button id="btn-generate-ai"
+            class="absolute bottom-3 right-3 px-4 py-1.5 bg-[var(--highlight)] text-black font-bold text-xs rounded-md hover:scale-105 transition active:scale-95 disabled:opacity-50 disabled:scale-100">
+            GENERATE
+          </button>
+        </div>
+      </div>
+
       <!-- Footer actions for Editor -->
       <div class="flex justify-between items-center mt-3 gap-2">
-        <button id="btn-quick-ref" class="px-4 py-2 text-xs font-mono bg-neutral-800 border border-neutral-700 hover:bg-neutral-700 rounded transition text-neutral-300">
+        <button id="btn-quick-ref"
+          class="px-4 py-2 text-xs font-mono bg-neutral-800 border border-neutral-700 hover:bg-neutral-700 rounded transition text-neutral-300">
           💡 Quick Schema Guide
         </button>
-        <button id="btn-reset-template" class="px-4 py-2 text-xs font-mono bg-red-950/20 border border-red-900/30 text-red-400 hover:bg-red-900/20 rounded transition">
+        <button id="btn-reset-template"
+          class="px-4 py-2 text-xs font-mono bg-red-950/20 border border-red-900/30 text-red-400 hover:bg-red-900/20 rounded transition">
           🔄 Reset Default Template
         </button>
       </div>
@@ -175,44 +248,57 @@
           <span>Tip: Align PowerPoint Typography</span>
         </div>
         <p class="text-neutral-400 mb-2.5 leading-relaxed">
-          Agar tata letak tulisan di PowerPoint (.pptx) pas 1:1 dengan pratinjau web, pastikan Google Fonts ini ter-install di komputer kamu:
+          Agar tata letak tulisan di PowerPoint (.pptx) pas 1:1 dengan pratinjau web, pastikan Google Fonts ini
+          ter-install di komputer kamu:
         </p>
         <div class="flex flex-wrap gap-1.5">
-          <a href="https://fonts.google.com/specimen/Poppins" target="_blank" rel="noopener noreferrer" class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 hover:text-white border border-neutral-700 rounded text-neutral-300 font-mono transition text-[10px]">Poppins</a>
-          <a href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener noreferrer" class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 hover:text-white border border-neutral-700 rounded text-neutral-300 font-mono transition text-[10px]">Inter</a>
-          <a href="https://fonts.google.com/specimen/Space+Grotesk" target="_blank" rel="noopener noreferrer" class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 hover:text-white border border-neutral-700 rounded text-neutral-300 font-mono transition text-[10px]">Space Grotesk</a>
-          <a href="https://fonts.google.com/specimen/Fira+Code" target="_blank" rel="noopener noreferrer" class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 hover:text-white border border-neutral-700 rounded text-neutral-300 font-mono transition text-[10px]">Fira Code</a>
+          <a href="https://fonts.google.com/specimen/Poppins" target="_blank" rel="noopener noreferrer"
+            class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 hover:text-white border border-neutral-700 rounded text-neutral-300 font-mono transition text-[10px]">Poppins</a>
+          <a href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener noreferrer"
+            class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 hover:text-white border border-neutral-700 rounded text-neutral-300 font-mono transition text-[10px]">Inter</a>
+          <a href="https://fonts.google.com/specimen/Space+Grotesk" target="_blank" rel="noopener noreferrer"
+            class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 hover:text-white border border-neutral-700 rounded text-neutral-300 font-mono transition text-[10px]">Space
+            Grotesk</a>
+          <a href="https://fonts.google.com/specimen/Fira+Code" target="_blank" rel="noopener noreferrer"
+            class="px-2 py-1 bg-neutral-800 hover:bg-neutral-700 hover:text-white border border-neutral-700 rounded text-neutral-300 font-mono transition text-[10px]">Fira
+            Code</a>
         </div>
       </div>
     </div>
-    
+
     <!-- RIGHT PANEL: Live Preview & notes (7 cols equivalent / 55%) -->
     <div class="w-full lg:w-[55%] flex flex-col bg-[#121212] p-6 overflow-y-auto custom-scrollbar">
-      
+
       <!-- Live Preview Title & Pagination -->
       <div class="flex justify-between items-center mb-4">
-        <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase flex items-center gap-2">
+        <h3
+          class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase flex items-center gap-2">
           <span>🖥️ Live Slide Mockup</span>
-          <span id="active-style-badge" class="text-[10px] bg-neutral-800 text-[var(--highlight)] border border-neutral-700 px-2 py-0.5 rounded font-mono font-semibold">DEFAULT STYLE</span>
+          <span id="active-style-badge"
+            class="text-[10px] bg-neutral-800 text-[var(--highlight)] border border-neutral-700 px-2 py-0.5 rounded font-mono font-semibold">DEFAULT
+            STYLE</span>
         </h3>
-        
+
         <!-- Pagination controls -->
         <div class="flex items-center gap-3">
-          <button id="btn-prev-slide" class="px-3 py-1.5 bg-neutral-800 border border-neutral-700 hover:bg-neutral-700 rounded disabled:opacity-40 disabled:pointer-events-none transition text-xs font-bold font-mono">
+          <button id="btn-prev-slide"
+            class="px-3 py-1.5 bg-neutral-800 border border-neutral-700 hover:bg-neutral-700 rounded disabled:opacity-40 disabled:pointer-events-none transition text-xs font-bold font-mono">
             &larr; PREV
           </button>
-          
+
           <!-- Slide Indicator Dropdown -->
-          <select id="slide-jump-select" class="bg-neutral-800 border border-neutral-700 rounded px-2.5 py-1.5 text-xs font-mono text-white focus:outline-none cursor-pointer">
+          <select id="slide-jump-select"
+            class="bg-neutral-800 border border-neutral-700 rounded px-2.5 py-1.5 text-xs font-mono text-white focus:outline-none cursor-pointer">
             <!-- Populated dynamically -->
           </select>
 
-          <button id="btn-next-slide" class="px-3 py-1.5 bg-neutral-800 border border-neutral-700 hover:bg-neutral-700 rounded disabled:opacity-40 disabled:pointer-events-none transition text-xs font-bold font-mono">
+          <button id="btn-next-slide"
+            class="px-3 py-1.5 bg-neutral-800 border border-neutral-700 hover:bg-neutral-700 rounded disabled:opacity-40 disabled:pointer-events-none transition text-xs font-bold font-mono">
             NEXT &rarr;
           </button>
         </div>
       </div>
-      
+
       <!-- Aspect ratio 16:9 Wrapper -->
       <div class="w-full mb-6">
         <div class="mockup-outer bg-neutral-950 border border-[#2e2e2e] rounded-xl overflow-hidden shadow-2xl">
@@ -221,30 +307,37 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Presenter Notes Pane -->
       <div class="flex flex-col flex-grow min-h-[150px]">
         <div class="border-b border-[#2e2e2e] pb-2 mb-3">
-          <h3 class="font-display font-semibold text-xs text-neutral-400 font-mono tracking-wider uppercase">🎙️ Presenter Notes (Speaker Notes)</h3>
+          <h3 class="font-display font-semibold text-xs text-neutral-400 font-mono tracking-wider uppercase">🎙️
+            Presenter Notes (Speaker Notes)</h3>
         </div>
-        <div id="speaker-notes-box" class="flex-grow bg-[#1a1a1a] border border-[#2e2e2e] rounded-xl p-4 font-sans text-sm text-neutral-300 leading-relaxed overflow-y-auto custom-scrollbar">
+        <div id="speaker-notes-box"
+          class="flex-grow bg-[#1a1a1a] border border-[#2e2e2e] rounded-xl p-4 font-sans text-sm text-neutral-300 leading-relaxed overflow-y-auto custom-scrollbar">
           <!-- Slide notes display here -->
         </div>
       </div>
-      
+
     </div>
   </main>
 
   <!-- Schema Guide Modal -->
-  <div id="schema-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm transition-all">
-    <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 max-w-2xl w-full max-h-[85vh] flex flex-col relative">
-      <button id="btn-close-modal" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-2xl font-bold transition">&times;</button>
-      
-      <h2 class="text-xl font-display font-bold text-white mb-4 border-b border-neutral-800 pb-2">💡 Quick JSON Schema Cheat-Sheet</h2>
-      
+  <div id="schema-modal"
+    class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm transition-all">
+    <div
+      class="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 max-w-2xl w-full max-h-[85vh] flex flex-col relative">
+      <button id="btn-close-modal"
+        class="absolute top-4 right-4 text-neutral-400 hover:text-white text-2xl font-bold transition">&times;</button>
+
+      <h2 class="text-xl font-display font-bold text-white mb-4 border-b border-neutral-800 pb-2">💡 Quick JSON Schema
+        Cheat-Sheet</h2>
+
       <div class="flex-grow overflow-y-auto custom-scrollbar pr-2 space-y-5 text-sm">
         <div>
-          <h4 class="font-mono text-xs font-bold text-[var(--highlight)] uppercase mb-1">1. Slide Cover (type: "title")</h4>
+          <h4 class="font-mono text-xs font-bold text-[var(--highlight)] uppercase mb-1">1. Slide Cover (type: "title")
+          </h4>
           <pre class="bg-neutral-950 p-3 rounded font-mono text-xs text-blue-300">
 {
   "type": "title",
@@ -254,9 +347,10 @@
   "notes": "Speaker notes here..."
 }</pre>
         </div>
-        
+
         <div>
-          <h4 class="font-mono text-xs font-bold text-[var(--highlight)] uppercase mb-1">2. Bullet Points (type: "content")</h4>
+          <h4 class="font-mono text-xs font-bold text-[var(--highlight)] uppercase mb-1">2. Bullet Points (type:
+            "content")</h4>
           <pre class="bg-neutral-950 p-3 rounded font-mono text-xs text-blue-300">
 {
   "type": "content",
@@ -269,14 +363,17 @@
   "notes": "Speaker notes here..."
 }</pre>
         </div>
-        
+
         <div>
-          <h4 class="font-mono text-xs font-bold text-[var(--highlight)] uppercase mb-1">3. Split Layout (type: "split")</h4>
-          <p class="text-neutral-400 text-xs mb-2">Split the slide in two columns. Left column renders `bullets` array. Right column is determined by `rightType` (`table`, `chart`, or `metric`).</p>
-          
+          <h4 class="font-mono text-xs font-bold text-[var(--highlight)] uppercase mb-1">3. Split Layout (type: "split")
+          </h4>
+          <p class="text-neutral-400 text-xs mb-2">Split the slide in two columns. Left column renders `bullets` array.
+            Right column is determined by `rightType` (`table`, `chart`, or `metric`).</p>
+
           <div class="space-y-3 pl-3 border-l-2 border-neutral-800">
             <div>
-              <span class="text-xs font-bold text-white font-mono bg-neutral-800 px-2 py-0.5 rounded">rightType: "table"</span>
+              <span class="text-xs font-bold text-white font-mono bg-neutral-800 px-2 py-0.5 rounded">rightType:
+                "table"</span>
               <pre class="bg-neutral-950 p-3 rounded font-mono text-xs text-blue-300 mt-1">
 "rightType": "table",
 "table": {
@@ -287,9 +384,10 @@
   ]
 }</pre>
             </div>
-            
+
             <div>
-              <span class="text-xs font-bold text-white font-mono bg-neutral-800 px-2 py-0.5 rounded">rightType: "chart"</span>
+              <span class="text-xs font-bold text-white font-mono bg-neutral-800 px-2 py-0.5 rounded">rightType:
+                "chart"</span>
               <pre class="bg-neutral-950 p-3 rounded font-mono text-xs text-blue-300 mt-1">
 "rightType": "chart",
 "chart": {
@@ -298,9 +396,10 @@
   "values": [40, 60, 95]
 }</pre>
             </div>
-            
+
             <div>
-              <span class="text-xs font-bold text-white font-mono bg-neutral-800 px-2 py-0.5 rounded">rightType: "metric"</span>
+              <span class="text-xs font-bold text-white font-mono bg-neutral-800 px-2 py-0.5 rounded">rightType:
+                "metric"</span>
               <pre class="bg-neutral-950 p-3 rounded font-mono text-xs text-blue-300 mt-1">
 "rightType": "metric",
 "metric": {
@@ -316,9 +415,73 @@
 
   <!-- PPTXGenJS and Scripts -->
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+  <script src="js/ai-generator.js"></script>
   <script src="js/styles-config.js"></script>
   <script src="js/ppt-generator.js"></script>
   <script src="js/preview-renderer.js"></script>
   <script src="js/editor-controller.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // AI Generator Integration
+      const aiApiKeyInput = document.getElementById('ai-api-key');
+      const aiModelInput = document.getElementById('ai-model');
+      const aiUseProxyInput = document.getElementById('ai-use-proxy');
+      const aiPromptInput = document.getElementById('ai-prompt');
+      const btnGenerateAI = document.getElementById('btn-generate-ai');
+      const btnToggleAISettings = document.getElementById('btn-toggle-ai-settings');
+      const aiSettingsPanel = document.getElementById('ai-settings-panel');
+      const codeEditor = document.getElementById('code-editor');
+
+      // Load saved AI settings
+      aiApiKeyInput.value = localStorage.getItem('ai_api_key') || '';
+      aiModelInput.value = localStorage.getItem('ai_model') || 'deepseek-v4-flash';
+      aiUseProxyInput.checked = localStorage.getItem('ai_use_proxy') === 'true';
+
+      btnToggleAISettings.addEventListener('click', () => {
+        aiSettingsPanel.classList.toggle('hidden');
+      });
+
+      btnGenerateAI.addEventListener('click', async () => {
+        const prompt = aiPromptInput.value.trim();
+        const apiKey = aiApiKeyInput.value.trim();
+        const model = aiModelInput.value.trim();
+        const useProxy = aiUseProxyInput.checked;
+
+        if (!prompt) {
+          alert('Silakan masukkan prompt terlebih dahulu.');
+          return;
+        }
+        if (!apiKey) {
+          alert('Silakan masukkan API Key di menu Settings.');
+          aiSettingsPanel.classList.remove('hidden');
+          return;
+        }
+
+        // Save settings
+        localStorage.setItem('ai_api_key', apiKey);
+        localStorage.setItem('ai_model', model);
+        localStorage.setItem('ai_use_proxy', useProxy);
+
+        btnGenerateAI.disabled = true;
+        btnGenerateAI.textContent = '...';
+
+        try {
+          const generatedJson = await generateAIContent(prompt, apiKey, model, SYSTEM_PROMPTS.slidesEditor, useProxy);
+          codeEditor.value = generatedJson;
+          // Trigger validation and update
+          const event = new Event('input', { bubbles: true });
+          codeEditor.dispatchEvent(event);
+          aiPromptInput.value = ''; // clear prompt on success
+        } catch (error) {
+          console.error('AI Generation Error:', error);
+          alert('Gagal generate JSON: ' + error.message);
+        } finally {
+          btnGenerateAI.disabled = false;
+          btnGenerateAI.textContent = 'GENERATE';
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>

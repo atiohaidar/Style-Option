@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Free Motion Graphics Studio - Slides as Code</title>
-  
-  <meta name="description" content="General-purpose Free Motion Graphics studio driven by JSON scripts. Design custom shapes, lines, texts, and timelines with spring mechanics.">
-  
+
+  <meta name="description"
+    content="General-purpose Free Motion Graphics studio driven by JSON scripts. Design custom shapes, lines, texts, and timelines with spring mechanics.">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -27,7 +31,7 @@
       }
     }
   </script>
-  
+
   <style>
     :root {
       --bg-dark: #0a0a0f;
@@ -37,16 +41,31 @@
       --highlight-purple: #8B5CF6;
       --text-muted: #8E9AA8;
     }
+
     body {
       background-color: var(--bg-dark);
       color: #E2E8F0;
       font-family: 'Inter', sans-serif;
     }
-    .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: #0f0f15; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #222233; border-radius: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #33334c; }
-    
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0f0f15;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #222233;
+      border-radius: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #33334c;
+    }
+
     .glass-panel {
       background: rgba(20, 20, 30, 0.7);
       backdrop-filter: blur(10px);
@@ -61,6 +80,7 @@
       border-radius: 3px;
       outline: none;
     }
+
     input[type=range].timeline-scrubber::-webkit-slider-thumb {
       height: 16px;
       width: 16px;
@@ -71,10 +91,11 @@
       box-shadow: 0 0 10px var(--highlight);
       transition: transform 0.1s ease;
     }
+
     input[type=range].timeline-scrubber::-webkit-slider-thumb:hover {
       transform: scale(1.25);
     }
-    
+
     .blinking-rec {
       width: 10px;
       height: 10px;
@@ -82,21 +103,33 @@
       border-radius: 50%;
       animation: blink 1.2s infinite;
     }
+
     @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
     }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col overflow-y-auto">
 
   <!-- Header -->
-  <header class="border-b border-[#27273a] bg-[#0c0c14]/90 backdrop-blur-md z-40 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+  <header
+    class="border-b border-[#27273a] bg-[#0c0c14]/90 backdrop-blur-md z-40 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
     <div class="flex items-center gap-3">
-      <a href="index.html" class="text-xs font-mono px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-[var(--highlight)] border border-[#27273a] rounded transition">
+      <a href="index.html"
+        class="text-xs font-mono px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-[var(--highlight)] border border-[#27273a] rounded transition">
         &larr; GALLERY
       </a>
-      <a href="editor.html" class="text-xs font-mono px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-white border border-[#27273a] rounded transition">
+      <a href="editor.html"
+        class="text-xs font-mono px-3 py-1.5 bg-neutral-900 hover:bg-neutral-800 text-white border border-[#27273a] rounded transition">
         &larr; SLIDES EDITOR
       </a>
       <div>
@@ -106,85 +139,149 @@
         <p class="text-xs text-neutral-400 font-mono">General-Purpose Motion Graphics as Code Playground</p>
       </div>
     </div>
-    
+
     <div class="flex flex-wrap items-center gap-3">
       <!-- Preset Select -->
       <div class="flex items-center gap-2">
         <label for="preset-select" class="text-xs font-mono text-neutral-400 uppercase">LOAD DEMO:</label>
-        <select id="preset-select" class="bg-neutral-900 border border-[#27273a] rounded-lg px-3 py-2 text-sm font-semibold text-white focus:outline-none focus:border-[var(--highlight)] cursor-pointer transition">
+        <select id="preset-select"
+          class="bg-neutral-900 border border-[#27273a] rounded-lg px-3 py-2 text-sm font-semibold text-white focus:outline-none focus:border-[var(--highlight)] cursor-pointer transition">
           <option value="bouncingBall">🏀 Bouncing Ball Spring</option>
           <option value="textCascade">🎬 Text Cascade In</option>
           <option value="loadingRing">⏳ Spin & Scale Loading Ring</option>
         </select>
       </div>
 
-      <button id="btn-export-video" class="flex items-center gap-2 px-5 py-2.5 bg-[var(--highlight)] text-black font-bold text-sm rounded-lg hover:bg-opacity-90 shadow-[0_0_15px_rgba(191,255,0,0.3)] transition active:scale-95">
+      <button id="btn-export-video"
+        class="flex items-center gap-2 px-5 py-2.5 bg-[var(--highlight)] text-black font-bold text-sm rounded-lg hover:bg-opacity-90 shadow-[0_0_15px_rgba(191,255,0,0.3)] transition active:scale-95">
         📥 Render WebM Video
       </button>
     </div>
   </header>
 
   <main class="flex-grow flex flex-col lg:flex-row min-h-0">
-    
+
     <!-- LEFT PANEL: JSON Studio Editor -->
-    <div class="w-full lg:w-[45%] h-[450px] lg:h-auto flex flex-col border-b lg:border-b-0 lg:border-r border-[#27273a] bg-[#0e0e16] p-5">
+    <div
+      class="w-full lg:w-[45%] h-[450px] lg:h-auto flex flex-col border-b lg:border-b-0 lg:border-r border-[#27273a] bg-[#0e0e16] p-5">
       <div class="flex justify-between items-center mb-3">
-        <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase">MOTION GRAPHICS SCRIPT</h3>
-        
-        <span id="editor-status" class="text-xs font-mono px-2 py-0.5 rounded border border-green-500/20 bg-green-500/10 text-green-400 flex items-center gap-1.5">
+        <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase">MOTION
+          GRAPHICS SCRIPT</h3>
+
+        <span id="editor-status"
+          class="text-xs font-mono px-2 py-0.5 rounded border border-green-500/20 bg-green-500/10 text-green-400 flex items-center gap-1.5">
           <span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span> JSON Valid
         </span>
       </div>
-      
+
       <!-- Textarea JSON editor -->
       <div class="flex-grow relative flex flex-col min-h-0">
-        <textarea id="json-editor" class="w-full flex-grow bg-[#09090f] border border-[#1e1e2d] rounded-lg p-4 font-mono text-xs text-blue-300 focus:outline-none focus:border-neutral-700 resize-none custom-scrollbar" spellcheck="false" placeholder="Loading script..."></textarea>
+        <textarea id="json-editor"
+          class="w-full flex-grow bg-[#09090f] border border-[#1e1e2d] rounded-lg p-4 font-mono text-xs text-blue-300 focus:outline-none focus:border-neutral-700 resize-none custom-scrollbar"
+          spellcheck="false" placeholder="Loading script..."></textarea>
       </div>
-      
+
+      <!-- AI Generator Section -->
+      <div class="mt-4 p-4 bg-[#1a1a2e] border border-[#27273a] rounded-xl shadow-inner">
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="text-xs font-mono font-bold text-[var(--highlight)] flex items-center gap-2">
+            ✨ AI PROMPT TO MOTION
+          </h4>
+          <button id="btn-toggle-ai-settings" class="text-[10px] text-neutral-500 hover:text-white transition">
+            ⚙️ SETTINGS
+          </button>
+        </div>
+
+        <div id="ai-settings-panel"
+          class="hidden mb-3 grid grid-cols-2 gap-2 p-3 bg-black/40 rounded-lg border border-white/5">
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-mono text-neutral-400">API KEY:</label>
+            <input type="password" id="ai-api-key"
+              class="bg-neutral-900 border border-white/10 rounded px-2 py-1 text-[10px] text-white focus:outline-none focus:border-[var(--highlight)]"
+              placeholder="x-api-key...">
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-[10px] font-mono text-neutral-400">MODEL:</label>
+            <input type="text" id="ai-model"
+              class="bg-neutral-900 border border-white/10 rounded px-2 py-1 text-[10px] text-white focus:outline-none focus:border-[var(--highlight)]"
+              placeholder="deepseek-v4-flash">
+          </div>
+          <div class="col-span-2 flex items-center gap-2 mt-1">
+            <input type="checkbox" id="ai-use-proxy"
+              class="w-3 h-3 rounded bg-neutral-900 border-white/10 text-[var(--highlight)] focus:ring-0">
+            <label for="ai-use-proxy" class="text-[10px] font-mono text-neutral-400 cursor-pointer">Use CORS Proxy
+              (Bypass CORS Error)</label>
+          </div>
+          <p class="col-span-2 text-[9px] text-neutral-500 font-mono">Note: If you get "Failed to fetch", enable the
+            proxy above.</p>
+        </div>
+
+        <div class="relative">
+          <textarea id="ai-prompt"
+            class="w-full bg-[#09090f] border border-[#27273a] rounded-lg p-3 text-xs text-white placeholder-neutral-600 focus:outline-none focus:border-[var(--highlight)] min-h-[80px] custom-scrollbar"
+            placeholder="Describe your animation (e.g., 'a red circle bouncing from left to right')..."></textarea>
+          <button id="btn-generate-ai"
+            class="absolute bottom-3 right-3 px-4 py-1.5 bg-[var(--highlight)] text-black font-bold text-xs rounded-md hover:scale-105 transition active:scale-95 disabled:opacity-50 disabled:scale-100">
+            GENERATE
+          </button>
+        </div>
+      </div>
+
       <!-- Helper Insertion Toolbar -->
       <div class="mt-3 flex flex-col gap-2">
         <span class="text-[10px] font-mono text-neutral-400 uppercase tracking-wider">➕ Quick Insert Snippet:</span>
         <div class="flex flex-wrap gap-1.5">
-          <button onclick="insertRect()" class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
+          <button onclick="insertRect()"
+            class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
             + Rectangle
           </button>
-          <button onclick="insertCircle()" class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
+          <button onclick="insertCircle()"
+            class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
             + Circle
           </button>
-          <button onclick="insertText()" class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
+          <button onclick="insertText()"
+            class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
             + Text
           </button>
-          <button onclick="insertLine()" class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
+          <button onclick="insertLine()"
+            class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
             + Line
           </button>
-          <button onclick="insertGrid()" class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
+          <button onclick="insertGrid()"
+            class="px-2.5 py-1 bg-neutral-900 border border-[#27273a] hover:bg-neutral-800 hover:text-white rounded text-[11px] font-mono text-neutral-300 transition">
             + Grid
           </button>
-          <button onclick="insertAnim()" class="px-2.5 py-1 bg-[#8b5cf6]/20 border border-[#8b5cf6]/30 hover:bg-[#8b5cf6]/30 text-purple-300 rounded text-[11px] font-mono transition">
+          <button onclick="insertAnim()"
+            class="px-2.5 py-1 bg-[#8b5cf6]/20 border border-[#8b5cf6]/30 hover:bg-[#8b5cf6]/30 text-purple-300 rounded text-[11px] font-mono transition">
             + Animation
           </button>
         </div>
       </div>
     </div>
-    
+
     <!-- RIGHT PANEL: Canvas Studio -->
     <div class="w-full lg:w-[55%] flex flex-col bg-[#07070b] p-6 overflow-y-auto custom-scrollbar">
-      <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase mb-4">🖥️ Real-time Renderer Canvas</h3>
-      
+      <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase mb-4">🖥️
+        Real-time Renderer Canvas</h3>
+
       <!-- Video Player Card -->
       <div class="glass-panel p-5 rounded-xl flex flex-col gap-4 relative overflow-hidden shadow-2xl">
-        
-        <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-[#040406] border border-[#27273a] shadow-[0_10px_35px_rgba(0,0,0,0.6)]">
+
+        <div
+          class="relative w-full aspect-video rounded-lg overflow-hidden bg-[#040406] border border-[#27273a] shadow-[0_10px_35px_rgba(0,0,0,0.6)]">
           <canvas id="free-canvas" class="w-full h-full block" width="1280" height="720"></canvas>
-          
-          <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/75 backdrop-blur-md rounded-md flex items-center gap-2 text-xs font-mono text-white pointer-events-none border border-white/10">
+
+          <div
+            class="absolute top-4 left-4 px-3 py-1.5 bg-black/75 backdrop-blur-md rounded-md flex items-center gap-2 text-xs font-mono text-white pointer-events-none border border-white/10">
             <div class="blinking-rec" id="rec-indicator" style="display: none;"></div>
             <span id="player-fps">60 FPS</span>
           </div>
-          
+
           <!-- Loading Overlay -->
-          <div id="loading-overlay" class="absolute inset-0 bg-black/85 flex flex-col items-center justify-center gap-4 hidden z-20">
-            <div class="w-12 h-12 border-4 border-[var(--highlight)] border-t-transparent rounded-full animate-spin"></div>
+          <div id="loading-overlay"
+            class="absolute inset-0 bg-black/85 flex flex-col items-center justify-center gap-4 hidden z-20">
+            <div class="w-12 h-12 border-4 border-[var(--highlight)] border-t-transparent rounded-full animate-spin">
+            </div>
             <div class="text-center">
               <h4 class="font-display font-bold text-lg text-white">Rendering WebM Animation...</h4>
               <p class="text-xs text-neutral-400 font-mono mt-1">Mengonversi timeline koordinat ke video.</p>
@@ -195,23 +292,25 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Controls Timeline Panel -->
         <div class="flex flex-col gap-3">
           <div class="flex items-center gap-4">
             <input type="range" id="timeline-scrubber" class="timeline-scrubber flex-grow" min="0" max="100" value="0">
           </div>
-          
+
           <div class="flex justify-between items-center text-sm font-mono mt-1">
             <div class="flex items-center gap-3">
-              <button id="btn-play" class="px-4 py-2 bg-neutral-900 hover:bg-neutral-800 rounded-md text-[var(--highlight)] border border-[#27273a] transition flex items-center gap-2">
+              <button id="btn-play"
+                class="px-4 py-2 bg-neutral-900 hover:bg-neutral-800 rounded-md text-[var(--highlight)] border border-[#27273a] transition flex items-center gap-2">
                 <span id="play-icon">▶</span> <span id="play-text">Play</span>
               </button>
-              <button id="btn-reset" class="px-3 py-2 bg-neutral-900 hover:bg-neutral-800 rounded-md text-white border border-[#27273a] transition">
+              <button id="btn-reset"
+                class="px-3 py-2 bg-neutral-900 hover:bg-neutral-800 rounded-md text-white border border-[#27273a] transition">
                 ⏮ Rewind
               </button>
             </div>
-            
+
             <div class="text-right text-xs">
               <span id="time-readout" class="text-white font-bold">F 0000 / 0000</span>
               <span class="text-neutral-400 ml-2" id="sec-readout">(0.00s)</span>
@@ -219,22 +318,36 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Instructions Card -->
       <div class="mt-6 p-5 bg-[#0e0e16] border border-[#1e1e2d] rounded-xl text-xs space-y-3 leading-relaxed">
         <h4 class="font-bold text-white font-mono uppercase tracking-wide">💡 Panduan Cepat Coding Motion</h4>
         <ul class="list-disc pl-4 text-neutral-400 space-y-1.5">
-          <li><strong>Pivot Center:</strong> Objek <code class="text-neutral-300 font-mono">rect</code>, <code class="text-neutral-300 font-mono">circle</code>, dan <code class="text-neutral-300 font-mono">text</code> diposisikan dari titik tengahnya untuk kemudahan rotasi & skala.</li>
-          <li><strong>Easing Curves:</strong> Easing yang disupport: <code class="text-green-400 font-mono">linear</code>, <code class="text-green-400 font-mono">easeIn</code>, <code class="text-green-400 font-mono">easeOut</code>, <code class="text-green-400 font-mono">easeInOut</code>, <code class="text-green-400 font-mono">bounce</code>, dan <code class="text-green-400 font-mono">spring</code>.</li>
-          <li><strong>Spring Animation:</strong> Gunakan parameter <code class="text-[var(--highlight)] font-mono">tension</code> (default 150) dan <code class="text-[var(--highlight)] font-mono">friction</code> (default 12) untuk getaran bouncy khas Motion Canvas.</li>
-          <li><strong>Line & Grid:</strong> Elemen <code class="text-neutral-300 font-mono">line</code> membutuhkan array <code class="text-neutral-300 font-mono">points</code> berisi koordinat relatif. Elemen <code class="text-neutral-300 font-mono">grid</code> bisa digunakan sebagai latar belakang estetis.</li>
+          <li><strong>Pivot Center:</strong> Objek <code class="text-neutral-300 font-mono">rect</code>, <code
+              class="text-neutral-300 font-mono">circle</code>, dan <code class="text-neutral-300 font-mono">text</code>
+            diposisikan dari titik tengahnya untuk kemudahan rotasi & skala.</li>
+          <li><strong>Easing Curves:</strong> Easing yang disupport: <code
+              class="text-green-400 font-mono">linear</code>, <code class="text-green-400 font-mono">easeIn</code>,
+            <code class="text-green-400 font-mono">easeOut</code>, <code
+              class="text-green-400 font-mono">easeInOut</code>, <code class="text-green-400 font-mono">bounce</code>,
+            dan <code class="text-green-400 font-mono">spring</code>.
+          </li>
+          <li><strong>Spring Animation:</strong> Gunakan parameter <code
+              class="text-[var(--highlight)] font-mono">tension</code> (default 150) dan <code
+              class="text-[var(--highlight)] font-mono">friction</code> (default 12) untuk getaran bouncy khas Motion
+            Canvas.</li>
+          <li><strong>Line & Grid:</strong> Elemen <code class="text-neutral-300 font-mono">line</code> membutuhkan
+            array <code class="text-neutral-300 font-mono">points</code> berisi koordinat relatif. Elemen <code
+              class="text-neutral-300 font-mono">grid</code> bisa digunakan sebagai latar belakang estetis.</li>
         </ul>
       </div>
     </div>
   </main>
 
+  <script src="js/ai-generator.js"></script>
   <script src="js/free-motion-engine.js"></script>
   <script>
+
     // Preset JSON strings
     const PRESETS = {
       bouncingBall: JSON.stringify({
@@ -315,7 +428,7 @@
           }
         ]
       }, null, 2),
-      
+
       textCascade: JSON.stringify({
         "canvas": {
           "width": 1280,
@@ -431,7 +544,7 @@
           }
         ]
       }, null, 2),
-      
+
       loadingRing: JSON.stringify({
         "canvas": {
           "width": 1280,
@@ -550,20 +663,78 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       engine = new FreeMotionEngine('free-canvas');
-      
+
       const jsonEditor = document.getElementById('json-editor');
+
+      // AI Generator Integration
+      const aiApiKeyInput = document.getElementById('ai-api-key');
+      const aiModelInput = document.getElementById('ai-model');
+      const aiUseProxyInput = document.getElementById('ai-use-proxy');
+      const aiPromptInput = document.getElementById('ai-prompt');
+      const btnGenerateAI = document.getElementById('btn-generate-ai');
+      const btnToggleAISettings = document.getElementById('btn-toggle-ai-settings');
+      const aiSettingsPanel = document.getElementById('ai-settings-panel');
+
+      // Load saved AI settings
+      aiApiKeyInput.value = localStorage.getItem('ai_api_key') || '';
+      aiModelInput.value = localStorage.getItem('ai_model') || 'deepseek-v4-flash';
+      aiUseProxyInput.checked = localStorage.getItem('ai_use_proxy') === 'true';
+
+      btnToggleAISettings.addEventListener('click', () => {
+        aiSettingsPanel.classList.toggle('hidden');
+      });
+
+      btnGenerateAI.addEventListener('click', async () => {
+        const prompt = aiPromptInput.value.trim();
+        const apiKey = aiApiKeyInput.value.trim();
+        const model = aiModelInput.value.trim();
+        const useProxy = aiUseProxyInput.checked;
+
+        if (!prompt) {
+          alert('Silakan masukkan prompt terlebih dahulu.');
+          return;
+        }
+        if (!apiKey) {
+          alert('Silakan masukkan API Key di menu Settings.');
+          aiSettingsPanel.classList.remove('hidden');
+          return;
+        }
+
+        // Save settings
+        localStorage.setItem('ai_api_key', apiKey);
+        localStorage.setItem('ai_model', model);
+        localStorage.setItem('ai_use_proxy', useProxy);
+
+        btnGenerateAI.disabled = true;
+        btnGenerateAI.textContent = '...';
+
+        try {
+          const generatedJson = await generateAIContent(prompt, apiKey, model, SYSTEM_PROMPTS.freeMotion, useProxy);
+          jsonEditor.value = generatedJson;
+          // Trigger validation and update
+          const event = new Event('input', { bubbles: true });
+          jsonEditor.dispatchEvent(event);
+          aiPromptInput.value = ''; // clear prompt on success
+        } catch (error) {
+          console.error('AI Generation Error:', error);
+          alert('Gagal generate JSON: ' + error.message);
+        } finally {
+          btnGenerateAI.disabled = false;
+          btnGenerateAI.textContent = 'GENERATE';
+        }
+      });
       const presetSelect = document.getElementById('preset-select');
       const editorStatus = document.getElementById('editor-status');
-      
+
       const scrubber = document.getElementById('timeline-scrubber');
       const btnPlay = document.getElementById('btn-play');
       const btnReset = document.getElementById('btn-reset');
       const playIcon = document.getElementById('play-icon');
       const playText = document.getElementById('play-text');
-      
+
       const timeReadout = document.getElementById('time-readout');
       const secReadout = document.getElementById('sec-readout');
-      
+
       const btnExport = document.getElementById('btn-export-video');
       const loadingOverlay = document.getElementById('loading-overlay');
       const renderProgress = document.getElementById('render-progress');
@@ -584,9 +755,9 @@
           const parsed = JSON.parse(raw);
           engine.loadData(parsed);
           localStorage.setItem('mom_free_motion_json', raw);
-          
+
           scrubber.max = Math.max(0, engine.duration - 1);
-          
+
           editorStatus.classList.remove('border-red-500/20', 'bg-red-500/10', 'text-red-400');
           editorStatus.classList.add('border-green-500/20', 'bg-green-500/10', 'text-green-400');
           editorStatus.innerHTML = '<span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span> JSON Valid';
@@ -647,7 +818,7 @@
       btnExport.addEventListener('click', () => {
         loadingOverlay.classList.remove('hidden');
         recIndicator.style.display = 'block';
-        
+
         engine.exportVideo(
           (pct) => {
             renderProgress.style.width = pct + '%';
@@ -660,7 +831,7 @@
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            
+
             loadingOverlay.classList.add('hidden');
             recIndicator.style.display = 'none';
             engine.setFrame(0);
@@ -678,11 +849,11 @@
       const start = editor.selectionStart;
       const end = editor.selectionEnd;
       const content = editor.value;
-      
+
       editor.value = content.substring(0, start) + text + content.substring(end);
       editor.focus();
       editor.selectionStart = editor.selectionEnd = start + text.length;
-      
+
       // Trigger update
       editor.dispatchEvent(new Event('input'));
     }
@@ -762,4 +933,5 @@
     }
   </script>
 </body>
+
 </html>
