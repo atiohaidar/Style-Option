@@ -14,6 +14,7 @@
             border: none;
             overflow: hidden;
             transition: height 0.3s ease;
+            pointer-events: none;
         }
         #btn-download-ppt {
             display: inline-flex;
@@ -54,7 +55,7 @@
         <p class="mb-6 text-gray-600">Total 18 Style Options. Loaded from separate files.</p>
 
         <!-- Actions -->
-        <div class="mb-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+        <div class="mb-8 flex flex-col sm:flex-row justify-center items-center gap-4 flex-wrap">
             <a href="editor.html" class="inline-flex items-center gap-2" style="padding: 12px 28px; background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%); color: white; font-weight: 700; font-size: 14px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);">
                 ✍️ Open Slides Editor
             </a>
@@ -62,10 +63,16 @@
                 📥 Download PPT
             </button>
             <a href="video-showcase.html" class="inline-flex items-center gap-2" style="padding: 12px 28px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; font-weight: 700; font-size: 14px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);">
-                🎬 Play Video Showcase
+                🎬 Video Showcase
+            </a>
+            <a href="motion-generator.html" class="inline-flex items-center gap-2" style="padding: 12px 28px; background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color: white; font-weight: 700; font-size: 14px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);">
+                ✨ Dynamic Motion
+            </a>
+            <a href="free-motion.html" class="inline-flex items-center gap-2" style="padding: 12px 28px; background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%); color: white; font-weight: 700; font-size: 14px; border: none; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(139, 92, 241, 0.4);">
+                🎨 Free Motion Studio
             </a>
         </div>
-        <p class="mt-2 text-xs text-gray-400">Compose your own presentation using code in the Editor, download a PowerPoint showcasing all styles, or experience the interactive Video Showcase</p>
+        <p class="mt-2 text-xs text-gray-400">Compose your own presentation using code in the Editor, download a PowerPoint, experience the Showcase, render JSON slides into WebM, or build custom motion graphics from scratch.</p>
 
         <!-- Table of Contents -->
         <div id="toc" class="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-left">
@@ -137,6 +144,7 @@
     </script>
 
     <!-- PPT Generator -->
+    <script src="js/styles-config.js"></script>
     <script src="js/ppt-generator.js"></script>
 
 </body>

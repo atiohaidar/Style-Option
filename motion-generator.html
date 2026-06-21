@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Motion Generator - Slides as Code</title>
+  
+  <meta name="description" content="Generate WebM Motion Graphics directly from your Slides-as-Code JSON.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Poppins', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    :root {
+      --bg-dark: #121212;
+      --bg-panel: #1e1e1e;
+      --border-accent: #2e2e2e;
+      --highlight: #BFFF00;
+      --text-muted: #AAAAAA;
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: #E2E8F0;
+      font-family: 'Inter', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #181818; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #333333; border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #444444; }
+    
+    .glass-panel {
+      background: rgba(30, 30, 30, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    input[type=range].timeline-scrubber {
+      height: 6px;
+      -webkit-appearance: none;
+      width: 100%;
+      background: #525252;
+      border-radius: 3px;
+      outline: none;
+    }
+    input[type=range].timeline-scrubber::-webkit-slider-thumb {
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: var(--highlight);
+      cursor: pointer;
+      -webkit-appearance: none;
+      box-shadow: 0 0 8px var(--highlight);
+      transition: transform 0.1s ease;
+    }
+    input[type=range].timeline-scrubber::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+    
+    .blinking-rec {
+      width: 10px;
+      height: 10px;
+      background-color: #EF4444;
+      border-radius: 50%;
+      animation: blink 1.2s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col overflow-y-auto">
+
+  <!-- Header -->
+  <header class="border-b border-[#2e2e2e] bg-[#1a1a1a]/90 backdrop-blur-md z-40 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="text-xs font-mono px-3 py-1.5 bg-neutral-800 text-[var(--highlight)] border border-neutral-700 rounded hover:bg-neutral-700 transition">
+        &larr; BACK TO GALLERY
+      </a>
+      <a href="editor.html" class="text-xs font-mono px-3 py-1.5 bg-neutral-800 text-white border border-neutral-700 rounded hover:bg-neutral-700 transition">
+        &larr; JSON EDITOR
+      </a>
+      <div>
+        <h1 class="text-xl font-display font-bold tracking-tight text-white flex items-center gap-2">
+          🎬 Dynamic Motion Generator
+        </h1>
+        <p class="text-xs text-neutral-400 font-mono">Render JSON Presentation into WebM Motion Graphics</p>
+      </div>
+    </div>
+    
+    <div class="flex flex-wrap items-center gap-3">
+      <div class="flex items-center gap-2">
+        <label for="style-select" class="text-xs font-mono text-neutral-400 uppercase">Theme Style:</label>
+        <select id="style-select" class="bg-neutral-800 border border-neutral-700 rounded-lg px-3 py-2 text-sm font-semibold text-white focus:outline-none focus:border-[var(--highlight)] cursor-pointer transition">
+          <option value="Default">★ Default Style</option>
+          <optgroup label="Style Options (Option A - R)">
+            <option value="A">Option A: Neo-Pop</option>
+            <option value="B">Option B: Tech Glass</option>
+            <option value="C">Option C: Swiss Editorial</option>
+            <option value="D">Option D: Modern SaaS</option>
+            <option value="E">Option E: Retro Terminal</option>
+            <option value="F">Option F: Organic & Soft</option>
+            <option value="G">Option G: Engineer Blueprint</option>
+            <option value="H">Option H: Pure Utility</option>
+            <option value="I">Option I: AI Innovator</option>
+            <option value="J">Option J: Research Focused</option>
+            <option value="K">Option K: Brand Identity</option>
+            <option value="L">Option L: Dashboard</option>
+            <option value="M">Option M: Living Grid</option>
+            <option value="N">Option N: The Chronicle</option>
+            <option value="O">Option O: Royal Luxury</option>
+            <option value="P">Option P: The Slum</option>
+            <option value="Q">Option Q: Buku Catatan</option>
+            <option value="R">Option R: Mesin Ketik Klasik</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <button id="btn-export-video" class="flex items-center gap-2 px-5 py-2.5 bg-[var(--highlight)] text-black font-bold text-sm rounded-lg hover:bg-opacity-90 shadow-[0_0_15px_rgba(191,255,0,0.3)] transition active:scale-95">
+        📥 Render WebM
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-grow flex flex-col lg:flex-row min-h-0">
+    
+    <!-- LEFT PANEL: Data Source -->
+    <div class="w-full lg:w-[35%] h-[450px] lg:h-auto flex flex-col border-b lg:border-b-0 lg:border-r border-[#2e2e2e] bg-[#161616] p-5">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase">SLIDES DATA (JSON)</h3>
+        <button id="btn-sync" class="text-xs font-mono px-3 py-1 bg-neutral-800 text-white border border-neutral-700 rounded hover:bg-neutral-700 transition">
+          🔄 Sync from Editor
+        </button>
+      </div>
+      
+      <div class="flex-grow relative flex flex-col min-h-0">
+        <textarea id="json-input" class="w-full flex-grow bg-neutral-900 border border-neutral-800 rounded-lg p-4 font-mono text-xs text-blue-300 focus:outline-none focus:border-neutral-700 resize-none custom-scrollbar" spellcheck="false" placeholder="Paste your slides JSON here..."></textarea>
+      </div>
+      
+      <div class="mt-4 p-3.5 bg-neutral-900/50 border border-neutral-800 rounded-lg text-xs">
+        <p class="text-neutral-400 mb-2 leading-relaxed">
+          Engine akan merender setiap objek JSON dalam array sebagai scene terpisah di Canvas, dengan efek masuk dan keluar otomatis (Motion Graphics).
+        </p>
+      </div>
+    </div>
+    
+    <!-- RIGHT PANEL: Canvas Rendering -->
+    <div class="w-full lg:w-[65%] flex flex-col bg-[#121212] p-6 overflow-y-auto custom-scrollbar">
+      <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase mb-4">🖥️ Video Renderer Canvas</h3>
+      
+      <!-- Video Player Card -->
+      <div class="glass-panel p-5 rounded-xl flex flex-col gap-4 relative overflow-hidden shadow-2xl">
+        
+        <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-[#111] border border-[#2e2e2e] shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+          <!-- Widescreen 16:9 Canvas -->
+          <canvas id="motion-canvas" class="w-full h-full block" width="1280" height="720"></canvas>
+          
+          <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-md rounded-md flex items-center gap-2 text-xs font-mono text-white pointer-events-none border border-white/10">
+            <div class="blinking-rec" id="rec-indicator" style="display: none;"></div>
+            <span id="player-fps">60 FPS</span>
+          </div>
+          
+          <!-- Loading Overlay for Export -->
+          <div id="loading-overlay" class="absolute inset-0 bg-black/80 flex flex-col items-center justify-center gap-4 hidden z-20">
+            <div class="w-12 h-12 border-4 border-[var(--highlight)] border-t-transparent rounded-full animate-spin"></div>
+            <div class="text-center">
+              <h4 class="font-display font-bold text-lg text-white">Rendering WebM Video...</h4>
+              <p class="text-xs text-[var(--text-muted)] font-mono mt-1">Menggambar setiap frame ke video.</p>
+              <div class="w-48 bg-neutral-800 h-2 rounded-full mt-3 overflow-hidden border border-neutral-700">
+                <div id="render-progress" class="bg-[var(--highlight)] h-full w-0 transition-all"></div>
+              </div>
+              <p id="render-percent" class="text-xs text-[var(--highlight)] font-mono mt-1">0% Completed</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Controls Timeline Panel -->
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-4">
+            <input type="range" id="timeline-scrubber" class="timeline-scrubber flex-grow" min="0" max="100" value="0">
+          </div>
+          
+          <div class="flex justify-between items-center text-sm font-mono mt-1">
+            <div class="flex items-center gap-3">
+              <button id="btn-play" class="px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-md text-[var(--highlight)] border border-neutral-700 transition flex items-center gap-2">
+                <span id="play-icon">▶</span> <span id="play-text">Play</span>
+              </button>
+              <button id="btn-reset" class="px-3 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-md text-white border border-neutral-700 transition">
+                ⏮ Rewind
+              </button>
+            </div>
+            
+            <div class="text-right text-xs">
+              <span id="time-readout" class="text-white font-bold">F 0000 / 0000</span>
+              <span class="text-neutral-400 ml-2" id="sec-readout">(0.00s)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+
+  <script src="js/dynamic-motion.js"></script>
+</body>
+</html>

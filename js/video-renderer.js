@@ -15,17 +15,13 @@ const PALETTE = {
 };
 
 // 18 Style Guides Data with Specific High-Contrast Accents
-const STYLES = [
+const VIDEO_STYLES_RAW = [
   {
     id: 'A', label: 'Neo-Pop',
-    bg: '#FFDEE9',
-    colors: ['#FFDEE9', '#B5FFFC', '#FFEB3B', '#FF69B4', '#000000'],
-    accent: '#FF69B4', // Pink
-    font: 'Space Grotesk, sans-serif',
+                font: 'Space Grotesk, sans-serif',
     heading: 'BELAJAR LEBIH SIMPLE & SERU',
     subtitle: 'Platform edukasi tanpa basa-basi. Desain berani, langsung ke inti.',
-    vibe: 'Brutalist-playful, thick borders, hard offsets, yellow and pink accents.',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const card = createRef<Rect>();
   view.add(<Rect ref={card} fill="#FFEB3B" lineWidth={4} stroke="#000000" />);
   yield* card().scale(1, 0.8, easeOutBack);
@@ -33,14 +29,10 @@ const STYLES = [
   },
   {
     id: 'B', label: 'Tech Glass',
-    bg: '#0F172A',
-    colors: ['#0F172A', '#7C3AED', '#3B82F6', '#FFFFFF', '#94A3B8'],
-    accent: '#3B82F6', // Neon Blue
-    font: 'Inter, sans-serif',
+                font: 'Inter, sans-serif',
     heading: 'Innovation in Learning',
     subtitle: 'Experience the future of education with a sleek, immersive interface.',
-    vibe: 'Glassmorphism, dark mode, glowing blur orbs, gradient text',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const glass = createRef<Rect>();
   view.add(<Rect ref={glass} fill="rgba(30, 41, 59, 0.7)" blur={20} />);
   yield* glass().opacity(1, 1, easeInOutSine);
@@ -48,14 +40,10 @@ const STYLES = [
   },
   {
     id: 'C', label: 'Swiss Editorial',
-    bg: '#F4F4F0',
-    colors: ['#F4F4F0', '#1A1A1A', '#166534', '#D1D5DB', '#FFFFFF'],
-    accent: '#166534', // Deep Green
-    font: 'Georgia, serif',
+                font: 'Georgia, serif',
     heading: 'Simplify your learning curve.',
     subtitle: 'Clarity, whitespace, and typography. No distractions, pure knowledge.',
-    vibe: 'Minimalist, editorial, serif typography, structured grid, lots of whitespace',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const line = createRef<Line>();
   view.add(<Line ref={line} points={[[0, 0], [400, 0]]} stroke="#1A1A1A" />);
   yield* line().end(1, 1.2);
@@ -63,14 +51,10 @@ const STYLES = [
   },
   {
     id: 'D', label: 'Modern SaaS',
-    bg: '#F9FAFB',
-    colors: ['#F9FAFB', '#FFFFFF', '#4F46E5', '#111827', '#F3F4F6'],
-    accent: '#4F46E5', // Indigo
-    font: 'Inter, sans-serif',
+                font: 'Inter, sans-serif',
     heading: 'Learning made effortless.',
     subtitle: 'Platform modern. Desain bersih, fitur lengkap, dan menyenangkan.',
-    vibe: 'Clean SaaS, rounded cards, soft shadows, indigo accent, pill navigation',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const panel = createRef<Rect>();
   view.add(<Rect ref={panel} radius={16} fill="#FFFFFF" shadowColor="rgba(0,0,0,0.05)" />);
   yield* panel().y(0, 0.8, easeOutCubic);
@@ -78,14 +62,10 @@ const STYLES = [
   },
   {
     id: 'E', label: 'Retro Terminal',
-    bg: '#1A1A1A',
-    colors: ['#1A1A1A', '#0C0C0C', '#22C55E', '#4ADE80', '#FFFFFF'],
-    accent: '#4ADE80', // Terminal Bright Green
-    font: 'Fira Code, monospace',
+                font: 'Fira Code, monospace',
     heading: '> INITIALIZE CORE...',
     subtitle: 'System initialized. Loading education modules... [OK]',
-    vibe: 'Green-on-black terminal, scanlines, monospace, blinking cursor, hacker feel',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const terminalText = createRef<Txt>();
   view.add(<Txt ref={terminalText} text="> " fill="#22C55E" font="Courier New" />);
   yield* terminalText().text("> System initialized. [OK]", 1.5);
@@ -93,14 +73,10 @@ const STYLES = [
   },
   {
     id: 'F', label: 'Organic & Soft',
-    bg: '#FDFCF6',
-    colors: ['#FDFCF6', '#F3F6E6', '#E3EBCB', '#2D3A30', '#64853F'],
-    accent: '#64853F', // Olive Green
-    font: 'Inter, sans-serif',
+                font: 'Inter, sans-serif',
     heading: 'Tumbuh Bersama Alam.',
     subtitle: 'Belajar dengan suasana yang tenang, natural, dan menyegarkan pikiran.',
-    vibe: 'Soft greens, rounded shapes, organic blobs, earthy & natural feel',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const blob = createRef<Path>();
   view.add(<Path ref={blob} fill="#E3EBCB" data="M 0,0 C 50,20 ..." />);
   yield* blob().scale(1.2, 2.0).to(1.0, 1.0);
@@ -108,14 +84,10 @@ const STYLES = [
   },
   {
     id: 'G', label: 'Engineer Blueprint',
-    bg: '#F0F4F8',
-    colors: ['#F0F4F8', '#FFFFFF', '#2563EB', '#1E293B', '#94A3B8'],
-    accent: '#2563EB', // Blueprint Blue
-    font: 'Fira Code, monospace',
+                font: 'Fira Code, monospace',
     heading: 'Engineered for Performance.',
     subtitle: '// Platform belajar untuk problem solver. Langsung eksekusi.',
-    vibe: 'Blueprint grid, technical markers, dashed borders, monospace, engineering aesthetic',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const grid = createRef<Grid>();
   view.add(<Grid ref={grid} stroke="#2563EB" spacing={40} opacity={0.3} />);
   yield* grid().spacing(80, 1.5, easeInOutCubic);
@@ -123,14 +95,10 @@ const STYLES = [
   },
   {
     id: 'H', label: 'Pure Utility',
-    bg: '#FFFFFF',
-    colors: ['#FFFFFF', '#000000', '#F5F5F5', '#737373', '#DC2626'],
-    accent: '#DC2626', // Solid Red
-    font: 'Poppins, sans-serif',
+                font: 'Poppins, sans-serif',
     heading: 'DO THE WORK.',
     subtitle: 'Stop wasting time. We automate so you can focus on innovation.',
-    vibe: 'Black & white, no decoration, thick borders, brutalist utility, function over form',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const box = createRef<Rect>();
   view.add(<Rect ref={box} fill="#FFFFFF" stroke="#000000" lineWidth={6} />);
   yield* box().width(300, 0.5);
@@ -138,14 +106,10 @@ const STYLES = [
   },
   {
     id: 'I', label: 'AI Innovator',
-    bg: '#050505',
-    colors: ['#050505', '#6366F1', '#A855F7', '#EC4899', '#FFFFFF'],
-    accent: '#A855F7', // Neon Purple
-    font: 'Inter, sans-serif',
+                font: 'Inter, sans-serif',
     heading: 'Unlock Your Potential.',
     subtitle: 'An intelligent platform for the curious mind. Powered by advanced learning algorithms.',
-    vibe: 'Ultra-dark, gradient glow (indigo > purple > pink), centered hero, futuristic AI',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const node = createRef<Circle>();
   view.add(<Circle ref={node} fill="#A855F7" shadowBlur={30} />);
   yield* node().scale(1.5, 1).to(1.0, 1);
@@ -153,14 +117,10 @@ const STYLES = [
   },
   {
     id: 'J', label: 'Research Focused',
-    bg: '#FFFFFF',
-    colors: ['#FFFFFF', '#F8FAFC', '#0F172A', '#FEF08A', '#64748B'],
-    accent: '#64748B', // Slate Gray
-    font: 'Georgia, serif',
+                font: 'Georgia, serif',
     heading: 'Research-Driven Backend.',
     subtitle: 'Mengutamakan validitas data, analisis terstruktur, dan performa optimal.',
-    vibe: 'Academic, clean, understated, yellow highlight, left-border accents, minimal palette',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const highlight = createRef<Rect>();
   view.add(<Rect ref={highlight} fill="#FEF08A" zIndex={-1} scaleX={0} />);
   yield* highlight().scaleX(1, 0.8, easeOutExpo);
@@ -168,14 +128,10 @@ const STYLES = [
   },
   {
     id: 'K', label: 'Brand Identity',
-    bg: '#0A192F',
-    colors: ['#0A192F', '#112240', '#2ECC71', '#3BAFDA', '#8892B0'],
-    accent: '#2ECC71', // Portfolio Green
-    font: 'Fira Code, monospace',
+                font: 'Fira Code, monospace',
     heading: 'Tio Haidar Hanif.',
     subtitle: 'Vibe coder & Tukang Penasaran. Fokus pada sistem yang highly performant.',
-    vibe: 'Developer portfolio classic, navy bg, green accent, code-like elements',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const codeBlock = createRef<Rect>();
   view.add(<Rect ref={codeBlock} fill="#112240" stroke="#233554" />);
   yield* codeBlock().x(0, 1.0, easeOutBack);
@@ -183,14 +139,10 @@ const STYLES = [
   },
   {
     id: 'L', label: 'Dashboard',
-    bg: '#F3F4F6',
-    colors: ['#F3F4F6', '#0A192F', '#3BAFDA', '#2ECC71', '#FFFFFF'],
-    accent: '#3BAFDA', // Soft Blue
-    font: 'Inter, sans-serif',
+                font: 'Inter, sans-serif',
     heading: 'System Automation Dashboard',
     subtitle: 'SaaS product interface with sidebar navigation, stat cards, and activity feed.',
-    vibe: 'Dashboard UI, dark sidebar, stat cards, activity log, clean data presentation',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const bar = createRef<Rect>();
   view.add(<Rect ref={bar} fill="#2ECC71" height={0} />);
   yield* bar().height(150, 1.2, easeOutBounce);
@@ -198,14 +150,10 @@ const STYLES = [
   },
   {
     id: 'M', label: 'Living Grid',
-    bg: '#F3F4F6',
-    colors: ['#F3F4F6', '#111827', '#3B82F6', '#10B981', '#FFFFFF'],
-    accent: '#3B82F6', // Tech Blue
-    font: 'Space Grotesk, sans-serif',
+                font: 'Space Grotesk, sans-serif',
     heading: 'TIO HAIDAR PORTFOLIO_V2',
     subtitle: 'Bento grid layout. Architecting digital chaos into order.',
-    vibe: 'Bento grid, marquee ticker, rounded cards, blue-green gradient, modern portfolio',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const gridItem = createRef<Rect>();
   view.add(<Rect ref={gridItem} radius={12} fill="#FFFFFF" scale={0} />);
   yield* gridItem().scale(1, 0.8, easeOutElastic);
@@ -213,14 +161,10 @@ const STYLES = [
   },
   {
     id: 'N', label: 'The Chronicle',
-    bg: '#FDFBF6',
-    colors: ['#FDFBF6', '#1A1A1A', '#8B0000', '#F4F1EA', '#444444'],
-    accent: '#8B0000', // Crimson
-    font: 'Georgia, serif',
+                font: 'Georgia, serif',
     heading: 'THE TIO CHRONICLE',
     subtitle: 'Providing Reliable Backend Solutions Since 2024. Tech news bulletin.',
-    vibe: 'Newspaper layout, serif fonts, double borders, drop caps, classifieds section',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const line = createRef<Line>();
   view.add(<Line ref={line} points={[[0, 0], [500, 0]]} stroke="#1A1A1A" lineWidth={3} />);
   yield* line().position.y(100, 1.0);
@@ -228,14 +172,10 @@ const STYLES = [
   },
   {
     id: 'O', label: 'Royal Luxury',
-    bg: '#050505',
-    colors: ['#050505', '#0A0A0A', '#D4AF37', '#F7E7CE', '#FFFFFF'],
-    accent: '#D4AF37', // Gold
-    font: 'Georgia, serif',
+                font: 'Georgia, serif',
     heading: 'Crafting Timeless Legacies.',
     subtitle: 'The pinnacle of sophistication. Precision meets prestige in every pixel.',
-    vibe: 'Gold on black, corner ornaments, luxury branding, fleur-de-lis, shimmer effect',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const border = createRef<Rect>();
   view.add(<Rect ref={border} stroke="#D4AF37" lineWidth={2} margin={20} />);
   yield* border().lineWidth(4, 2.0);
@@ -243,14 +183,10 @@ const STYLES = [
   },
   {
     id: 'P', label: 'The Slum',
-    bg: '#F0F0F0',
-    colors: ['#F0F0F0', '#E3DAC9', '#D4C5B0', '#8C7B6C', '#EFEEB4'],
-    accent: '#8C7B6C', // Earthy Brown
-    font: 'Comic Sans MS, cursive, sans-serif',
+                font: 'Comic Sans MS, cursive, sans-serif',
     heading: 'Halaman Belum Jadi.',
     subtitle: '*maaf berantakan, lagi males beres-beres ngerapihin berkas.',
-    vibe: 'Messy, crumpled paper, tape/stickers, noise texture, intentionally ugly, grunge',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const tape = createRef<Rect>();
   view.add(<Rect ref={tape} fill="#EFEEB4" rotation={15} opacity={0.8} />);
   yield* tape().rotation(12, 0.4);
@@ -258,14 +194,10 @@ const STYLES = [
   },
   {
     id: 'Q', label: 'Buku Catatan',
-    bg: '#F0F0F0',
-    colors: ['#FFFFFF', '#A2D2FF', '#FFB7B2', '#1A73E8', '#5F6368'],
-    accent: '#1A73E8', // Notebook Blue
-    font: 'Comic Sans MS, cursive, sans-serif',
+                font: 'Comic Sans MS, cursive, sans-serif',
     heading: 'Catatan Tio Haidar',
     subtitle: 'Vibe coder / Rajin Menabung / RPL Telkom.',
-    vibe: 'School notebook, lined paper, binder holes, doodles, highlighter marks, pencil',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const doodle = createRef<Path>();
   view.add(<Path ref={doodle} data="M 0,0 Q 50,50 100,0" stroke="#1A73E8" />);
   yield* doodle().opacity(1, 0.5);
@@ -273,20 +205,24 @@ const STYLES = [
   },
   {
     id: 'R', label: 'Mesin Ketik Klasik',
-    bg: '#2B2B2B',
-    colors: ['#2B2B2B', '#FDF6E3', '#8B0000', '#EAB308', '#000000'],
-    accent: '#8B0000', // Dark Red Ink
-    font: 'Courier New, monospace',
+                font: 'Courier New, monospace',
     heading: 'TIO HAIDAR HANIF',
     subtitle: '// DOSSIER REFERENCE #882-BIO: TOP CLASSIFIED',
-    vibe: 'Typewriter on aged paper, ink bleed, stamp effect, dossier/classified document feel',
-    code: `export default makeScene2D(function* (view) {
+        code: `export default makeScene2D(function* (view) {
   const stamp = createRef<Txt>();
   view.add(<Txt ref={stamp} text="CONFIDENTIAL" fill="#8B0000" scale={3.0} />);
   yield* stamp().scale(1.0, 0.3, easeOutBounce);
 });`
   }
 ];
+
+const STYLES = VIDEO_STYLES_RAW.map(s => ({
+  ...s,
+  bg: window.GLOBAL_STYLES_CONFIG[s.id].bg,
+  colors: window.GLOBAL_STYLES_CONFIG[s.id].colors,
+  accent: window.GLOBAL_STYLES_CONFIG[s.id].accent,
+  vibe: window.GLOBAL_STYLES_CONFIG[s.id].vibe
+}));
 
 // Helper: Easing Springs (Motion Canvas feeling)
 function getSpringValue(t, tension = 150, friction = 12) {

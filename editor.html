@@ -80,7 +80,7 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col overflow-hidden">
+<body class="min-h-screen flex flex-col overflow-y-auto lg:overflow-hidden">
 
   <!-- Header Section -->
   <header class="border-b border-[#2e2e2e] bg-[#1a1a1a]/90 backdrop-blur-md z-40 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
@@ -127,6 +127,12 @@
       </div>
 
       <!-- Export Button -->
+      <a href="motion-generator.html" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-neutral-800 text-[var(--highlight)] border border-neutral-700 font-bold text-sm rounded-lg hover:bg-neutral-700 transition active:scale-95">
+        🎬 Animate to Video
+      </a>
+      <a href="free-motion.html" target="_blank" class="flex items-center gap-2 px-4 py-2.5 bg-neutral-800 text-purple-400 border border-neutral-700 font-bold text-sm rounded-lg hover:bg-neutral-700 transition active:scale-95">
+        🎨 Free Motion Studio
+      </a>
       <button id="btn-export-ppt" class="flex items-center gap-2 px-5 py-2.5 bg-[var(--highlight)] text-black font-bold text-sm rounded-lg hover:bg-opacity-90 shadow-[0_0_15px_rgba(191,255,0,0.3)] transition active:scale-95">
         📥 Export Slide (.pptx)
       </button>
@@ -137,7 +143,7 @@
   <main class="flex-grow flex flex-col lg:flex-row min-h-0">
     
     <!-- LEFT PANEL: JSON Code Input (5 cols on grid-like split) -->
-    <div class="lg:w-[45%] flex flex-col border-r border-[#2e2e2e] bg-[#161616] p-5 min-h-0">
+    <div class="w-full lg:w-[45%] h-[450px] lg:h-auto flex flex-col border-b lg:border-b-0 lg:border-r border-[#2e2e2e] bg-[#161616] p-5">
       <div class="flex justify-between items-center mb-3">
         <h3 class="font-display font-semibold text-sm text-neutral-400 font-mono tracking-wider uppercase">JSON CODE EDITOR</h3>
         
@@ -181,7 +187,7 @@
     </div>
     
     <!-- RIGHT PANEL: Live Preview & notes (7 cols equivalent / 55%) -->
-    <div class="lg:w-[55%] flex flex-col bg-[#121212] p-6 overflow-y-auto custom-scrollbar min-h-0">
+    <div class="w-full lg:w-[55%] flex flex-col bg-[#121212] p-6 overflow-y-auto custom-scrollbar">
       
       <!-- Live Preview Title & Pagination -->
       <div class="flex justify-between items-center mb-4">
@@ -310,6 +316,7 @@
 
   <!-- PPTXGenJS and Scripts -->
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+  <script src="js/styles-config.js"></script>
   <script src="js/ppt-generator.js"></script>
   <script src="js/preview-renderer.js"></script>
   <script src="js/editor-controller.js" defer></script>
